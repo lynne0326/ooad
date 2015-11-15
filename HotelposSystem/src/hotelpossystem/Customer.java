@@ -10,17 +10,31 @@ package hotelpossystem;
  * @author lingyanjiang
  */
 public class Customer {
-    Customer(){
-        
+    String name;
+    int id;
+    String gender;
+    Room room;
+    Order order;
+    Date checkInTime;
+    Date checkOutTime;
+    Customer(String name,int id,String gender){
+        this.name=name;
+        this.id=id;
+        this.gender=gender;
     }
-    public void selectTime(Room room){
-        room.
+    public void selectTime(){
+        
     }
     public void selectRoom(){
         
     }
-    public void selectService(){
+    public void selectService(String name){
+        Service service=new Service(name);
+    }
+    public void selectPaymentMethod(){
+        if(){}
+    }
+    public PayByCard payByCard(){
         
     }
-    public Room
 }
