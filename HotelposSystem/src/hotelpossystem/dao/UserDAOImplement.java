@@ -7,8 +7,11 @@ import hotelpossystem.Room;
 import hotelpossystem.Service;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,9 +25,9 @@ public class UserDAOImplement implements UserDAO{
      */
     public void insert(Order order) throws Exception {
         try(Connection conn = new DatabaseConnection().getConnection();
-            Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("new")
+            Statement state = conn.createStatement();        
             ){
+            state.execute("insert into orders values(1,2,102,2,'Supper')");
         }
     }
 
@@ -95,7 +98,27 @@ public class UserDAOImplement implements UserDAO{
 
     @Override
     public void queryRoomAvailableByRoomNumber(String roomnumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ResultSet rs = state.executeQuery("select * from room")
+            ){
+            while(rs.next()) {
+            System.out.println(rs.getString("ID"));
+                    }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void queryTest() throws SQLException {
+        try(Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ResultSet rs = state.executeQuery("select * from room;")
+            ){
+            while(rs.next()) {
+            System.out.println(rs.getString("ID"));
+                    }
+        }
     }
     
 }

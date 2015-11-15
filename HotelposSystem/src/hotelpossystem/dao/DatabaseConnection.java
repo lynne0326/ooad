@@ -11,8 +11,8 @@ import java.util.logging.Logger;
  * @author lingyanjiang
  */
 public class DatabaseConnection {
-    private final String url = "jdbc:derby://localhost:1527/book";
-    private final String user = "jingshiqing"; 
+    private final String url = "jdbc:derby://localhost:1527/POS";
+    private final String user = "app"; 
     private final String pwd = "missjing";
     private Connection conn;
     
