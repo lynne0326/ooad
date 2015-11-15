@@ -9,6 +9,6 @@ package hotelpossystem;
  *
  * @author lingyanjiang
  */
-public class Customer {
+public class Room {
     
 }
