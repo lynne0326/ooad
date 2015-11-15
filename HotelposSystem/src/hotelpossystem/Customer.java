@@ -13,5 +13,14 @@ public class Customer {
     Customer(){
         
     }
-    
+    public void selectTime(Room room){
+        room.
+    }
+    public void selectRoom(){
+        
+    }
+    public void selectService(){
+        
+    }
+    public Room
 }
