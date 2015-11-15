@@ -17,8 +17,8 @@ public class Room extends javax.swing.JFrame {
     public Room() {
         initComponents();
     }
-    BookRoom bookRoom=new BookRoom();
-    Room room=new Room();
+    //BookRoom bookRoom=new BookRoom();
+    static Room room=new Room();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +73,9 @@ public class Room extends javax.swing.JFrame {
 
     private void jBtBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtBRActionPerformed
         // TODO add your handling code here:
-        bookRoom.setVisible(true);
+        SelectTimeSlot selectTime=new SelectTimeSlot();
+        selectTime.setVisible(true);
+        
         room.setVisible(false);
     }//GEN-LAST:event_jBtBRActionPerformed
 
@@ -113,7 +115,7 @@ public class Room extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Room().setVisible(true);
+                room.setVisible(true);
             }
         });
     }
