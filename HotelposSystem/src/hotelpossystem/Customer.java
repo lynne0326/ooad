@@ -10,5 +10,8 @@ package hotelpossystem;
  * @author lingyanjiang
  */
 public class Customer {
+    Customer(){
+        
+    }
     
 }
