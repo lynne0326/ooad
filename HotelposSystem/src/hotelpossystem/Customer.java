@@ -5,36 +5,35 @@
  */
 package hotelpossystem;
 
+
 /**
  *
  * @author lingyanjiang
  */
 public class Customer {
-    String name;
-    int id;
-    String gender;
-    Room room;
-    Order order;
-    Date checkInTime;
-    Date checkOutTime;
-    Customer(String name,int id,String gender){
-        this.name=name;
-        this.id=id;
-        this.gender=gender;
+
+    private String name;
+    private int id;
+    private String gender;
+    private Order order;
+
+    Customer(String name, int id, String gender) {
+        this.name = name;
+        this.id = id;
+        this.gender = gender;
+
     }
-    public void selectTime(){
-        
+
+    public String getName() {
+        return this.name;
     }
-    public void selectRoom(){
-        
+
+    public int getId() {
+        return this.id;
     }
-    public void selectService(String name){
-        Service service=new Service(name);
+
+    public Order getOrder() {
+        return this.order;
     }
-    public void selectPaymentMethod(){
-        if(){}
-    }
-    public PayByCard payByCard(){
-        
-    }
+
 }
