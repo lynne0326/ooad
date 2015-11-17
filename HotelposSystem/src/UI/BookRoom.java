@@ -9,6 +9,15 @@ import hotelpossystem.dao.DAOFactory;
 import hotelpossystem.dao.UserDAOImplement;
 import hotelpossystem.dao.UserDAO;
 import hotelpossystem.dao.DatabaseConnection;
+import hotelpossystem.dao.NewClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Jingshiqing
@@ -18,10 +27,20 @@ public class BookRoom extends javax.swing.JFrame {
     /**
      * Creates new form BookRoom
      */
+    static BookRoom bookRoom=new BookRoom();
+    SelectTimeSlot s=new SelectTimeSlot();    
+    public static DefaultTableModel tableModel;
+    //JTable tableR=new JTable(tableModel);
+    int count;
+    public DefaultTableModel getTableModel() {
+        return tableModel;
+    }
+    
+    //tableModel= jTableR.getModel();
     public BookRoom() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,32 +50,34 @@ public class BookRoom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
+        jCBF = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableR = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jBtSearch = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jBtSelect = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jCBT = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all", "level1", "level2" }));
+        jCBF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all", "level1", "level2" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableR.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Room number", "floor", "type", "price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableR);
 
         jLabel2.setText("floor:");
 
@@ -68,27 +89,32 @@ public class BookRoom extends javax.swing.JFrame {
         });
 
         jButton2.setText("back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jBtSelect.setText("Select");
 
         jLabel1.setText("Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all", "normal single", "normal double", "big single", "big double" }));
+        jCBT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all", "normal single", "normal double", "big single", "big double" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, 127, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, 1, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCBF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCBT, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addComponent(jBtSearch)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
@@ -98,29 +124,27 @@ public class BookRoom extends javax.swing.JFrame {
                 .addComponent(jBtSelect)
                 .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCBF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)))
+                            .addComponent(jCBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,8 +155,258 @@ public class BookRoom extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSearchActionPerformed
-        DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber("s");
+        //DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber("s");                           
+        //tableModel.setRowCount(0);
+        DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+        tableModel.setRowCount(0);
+        run();
+        
+        if(jCBF.getSelectedIndex()==1) {
+            if(jCBT.getSelectedIndex()==0) {             
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level1")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+            if(jCBT.getSelectedIndex()==1) {
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level1")|| !tableModel.getValueAt(index,2).equals("normal1")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+            if(jCBT.getSelectedIndex()==2) {
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level1")|| !tableModel.getValueAt(index,2).equals("normal2")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+            if(jCBT.getSelectedIndex()==3) {
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level1")|| !tableModel.getValueAt(index,2).equals("big1")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+            if(jCBT.getSelectedIndex()==4) {
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level1")|| !tableModel.getValueAt(index,2).equals("big2")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+        }    
+            if(jCBF.getSelectedIndex()==2) {
+                if(jCBT.getSelectedIndex()==0) {             
+                    for(int index=0; index < count;index++ ) {                 
+                        if(!tableModel.getValueAt(index,1).equals("level2")) {
+                            tableModel.removeRow(index);
+                            index--; count--;
+                        }
+                    }
+                }
+                if(jCBT.getSelectedIndex()==1) {
+                    for(int index=0; index < count;index++ ) {                 
+                        if(!tableModel.getValueAt(index,1).equals("level2")||!tableModel.getValueAt(index,2).equals("normal1")) {
+                            tableModel.removeRow(index);
+                            index--; count--;
+                        }
+                    }
+                }
+                if(jCBT.getSelectedIndex()==2) {
+                    for(int index=0; index < count;index++ ) {                 
+                        if(!tableModel.getValueAt(index,1).equals("level1")||!tableModel.getValueAt(index,2).equals("normal2")) {
+                            tableModel.removeRow(index);
+                            index--; count--;
+                        }
+                    }
+                }
+                if(jCBT.getSelectedIndex()==3) {
+                    for(int index=0; index < count;index++ ) {                 
+                        if(!tableModel.getValueAt(index,1).equals("level2")||!tableModel.getValueAt(index,2).equals("big1")) {
+                            tableModel.removeRow(index);
+                            index--; count--;
+                        }
+                    }
+                }
+            if(jCBT.getSelectedIndex()==4) {
+                for(int index=0; index < count;index++ ) {                 
+                    if(!tableModel.getValueAt(index,1).equals("level2")|| !tableModel.getValueAt(index,2).equals("big2")) {
+                        tableModel.removeRow(index);
+                        index--; count--;
+                    }
+                }
+            }
+            
+        }
     }//GEN-LAST:event_jBtSearchActionPerformed
+    public void run() {
+        try {
+            count=0;
+            DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+            //DAOFactory.getUserDAOInstance().queryRoomAvailable(1,0);//===========
+            try(Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ResultSet rs = state.executeQuery("select * from room")
+            ){
+            while(rs.next()) {                
+                String s1=rs.getString("ID");
+                String s2=rs.getString("Floor");
+                String s3=rs.getString("Type");
+                String s4=rs.getString("Price");
+                String ss[] = new String[]{s1, s2, s3, s4};                                        
+                if(s.from==0) {
+                    if(s.to==0) {
+                        if(rs.getBoolean("firstDay")) {    
+                            tableModel.addRow(ss);
+                            count++;
+                        }
+                    }
+                    if(s.to==1) {
+                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay"))  {   
+                            tableModel.addRow(ss);  count++;
+                        }
+                    }
+                    if(s.to==2) {
+                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")){     
+                            tableModel.addRow(ss);  count++;
+                        }
+                    }
+                    if(s.to==3) {
+                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay"))     {
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==4) {
+                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==5) {
+                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay")) {    
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                }//s.for==0
+                
+                if(s.from==1) {
+                    if(s.to==2) {
+                        if(rs.getBoolean("secondDay")) 
+                            tableModel.addRow(ss);count++;  
+                    }
+                    if(s.to==3) {
+                        if(rs.getBoolean("secondDay")||rs.getBoolean("thridDay")) 
+                            tableModel.addRow(ss);  count++;
+                    }
+                    if(s.to==4) {
+                        if(rs.getBoolean("secondDay")||rs.getBoolean("thridDay")||rs.getBoolean("forthDay")) 
+                            tableModel.addRow(ss);  count++;
+                    }
+                    if(s.to==5) {
+                        if(rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==6) {
+                        if(rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    
+                } //s.from==1
+                
+                if(s.from==2) {
+                    if(s.to==3) {
+                        if(rs.getBoolean("thridDay")) 
+                            tableModel.addRow(ss);  count++;
+                    }
+                    if(s.to==4) {
+                        if(rs.getBoolean("forthDay")||rs.getBoolean("thridDay")) 
+                            tableModel.addRow(ss);  count++;
+                    }
+                    
+                    if(s.to==5) {
+                        if(rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==6) {
+                        if(rs.getBoolean("thirdDay")
+                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                }//s.from==2
+                
+                if(s.from==3) {
+                    
+                    if(s.to==4) {
+                        if(rs.getBoolean("forthDay"))
+                            tableModel.addRow(ss);  count++;
+                    }
+                    
+                    if(s.to==5) {
+                        if(rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==6) {
+                        if(rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                }//==3
+                
+                if(s.from==4) {
+                  if(s.to==5) {
+                        if(rs.getBoolean("fifthDay"))     {
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                    if(s.to==6) {
+                        if(rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                }//==4
+                if(s.from==5) {                 
+                    if(s.to==6) {
+                        if(rs.getBoolean("sixthDay"))  {   
+                            tableModel.addRow(ss); count++;
+                        }
+                    }
+                }
+            }
+        }
+           
+                
+           // DAOFactory.getUserDAOInstance().queryRoomAvailable(s.from, 1);
+        } catch (Exception ex) {
+            Logger.getLogger(BookRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        run();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SelectTimeSlot select=new SelectTimeSlot();
+        select.setVisible(true);
+        bookRoom.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,20 +439,20 @@ public class BookRoom extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookRoom().setVisible(true);
+                bookRoom.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtSearch;
-    private javax.swing.JButton jBtSelect;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JButton jBtSearch;
+    public javax.swing.JButton jBtSelect;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JComboBox jCBF;
+    public javax.swing.JComboBox jCBT;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTableR;
     // End of variables declaration//GEN-END:variables
 }

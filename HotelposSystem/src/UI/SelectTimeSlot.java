@@ -5,22 +5,41 @@
  */
 package UI;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Jingshiqing
  */
-
 public class SelectTimeSlot extends javax.swing.JFrame {
 
+    boolean[] time = new boolean[7];
+    public static int from, to;
+
+    public int getFrom() {
+        return from;
+    }
+
+    public int getTo() {
+        return to;
+    }
+    
     /**
      * Creates new form SelectTimeSlot
      */
+
     public SelectTimeSlot() {
         initComponents();
     }
 
-   
-    
+    static SelectTimeSlot selectTime = new SelectTimeSlot();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +55,7 @@ public class SelectTimeSlot extends javax.swing.JFrame {
         jCbTo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLbWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,45 +72,58 @@ public class SelectTimeSlot extends javax.swing.JFrame {
         });
 
         jBtConfirm.setText("Confirm");
+        jBtConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtConfirmActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("From");
+        jCbFrom.setEditable(true);
 
-        jLabel2.setText("To");
+        jCbTo.setEditable(true);
+
+        jLabel1.setText("Check In");
+
+        jLabel2.setText("Check out");
+
+        jLbWarning.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jBtBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtConfirm)
+                .addGap(98, 98, 98))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(108, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jCbFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jBtBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtConfirm)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCbFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jCbTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36))
+                        .addComponent(jCbTo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(24, 24, 24)
+                .addComponent(jLbWarning)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCbFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCbTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -101,14 +134,50 @@ public class SelectTimeSlot extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtBackActionPerformed
-        // TODO add your handling code here:
-        
+        Room room = new Room(); 
+        room.setVisible(true);
+        selectTime.setVisible(false);
     }//GEN-LAST:event_jBtBackActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-        System.out.println("f");
+        // TODO add your handling code here:        
+        Date dt = new Date();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        String today = "";
+        today = sf.format(dt);
+        String[] next = new String[6];
+        Calendar cal = Calendar.getInstance();
+        jCbFrom.addItem(today);
+
+        //jCbTo.addItem(today);
+        for (int i = 0; i < 5; i++) {
+            try {
+                cal.setTime(sf.parse(today));
+            } catch (ParseException ex) {
+                Logger.getLogger(SelectTimeSlot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            cal.add(Calendar.DAY_OF_YEAR, +(i+1));
+            next[i] = sf.format(cal.getTime());
+            jCbFrom.addItem(next[i]);
+            jCbTo.addItem(next[i]);
+        }
+
     }//GEN-LAST:event_formWindowActivated
+
+
+    private void jBtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmActionPerformed
+        BookRoom bookRoom = new BookRoom();
+        if (jCbTo.getSelectedIndex() < jCbFrom.getSelectedIndex()) {
+            jLbWarning.setText("The check out time should after the check in time");
+        } 
+        else {
+            from = jCbFrom.getSelectedIndex();           
+            to = jCbTo.getSelectedIndex();            
+                     
+            bookRoom.setVisible(true);
+            selectTime.setVisible(false);
+        }
+    }//GEN-LAST:event_jBtConfirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,7 +210,7 @@ public class SelectTimeSlot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SelectTimeSlot().setVisible(true);
+                selectTime.setVisible(true);
             }
         });
     }
@@ -153,5 +222,6 @@ public class SelectTimeSlot extends javax.swing.JFrame {
     private javax.swing.JComboBox jCbTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLbWarning;
     // End of variables declaration//GEN-END:variables
 }

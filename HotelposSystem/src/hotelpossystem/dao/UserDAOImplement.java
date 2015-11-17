@@ -1,5 +1,6 @@
 package hotelpossystem.dao;
 
+import UI.BookRoom;
 import hotelpossystem.Customer;
 import hotelpossystem.Order;
 import hotelpossystem.Payment;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -77,10 +79,30 @@ public class UserDAOImplement implements UserDAO{
     }
 
     @Override
-    public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {      
+        
+        
     }
 
+    /**
+     *
+     * @param checkinDate
+     * @param checkOutDate
+     * @throws SQLException
+     */
+    @Override
+    public void queryRoomAvailable(int checkinDate, int checkOutDate) throws SQLException {
+//        BookRoom room=new BookRoom();
+//        DefaultTableModel tableModel = (DefaultTableModel) room.jTableR.getModel();
+//        String s1="1";
+//        String s2="2";
+//        String s3="2";
+//        String s4="2";
+//        String[] s=new String[]{s1,s2,s3,s4};
+//        room.getTableModel().addRow(s);
+        
+    }
+    
     @Override
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -113,7 +135,7 @@ public class UserDAOImplement implements UserDAO{
     public void queryTest() throws SQLException {
         try(Connection conn = new DatabaseConnection().getConnection();
             Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("select * from room;")
+            ResultSet rs = state.executeQuery("select * from room")
             ){
             while(rs.next()) {
             System.out.println(rs.getString("ID"));
