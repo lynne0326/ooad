@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -114,9 +116,9 @@ public class BookRoom extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCBF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCBT, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(40, 40, 40)
                 .addComponent(jBtSearch)
-                .addGap(25, 25, 25))
+                .addGap(60, 60, 60))
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jButton2)
@@ -125,23 +127,25 @@ public class BookRoom extends javax.swing.JFrame {
                 .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jCBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
@@ -155,11 +159,14 @@ public class BookRoom extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSearchActionPerformed
-        //DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber("s");                           
-        //tableModel.setRowCount(0);
+
         DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
         tableModel.setRowCount(0);
-        run();
+        try {
+            runn();
+        } catch (Exception ex) {
+            Logger.getLogger(BookRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if(jCBF.getSelectedIndex()==1) {
             if(jCBT.getSelectedIndex()==0) {             
@@ -247,159 +254,29 @@ public class BookRoom extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jBtSearchActionPerformed
-    public void run() {
-        try {
-            count=0;
-            DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
-            //DAOFactory.getUserDAOInstance().queryRoomAvailable(1,0);//===========
-            try(Connection conn = new DatabaseConnection().getConnection();
-            Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("select * from room")
-            ){
-            while(rs.next()) {                
-                String s1=rs.getString("ID");
-                String s2=rs.getString("Floor");
-                String s3=rs.getString("Type");
-                String s4=rs.getString("Price");
-                String ss[] = new String[]{s1, s2, s3, s4};                                        
-                if(s.from==0) {
-                    if(s.to==0) {
-                        if(rs.getBoolean("firstDay")) {    
-                            tableModel.addRow(ss);
-                            count++;
-                        }
-                    }
-                    if(s.to==1) {
-                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay"))  {   
-                            tableModel.addRow(ss);  count++;
-                        }
-                    }
-                    if(s.to==2) {
-                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")){     
-                            tableModel.addRow(ss);  count++;
-                        }
-                    }
-                    if(s.to==3) {
-                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay"))     {
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==4) {
-                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==5) {
-                        if(rs.getBoolean("firstDay")||rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay")) {    
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                }//s.for==0
-                
-                if(s.from==1) {
-                    if(s.to==2) {
-                        if(rs.getBoolean("secondDay")) 
-                            tableModel.addRow(ss);count++;  
-                    }
-                    if(s.to==3) {
-                        if(rs.getBoolean("secondDay")||rs.getBoolean("thridDay")) 
-                            tableModel.addRow(ss);  count++;
-                    }
-                    if(s.to==4) {
-                        if(rs.getBoolean("secondDay")||rs.getBoolean("thridDay")||rs.getBoolean("forthDay")) 
-                            tableModel.addRow(ss);  count++;
-                    }
-                    if(s.to==5) {
-                        if(rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==6) {
-                        if(rs.getBoolean("secondDay")||rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    
-                } //s.from==1
-                
-                if(s.from==2) {
-                    if(s.to==3) {
-                        if(rs.getBoolean("thridDay")) 
-                            tableModel.addRow(ss);  count++;
-                    }
-                    if(s.to==4) {
-                        if(rs.getBoolean("forthDay")||rs.getBoolean("thridDay")) 
-                            tableModel.addRow(ss);  count++;
-                    }
-                    
-                    if(s.to==5) {
-                        if(rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==6) {
-                        if(rs.getBoolean("thirdDay")
-                                ||rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                }//s.from==2
-                
-                if(s.from==3) {
-                    
-                    if(s.to==4) {
-                        if(rs.getBoolean("forthDay"))
-                            tableModel.addRow(ss);  count++;
-                    }
-                    
-                    if(s.to==5) {
-                        if(rs.getBoolean("forthDay")||rs.getBoolean("fifthDay"))     {
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==6) {
-                        if(rs.getBoolean("forthDay")||rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                }//==3
-                
-                if(s.from==4) {
-                  if(s.to==5) {
-                        if(rs.getBoolean("fifthDay"))     {
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                    if(s.to==6) {
-                        if(rs.getBoolean("fifthDay")||rs.getBoolean("sixthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                }//==4
-                if(s.from==5) {                 
-                    if(s.to==6) {
-                        if(rs.getBoolean("sixthDay"))  {   
-                            tableModel.addRow(ss); count++;
-                        }
-                    }
-                }
-            }
+    
+    public void runn() throws Exception {
+        count=0;
+        DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+        int in =s.from+1;
+        int out =s.to+1;
+       
+        HashSet<String[]> as = new HashSet<>();
+        as=DAOFactory.getUserDAOInstance().queryRoomAvailable(in, out);          
+        for(String[] a: as) {
+            tableModel.addRow(a);
+            count++;
         }
-           
-                
-           // DAOFactory.getUserDAOInstance().queryRoomAvailable(s.from, 1);
+        
+    }
+    
+    
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            runn();
         } catch (Exception ex) {
             Logger.getLogger(BookRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        run();
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -10,7 +10,11 @@ import hotelpossystem.Payment;
 import hotelpossystem.Customer;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 public interface UserDAO {
     
@@ -29,5 +33,5 @@ public interface UserDAO {
     public void queryRoomAvailableFloor(Date checkinDate, Date checkoutDate, String floor) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String floor, String roomtype) throws Exception;
     public void queryRoomAvailableByRoomNumber(String roomnumber);
-    public void queryRoomAvailable(int checkin, int checkout) throws Exception;
+    public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
 }

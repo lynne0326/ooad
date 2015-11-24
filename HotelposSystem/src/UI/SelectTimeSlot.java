@@ -59,6 +59,9 @@ public class SelectTimeSlot extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
@@ -104,11 +107,11 @@ public class SelectTimeSlot extends javax.swing.JFrame {
                     .addComponent(jLbWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCbFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCbFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCbTo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
@@ -148,7 +151,7 @@ public class SelectTimeSlot extends javax.swing.JFrame {
         String[] next = new String[6];
         Calendar cal = Calendar.getInstance();
         jCbFrom.addItem(today);
-
+        
         //jCbTo.addItem(today);
         for (int i = 0; i < 5; i++) {
             try {
@@ -161,11 +164,15 @@ public class SelectTimeSlot extends javax.swing.JFrame {
             jCbFrom.addItem(next[i]);
             jCbTo.addItem(next[i]);
         }
-
+        
     }//GEN-LAST:event_formWindowActivated
 
 
     private void jBtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmActionPerformed
+        
+    }//GEN-LAST:event_jBtConfirmActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         BookRoom bookRoom = new BookRoom();
         if (jCbTo.getSelectedIndex() < jCbFrom.getSelectedIndex()) {
             jLbWarning.setText("The check out time should after the check in time");
@@ -177,7 +184,7 @@ public class SelectTimeSlot extends javax.swing.JFrame {
             bookRoom.setVisible(true);
             selectTime.setVisible(false);
         }
-    }//GEN-LAST:event_jBtConfirmActionPerformed
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -88,19 +91,51 @@ public class UserDAOImplement implements UserDAO{
      *
      * @param checkinDate
      * @param checkOutDate
+     * @return 
      * @throws SQLException
      */
+    class Result{
+        String id;
+        String floor;
+    }
     @Override
-    public void queryRoomAvailable(int checkinDate, int checkOutDate) throws SQLException {
-//        BookRoom room=new BookRoom();
-//        DefaultTableModel tableModel = (DefaultTableModel) room.jTableR.getModel();
-//        String s1="1";
-//        String s2="2";
-//        String s3="2";
-//        String s4="2";
-//        String[] s=new String[]{s1,s2,s3,s4};
-//        room.getTableModel().addRow(s);
+    public HashSet<String[]> queryRoomAvailable(int checkinDate, int checkOutDate) throws SQLException {
+        ResultSet r,r1;
+        //ArrayList<Result> rs=new ArrayList();
+        String id=null,floor=null,type=null,price=null;
+        //String[] s=new String[]{id,floor,type,price};
+        HashSet<String[]> as = new HashSet<>();      
+        HashSet<String> idHash = new HashSet<>();
+        String[] s;
+        try   
+           {
+            Connection conn = new DatabaseConnection().getConnection();
+            conn.setAutoCommit(false);
+            Statement state = conn.createStatement();                        
+            int in=checkinDate;
+            int out=checkOutDate;
+            int idInt;
+            for(in=checkinDate; in < out; in++){
+                String ins=String.valueOf(in);
+                r1=state.executeQuery("select * from room where day"+ins+"=true");
+                while(r1.next()) {
+                    id=r1.getString("ID");
+                    floor=r1.getString("floor");
+                    type=r1.getString("type");
+                    price=r1.getString("price");
+                    //idInt=Integer.parseInt(id);                   
+                    if(idHash.add(id)) {                  
+                        s=new String[]{id,floor,type,price};
+                        as.add(s);                    
+                    }
+                }
+                
+            }
+            
+        }catch(Exception e) {          
+        }
         
+        return as;
     }
     
     @Override
