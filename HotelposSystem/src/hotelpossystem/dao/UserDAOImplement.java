@@ -20,6 +20,23 @@ import java.util.logging.Logger;
  */
 public class UserDAOImplement implements UserDAO {
 
+    
+    
+    @Override
+    public ArrayList queryGetService() throws Exception {
+        ArrayList services = null;
+        try(Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ResultSet rs = state.executeQuery("select * from room")
+            ){
+            while(rs.next()) {
+                Service service = new Service(rs.getString("name"));
+                services.add(service);
+                service.setPrice(rs.getInt("price"));
+            }
+        }return services;
+    }
+        
     @Override
     /**
      * This method is to insert new order to database
@@ -91,6 +108,8 @@ public class UserDAOImplement implements UserDAO {
             void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
 
     }
+            
+            
 
     /**
      *
@@ -184,6 +203,19 @@ public class UserDAOImplement implements UserDAO {
                 System.out.println(rs.getString("ID"));
             }
         }
+    }
+    
+    public ResultSet queryGetOrder() {
+        ResultSet rs = null;
+        try (Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ) { 
+            rs = state.executeQuery("select * from order");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }return rs; 
     }
 
 }
