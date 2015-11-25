@@ -1,6 +1,5 @@
 package hotelpossystem.dao;
 
-import UI.BookRoom;
 import hotelpossystem.Customer;
 import hotelpossystem.Order;
 import hotelpossystem.Payment;
