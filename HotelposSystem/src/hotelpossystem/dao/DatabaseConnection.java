@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author lingyanjiang
  */
 public class DatabaseConnection {
-    private final String url = "jdbc:derby://localhost:1527/POS";
+    private final String url = "jdbc:my://localhost:1527/POS";
     private final String user = "app"; 
     private final String pwd = "missjing";
     private Connection conn;
@@ -19,9 +19,10 @@ public class DatabaseConnection {
     /**
      * Initiate connection
      */
-    public DatabaseConnection() {
+    public DatabaseConnection() throws ClassNotFoundException {
         try{
             this.conn = DriverManager.getConnection(url, user, pwd);
+            
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

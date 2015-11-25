@@ -5,6 +5,7 @@
  */
 package hotelpossystem;
 
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,8 @@ public class Customer {
     private String name;
     private int id;
     private String gender;
-    private Order order;
+    private ArrayList<Order> order;
+    private Payment payment;
 
     Customer(String name, int id, String gender) {
         this.name = name;
@@ -32,7 +34,7 @@ public class Customer {
         return this.id;
     }
 
-    public Order getOrder() {
+    public ArrayList<Order> getOrder() {
         return this.order;
     }
 
