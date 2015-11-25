@@ -169,7 +169,7 @@ public class SelectTimeSlot extends javax.swing.JFrame {
 
 
     private void jBtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmActionPerformed
-        
+        //
     }//GEN-LAST:event_jBtConfirmActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
