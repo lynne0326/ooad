@@ -82,6 +82,11 @@ public class SelectTimeSlot extends javax.swing.JFrame {
         });
 
         jCbFrom.setEditable(true);
+        jCbFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbFromActionPerformed(evt);
+            }
+        });
 
         jCbTo.setEditable(true);
 
@@ -185,6 +190,10 @@ public class SelectTimeSlot extends javax.swing.JFrame {
             selectTime.setVisible(false);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jCbFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbFromActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCbFromActionPerformed
 
     /**
      * @param args the command line arguments
