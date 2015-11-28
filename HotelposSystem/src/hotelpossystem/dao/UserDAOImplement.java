@@ -208,5 +208,18 @@ public class UserDAOImplement implements UserDAO {
             }
         }
     }
+    
+    public ResultSet queryGetOrder() {
+        ResultSet rs = null;
+        try (Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();
+            ) { 
+            rs = state.executeQuery("select * from order");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }return rs; 
+    }
 
 }

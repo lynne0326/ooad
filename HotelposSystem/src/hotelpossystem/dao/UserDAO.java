@@ -35,4 +35,5 @@ public interface UserDAO {
     public void queryRoomAvailableByRoomNumber(String roomnumber);
     public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
     public ArrayList queryGetService() throws Exception;
+    public ResultSet queryGetOrder();
 }

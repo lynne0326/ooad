@@ -20,45 +20,52 @@ public class Order {
     private double discount = 1;
 
     
-    void addService(Service service) {
+    public void addService(Service service) {
         services.add(service);
         serviceFee += service.getPrice();
     }
     
-    void subtractService(Service service) {
+    public void addService(ArrayList services) {
+        this.services = services;
+        for (int i=0; i < services.size(); i++) {
+            serviceFee += this.services.get(i).getPrice();
+        }
+    }
+    
+    public void subtractService(Service service) {
         services.remove(service);
         serviceFee -= service.getPrice();
     }
     
-    void addRoom(Room room) {
+    public void addRoom(Room room) {
         rooms.add(room);
         roomFee += room.getPrice();       
     }
     
-    void subtractRoom(Room room) {
+    public void subtractRoom(Room room) {
         rooms.remove(room);
         roomFee -= room.getPrice();       
     }
     
     
-    void getDiscount(double discount) {
+    public void getDiscount(double discount) {
         this.discount = discount;
     }
     
-    double getTotalFee() {
+    public double getTotalFee() {
         return (serviceFee + roomFee) * (1 - discount);
     }
     
     
-    ArrayList getService() {
+    public ArrayList getService() {
         return services;
     }
     
-    ArrayList getRoom() {
+    public ArrayList getRoom() {
         return rooms;
     }
     
-    double getPoints() {
+    public double getPoints() {
         return getTotalFee() * 0.1;
     }
     
