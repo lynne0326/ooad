@@ -71,13 +71,13 @@ public class ServiceFrame1 extends javax.swing.JFrame {
         jLbCS = new javax.swing.JLabel();
         jBtS6 = new javax.swing.JButton();
         jBtS7 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jCb10 = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jCb11 = new javax.swing.JComboBox();
         jBt19 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jCb10 = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jCb6 = new javax.swing.JComboBox();
         jBt9 = new javax.swing.JButton();
@@ -212,6 +212,40 @@ public class ServiceFrame1 extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setPreferredSize(new java.awt.Dimension(350, 300));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCb11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb11ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jCb11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jBt19.setText("+");
+        jBt19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt19ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jBt19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+
+        jButton5.setText("Confirm");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        jButton6.setText("Cancel");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 300));
 
         jCb10.addActionListener(new java.awt.event.ActionListener() {
@@ -227,76 +261,17 @@ public class ServiceFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jCb10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jCb10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(350, 300));
-
-        jCb11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCb11ActionPerformed(evt);
-            }
-        });
-
-        jBt19.setText("+");
-        jBt19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBt19ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Confirm");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Cancel");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jCb11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jBt19))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBt19)
-                    .addComponent(jCb11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(148, 148, 148)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 300));
 
@@ -320,22 +295,21 @@ public class ServiceFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(50, 50, 50)
                 .addComponent(jBt9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jBt9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(171, Short.MAX_VALUE))))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBt9))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
 
         jCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Breakfast", "Lunch", "Super", "Laundry" }));
 
@@ -360,9 +334,7 @@ public class ServiceFrame1 extends javax.swing.JFrame {
                 .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chargedServiceLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(chargedServiceLayout.createSequentialGroup()
                         .addGap(276, 276, 276)
                         .addComponent(jCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,12 +343,7 @@ public class ServiceFrame1 extends javax.swing.JFrame {
                     .addGroup(chargedServiceLayout.createSequentialGroup()
                         .addGap(395, 395, 395)
                         .addComponent(jLbCS, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(chargedServiceLayout.createSequentialGroup()
-                    .addGap(378, 378, 378)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(7, Short.MAX_VALUE)))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         chargedServiceLayout.setVerticalGroup(
             chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,25 +351,16 @@ public class ServiceFrame1 extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLbCS, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(chargedServiceLayout.createSequentialGroup()
-                        .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBt))
-                        .addGap(121, 121, 121)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBt))
+                .addGap(121, 121, 121)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
                 .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtS6)
                     .addComponent(jBtS7))
                 .addGap(37, 37, 37))
-            .addGroup(chargedServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(chargedServiceLayout.createSequentialGroup()
-                    .addGap(271, 271, 271)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(122, Short.MAX_VALUE)))
         );
 
         getContentPane().add(chargedService, "card4");
@@ -512,7 +470,6 @@ public class ServiceFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtS1ActionPerformed
 
     private void jBt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt9ActionPerformed
-        jPanel1.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jBt9ActionPerformed
 
@@ -526,15 +483,11 @@ public class ServiceFrame1 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jPanel3.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel1.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jPanel3.setVisible(false);
-        jPanel1.setVisible(true);
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jBt19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt19ActionPerformed
         if (jCb.getItemCount() == 0) 
             getService(2);
         else if (jCb.getItemCount() == 1)
@@ -543,6 +496,12 @@ public class ServiceFrame1 extends javax.swing.JFrame {
             getService(4);
         else
             getService(5);
+
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jBt19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt19ActionPerformed
+        jPanel1.setVisible(true);
         
     }//GEN-LAST:event_jBt19ActionPerformed
 
