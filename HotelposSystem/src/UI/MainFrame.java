@@ -59,6 +59,10 @@ public class MainFrame extends javax.swing.JFrame {
         jBtSelect = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jCBT = new javax.swing.JComboBox();
+        paymentPanel = new javax.swing.JPanel();
+        jBtCancel = new javax.swing.JButton();
+        jBtPayByCard = new javax.swing.JButton();
+        jBtPayByCash = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -341,6 +345,56 @@ public class MainFrame extends javax.swing.JFrame {
 
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
+        jBtCancel.setText("Cancel");
+        jBtCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCancelActionPerformed(evt);
+            }
+        });
+
+        jBtPayByCard.setText("Pay by card");
+        jBtPayByCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPayByCardActionPerformed(evt);
+            }
+        });
+
+        jBtPayByCash.setText("Pay by cash");
+        jBtPayByCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPayByCashActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paymentPanelLayout = new javax.swing.GroupLayout(paymentPanel);
+        paymentPanel.setLayout(paymentPanelLayout);
+        paymentPanelLayout.setHorizontalGroup(
+            paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentPanelLayout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addComponent(jBtPayByCard, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165)
+                .addComponent(jBtPayByCash, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(278, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
+        );
+        paymentPanelLayout.setVerticalGroup(
+            paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentPanelLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtPayByCard, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtPayByCash, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                .addComponent(jBtCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        secondPanel.add(paymentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 490));
+
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 860, 490));
 
         pack();
@@ -371,6 +425,18 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card2");
     }//GEN-LAST:event_jBtConfirmActionPerformed
+
+    private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed
+        System.exit(0);   // TODO add your handling code here:
+    }//GEN-LAST:event_jBtCancelActionPerformed
+
+    private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
+        
+    }//GEN-LAST:event_jBtPayByCardActionPerformed
+
+    private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
+        
+    }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,7 +477,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel bookRoomPane;
     private javax.swing.JPanel contentTopPane;
     private javax.swing.JButton jBtBack;
+    private javax.swing.JButton jBtCancel;
     private javax.swing.JButton jBtConfirm;
+    private javax.swing.JButton jBtPayByCard;
+    private javax.swing.JButton jBtPayByCash;
     private javax.swing.JButton jBtSearch;
     private javax.swing.JButton jBtSelect;
     private javax.swing.JButton jButton1;
@@ -436,6 +505,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainFlowPanel;
     private javax.swing.JPanel mainPane;
     private javax.swing.JPanel menuPane1;
+    private javax.swing.JPanel paymentPanel;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JPanel selectTimePanel;
     private javax.swing.JPanel topPane;

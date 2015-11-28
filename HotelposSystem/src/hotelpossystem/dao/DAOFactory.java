@@ -6,11 +6,16 @@ package hotelpossystem.dao;
  */
 public class DAOFactory {
 
+    private static UserDAO us;
+    
     /**
-     *
-     * @return
+     * @return 
      */
     public static UserDAO getUserDAOInstance() {
-        return new UserDAOImplement();
+        if(us==null){
+            return new UserDAOImplement();
+        }
+        else
+            return us;
     }
 }
