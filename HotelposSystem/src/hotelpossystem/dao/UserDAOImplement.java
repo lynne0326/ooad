@@ -128,6 +128,7 @@ public class UserDAOImplement implements UserDAO {
                 String ins = String.valueOf(in);
                 r1 = state.executeQuery("select * from room where day" + ins + "=true");
                 while (r1.next()) {
+                    System.out.println("this is mark");
                     id = r1.getString("ID");
                     floor = r1.getString("floor");
                     type = r1.getString("type");

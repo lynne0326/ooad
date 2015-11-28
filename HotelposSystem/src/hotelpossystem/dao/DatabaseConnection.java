@@ -1,5 +1,4 @@
 package hotelpossystem.dao;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,13 +6,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author lingyanjiang
  */
 public class DatabaseConnection {
-    private final String url = "jdbc:my://localhost:1527/POS";
-    private final String user = "app"; 
-    private final String pwd = "missjing";
+    private final String url = "jdbc:mysql://mydatabase.cwhndt08kykb.us-west-2.rds.amazonaws.com:3306/hotel";
+    private final String user = "lynne"; 
+    private final String pwd = "abcd1234";
     private Connection conn;
     
     /**

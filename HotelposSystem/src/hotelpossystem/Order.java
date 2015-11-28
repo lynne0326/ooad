@@ -1,10 +1,8 @@
 package hotelpossystem;
 
-import hotelpossystem.Service;
 import java.util.ArrayList;
 
 /**
- *
  * @author Shuang
  */
 public class Order {

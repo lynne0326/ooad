@@ -3,7 +3,6 @@ package hotelpossystem;
 import java.util.ArrayList;
 
 /**
- *
  * @author lingyanjiang
  */
 public class Customer {

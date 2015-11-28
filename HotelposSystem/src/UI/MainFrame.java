@@ -1,6 +1,8 @@
 package UI;
 
 import java.awt.CardLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -424,6 +426,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jBtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmActionPerformed
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card2");
+        from = jCbFrom.getSelectedIndex();           
+        to = jCbTo.getSelectedIndex(); 
+        try {
+            control.runn(jTableR, from, to);
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jBtConfirmActionPerformed
 
     private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed

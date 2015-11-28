@@ -1,7 +1,6 @@
 package hotelpossystem.dao;
 
 /**
- *
  * @author lingyanjiang
  */
 public class DAOFactory {
