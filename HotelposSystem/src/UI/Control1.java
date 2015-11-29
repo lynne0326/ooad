@@ -16,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author lingyanjiang  
+ * @author lingyanjiang
  */
-public class Control {
+public class Control1 {
     public int count = 0;
     
     public void runn(JTable jTableR, int from, int to) throws Exception {
@@ -30,7 +30,6 @@ public class Control {
         HashSet<String[]> as = new HashSet<>();
         as=DAOFactory.getUserDAOInstance().queryRoomAvailable(in, out);          
         for(String[] a: as) {
-            System.out.println("wewew");
             tableModel.addRow(a);
             count++;
         }

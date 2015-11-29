@@ -21,30 +21,33 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import UI.LogIn;
+import UI.LogIn;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Shuang
  */
-public class ServiceFrame1 extends javax.swing.JFrame {
+public class ServiceFrame2 extends javax.swing.JFrame {
     CardLayout c;
     Order order = new Order();
     ArrayList <Service> customerService;
     ArrayList <Service> services;
+    Control control = new Control();
     
 
-    
+   
 
     /**
      * Creates new form ServiceFrame
      */
-    public ServiceFrame1() {
+    public ServiceFrame2() {
         initComponents();
         c = (CardLayout)getContentPane().getLayout();
         try {
-            DAOFactory.getUserDAOInstance().queryGetService();
+            services = DAOFactory.getUserDAOInstance().queryGetService();
         } catch (Exception ex) {
-            Logger.getLogger(ServiceFrame1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceFrame2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -436,32 +439,12 @@ public class ServiceFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtS8ActionPerformed
 
     private void dateWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dateWindow
-        showDate(jCb6);
-        showDate(jCb10);
-        showDate(jCb11);
-
-
+        control.showDate(jCb6);
+        control.showDate(jCb10);
+        control.showDate(jCb11);
     }//GEN-LAST:event_dateWindow
 
-    public void showDate(JComboBox jCb) {
-        Date dt = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-        String today = sf.format(dt);
-        String[] next = new String[6];
-        Calendar cal = Calendar.getInstance();
-        jCb.addItem(today);
 
-        for (int i = 0; i < 6; i++) {
-            try {
-                cal.setTime(sf.parse(today));
-            } catch (ParseException ex) {
-                Logger.getLogger(SelectTimeSlot.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            cal.add(Calendar.DAY_OF_YEAR, +(i+1));
-            next[i] = sf.format(cal.getTime());
-            jCb.addItem(next[i]);
-        }
-    }
     
     
     
@@ -489,13 +472,13 @@ public class ServiceFrame1 extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if (jCb.getItemCount() == 0) 
-            getService(2);
+            control.getService(2, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else if (jCb.getItemCount() == 1)
-            getService(3);
+            control.getService(3, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else if (jCb.getItemCount() == 2)
-            getService(4);
+            control.getService(4, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else
-            getService(5);
+            control.getService(5, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
 
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -505,23 +488,6 @@ public class ServiceFrame1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBt19ActionPerformed
 
-    //create each service
-    private void setService(JComboBox jCb, int i) {
-        Service s = (Service)services.get(i);
-        Date date = (Date)jCb.getSelectedItem();
-        s.setDate(date);
-        customerService.add(s);
-    }
-    
-    //get all services for a given type
-    private void getService(int i) {
-        setService(jCb11, i);
-        if (jPanel1.isVisible()) {
-            setService(jCb6, i);
-            if (jPanel2.isVisible()) 
-                setService(jCb10, i);
-        }           
-    }
     
     
     private void jCb11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb11ActionPerformed
@@ -560,21 +526,6 @@ public class ServiceFrame1 extends javax.swing.JFrame {
     }
     
     
-    public void displayModel() {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-            Object[] object = new Object[3];
-            //service name; service time; service price; total;
-            for (Service s : customerService) {
-                object[0] = s.getName();
-                object[1] = s.getDate();
-                object[2] = s.getPrice();
-            }
-            model.addRow(object);
-            object[0] = null;
-            object[1] = null;
-            object[2] = order.getTotalFee();
-    }
     
     /**
      * @param args the command line arguments
@@ -594,31 +545,37 @@ public class ServiceFrame1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServiceFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServiceFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServiceFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServiceFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServiceFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServiceFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServiceFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServiceFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ServiceFrame1 sf = new ServiceFrame1();
+                ServiceFrame2 sf = new ServiceFrame2();
                 sf.setVisible(true);
                 sf.jPanel1.setVisible(false);
                 sf.jPanel2.setVisible(false);
                 sf.jPanel3.setVisible(false);
-                sf.displayModel();
+                sf.control.displayModel(sf.jTable1, sf.customerService, sf.order);
                 
                 try {
                     //sf.services = DAOFactory.getUserDAOInstance().queryGetService();
                 } catch (Exception ex) {
-                    Logger.getLogger(ServiceFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServiceFrame2.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
