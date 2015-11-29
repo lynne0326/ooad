@@ -15,7 +15,7 @@ public class DatabaseConnection {
     private Connection conn;
     
     /**
-     * Initiate connection
+     * Initiate connection to database
      */
     public DatabaseConnection() throws ClassNotFoundException {
         try{
