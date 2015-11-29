@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author lingyanjiang
+ * @author lingyanjiang  
  */
 public class Control {
     public int count = 0;
