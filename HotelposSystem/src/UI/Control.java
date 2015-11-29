@@ -30,6 +30,7 @@ public class Control {
         HashSet<String[]> as = new HashSet<>();
         as=DAOFactory.getUserDAOInstance().queryRoomAvailable(in, out);          
         for(String[] a: as) {
+            System.out.println("wewew");
             tableModel.addRow(a);
             count++;
         }
