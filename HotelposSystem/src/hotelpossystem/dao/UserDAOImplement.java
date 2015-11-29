@@ -9,13 +9,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -128,7 +125,6 @@ public class UserDAOImplement implements UserDAO {
                 String ins = String.valueOf(in);
                 r1 = state.executeQuery("select * from room where day" + ins + "=true");
                 while (r1.next()) {
-                    System.out.println("this is mark");
                     id = r1.getString("ID");
                     floor = r1.getString("floor");
                     type = r1.getString("type");

@@ -3,7 +3,6 @@ package UI;
 import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -160,7 +159,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 89, -1, -1));
 
+        secondPanel.setBackground(new java.awt.Color(235, 236, 238));
         secondPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        contentTopPane.setBackground(new java.awt.Color(235, 236, 238));
 
         javax.swing.GroupLayout contentTopPaneLayout = new javax.swing.GroupLayout(contentTopPane);
         contentTopPane.setLayout(contentTopPaneLayout);
@@ -175,7 +177,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         secondPanel.add(contentTopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, -1, 50));
 
+        mainFlowPanel.setBackground(new java.awt.Color(235, 236, 238));
         mainFlowPanel.setLayout(new java.awt.CardLayout());
+
+        selectTimePanel.setBackground(new java.awt.Color(235, 236, 238));
 
         jBtBack.setText("back");
         jBtBack.addActionListener(new java.awt.event.ActionListener() {
@@ -252,6 +257,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(selectTimePanel, "card3");
         control.intiateDate(jCbFrom, jCbTo, jLbWarning, from, to);
+
+        bookRoomPane.setBackground(new java.awt.Color(235, 236, 238));
 
         jCBF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all", "level1", "level2" }));
 
@@ -345,7 +352,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(bookRoomPane, "card2");
 
-        secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
+        paymentPanel.setBackground(new java.awt.Color(235, 236, 238));
 
         jBtCancel.setText("Cancel");
         jBtCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -390,12 +397,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtPayByCard, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtPayByCash, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(jBtCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        secondPanel.add(paymentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 490));
+        mainFlowPanel.add(paymentPanel, "card4");
+
+        secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 860, 490));
 
