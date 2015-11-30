@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import UI.LogIn;
 import UI.LogIn;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -31,12 +32,11 @@ import javax.swing.JPanel;
 public class ServiceFrame2 extends javax.swing.JFrame {
     CardLayout c;
     Order order = new Order();
-    ArrayList <Service> customerService;
-    ArrayList <Service> services;
+    ArrayList <Service> customerService = new ArrayList();
+    ArrayList <Service> services = new ArrayList();
     Control control = new Control();
     
-
-   
+    
 
     /**
      * Creates new form ServiceFrame
@@ -44,11 +44,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     public ServiceFrame2() {
         initComponents();
         c = (CardLayout)getContentPane().getLayout();
-        try {
-            services = DAOFactory.getUserDAOInstance().queryGetService();
-        } catch (Exception ex) {
-            Logger.getLogger(ServiceFrame2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.services = control.iniService();
     }
 
     /**
@@ -70,6 +66,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         jBtS1 = new javax.swing.JButton();
         jBtS8 = new javax.swing.JButton();
         jBtS9 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         chargedService = new javax.swing.JPanel();
         jLbCS = new javax.swing.JLabel();
         jBtS6 = new javax.swing.JButton();
@@ -157,6 +154,13 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
         jBtS9.setText("Next");
 
+        jButton1.setText("Confirm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout freeServiceLayout = new javax.swing.GroupLayout(freeService);
         freeService.setLayout(freeServiceLayout);
         freeServiceLayout.setHorizontalGroup(
@@ -180,6 +184,10 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                         .addGap(26, 26, 26)))
                 .addComponent(jBtS9)
                 .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(169, 169, 169))
         );
         freeServiceLayout.setVerticalGroup(
             freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +198,9 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbMC, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtS1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(137, 137, 137)
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtS8)
                     .addComponent(jBtS9))
@@ -444,9 +454,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         control.showDate(jCb11);
     }//GEN-LAST:event_dateWindow
 
-
-    
-    
     
     private void jBtS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS1ActionPerformed
         customerService.add(services.get(1));
@@ -471,18 +478,19 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (jCb.getItemCount() == 0) 
-            control.getService(2, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
-        else if (jCb.getItemCount() == 1)
-            control.getService(3, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
-        else if (jCb.getItemCount() == 2)
-            control.getService(4, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
-        else
-            control.getService(5, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        customerService = control.serviceAdd(jCb, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        for (Service s:customerService) {
+            System.out.println(s.toString());
+        }
+        order.addService(customerService);
+        jPanel3.setVisible(false);
 
-        
     }//GEN-LAST:event_jButton5ActionPerformed
 
+            
+    
+ 
+    
     private void jBt19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt19ActionPerformed
         jPanel1.setVisible(true);
         
@@ -499,8 +507,8 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtS6ActionPerformed
 
     private void jBtS7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS7ActionPerformed
-        order.addService(customerService);
         c.show(getContentPane(), "card5");
+        control.displayModel(jTable1, customerService, order); 
     }//GEN-LAST:event_jBtS7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -515,6 +523,10 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private void jBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtActionPerformed
         jPanel3.setVisible(true);
     }//GEN-LAST:event_jBtActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //control.displayModel(jTable1, customerService, order);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public static void setLabel(JLabel jLb, int i) {
         if (i == 1)
@@ -570,7 +582,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                 sf.jPanel1.setVisible(false);
                 sf.jPanel2.setVisible(false);
                 sf.jPanel3.setVisible(false);
-                sf.control.displayModel(sf.jTable1, sf.customerService, sf.order);
+                
                 
                 try {
                     //sf.services = DAOFactory.getUserDAOInstance().queryGetService();
@@ -597,6 +609,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private javax.swing.JButton jBtS7;
     private javax.swing.JButton jBtS8;
     private javax.swing.JButton jBtS9;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton5;

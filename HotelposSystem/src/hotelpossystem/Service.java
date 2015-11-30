@@ -12,25 +12,26 @@ import java.util.Date;
  * @author Shuang
  */
 public class Service {
-    private Date date;
+    private String date;
     private double price;
     private String name;
     
-    public Service(String name) {
+    public Service(String name, double price) {
         this.name = name;
+        this.price = price;
     }
 
     /**
      * @return the date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
