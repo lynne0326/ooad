@@ -17,7 +17,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     CardLayout c;
     Order order = new Order();
     ArrayList <Service> customerService = new ArrayList();
-    ArrayList <Service> services = new ArrayList();
     Control control = new Control();
     
     
@@ -28,7 +27,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     public ServiceFrame2() {
         initComponents();
         c = (CardLayout)getContentPane().getLayout();
-        this.services = control.iniService();
     }
 
     /**
@@ -45,12 +43,22 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         jBtFS = new javax.swing.JButton();
         jBtCS = new javax.swing.JButton();
         freeService = new javax.swing.JPanel();
-        jLbMC = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jBtS1 = new javax.swing.JButton();
         jBtS8 = new javax.swing.JButton();
         jBtS9 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jCb12 = new javax.swing.JComboBox();
+        jBt20 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jCb13 = new javax.swing.JComboBox();
+        jPanel6 = new javax.swing.JPanel();
+        jCb7 = new javax.swing.JComboBox();
+        jBt10 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         chargedService = new javax.swing.JPanel();
         jLbCS = new javax.swing.JLabel();
         jBtS6 = new javax.swing.JButton();
@@ -118,16 +126,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
         getContentPane().add(ServicePanel, "card2");
 
-        jLbMC.setText("Morning Call");
-
         jLabel7.setText("Free Service");
-
-        jBtS1.setText("Select");
-        jBtS1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtS1ActionPerformed(evt);
-            }
-        });
 
         jBtS8.setText("Back");
         jBtS8.addActionListener(new java.awt.event.ActionListener() {
@@ -145,27 +144,139 @@ public class ServiceFrame2 extends javax.swing.JFrame {
             }
         });
 
+        jPanel4.setPreferredSize(new java.awt.Dimension(350, 300));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCb12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb12ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jCb12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jBt20.setText("+");
+        jBt20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt20ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jBt20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+
+        jButton7.setText("Confirm");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        jButton8.setText("Cancel");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jCb13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb7ActionPerformed(evt);
+            }
+        });
+
+        jBt10.setText("+");
+        jBt10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jBt10)
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCb7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBt10))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
+
+        jButton2.setText("Select");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Morning Call");
+
         javax.swing.GroupLayout freeServiceLayout = new javax.swing.GroupLayout(freeService);
         freeService.setLayout(freeServiceLayout);
         freeServiceLayout.setHorizontalGroup(
             freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(freeServiceLayout.createSequentialGroup()
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(freeServiceLayout.createSequentialGroup()
-                        .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(freeServiceLayout.createSequentialGroup()
-                                .addGap(72, 72, 72)
-                                .addComponent(jLbMC, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jBtS1))
-                            .addGroup(freeServiceLayout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtS8)
-                        .addGap(26, 26, 26)))
+                        .addGap(26, 26, 26))
+                    .addGroup(freeServiceLayout.createSequentialGroup()
+                        .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(freeServiceLayout.createSequentialGroup()
+                                    .addGap(160, 160, 160)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(freeServiceLayout.createSequentialGroup()
+                                    .addGap(92, 92, 92)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2)))
+                            .addGroup(freeServiceLayout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)))
                 .addComponent(jBtS9)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
@@ -178,11 +289,13 @@ public class ServiceFrame2 extends javax.swing.JFrame {
             .addGroup(freeServiceLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLbMC, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtS1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jButton1)
                 .addGap(137, 137, 137)
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -436,13 +549,12 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         control.showDate(jCb6);
         control.showDate(jCb10);
         control.showDate(jCb11);
+        control.showDate(jCb12);
+        control.showDate(jCb7);
+        control.showDate(jCb13);
     }//GEN-LAST:event_dateWindow
 
     
-    private void jBtS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS1ActionPerformed
-        customerService.add(services.get(1));
-    }//GEN-LAST:event_jBtS1ActionPerformed
-
     private void jBt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt9ActionPerformed
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jBt9ActionPerformed
@@ -462,13 +574,10 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        customerService = control.serviceAdd(jCb, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
-        for (Service s:customerService) {
-            System.out.println(s.toString());
-        }
-        order.addService(customerService);
+        customerService = control.serviceAdd(jCb, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
         jPanel3.setVisible(false);
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
             
@@ -492,6 +601,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
     private void jBtS7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS7ActionPerformed
         c.show(getContentPane(), "card5");
+        order.addService(customerService);
         control.displayModel(jTable1, customerService, order); 
     }//GEN-LAST:event_jBtS7ActionPerformed
 
@@ -502,6 +612,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         c.show(getContentPane(), "card2");
+        customerService.clear();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtActionPerformed
@@ -509,17 +620,44 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //control.displayModel(jTable1, customerService, order);
+        c.show(getContentPane(), "card2");
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    public static void setLabel(JLabel jLb, int i) {
-        if (i == 1)
-            jLb.setText("1");
-        else if (i == 0)
-            jLb.setText("0");
-        else
-            System.out.println("Error: wrong input!");
-    }
+
+    private void jCb12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb12ActionPerformed
+
+    private void jBt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt20ActionPerformed
+        jPanel6.setVisible(true);
+    }//GEN-LAST:event_jBt20ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        customerService = control.getService(0, customerService, jPanel6, jPanel5, jCb12, jCb7, jCb13);
+        jPanel4.setVisible(false);
+        jPanel6.setVisible(false);
+        jPanel5.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        jPanel4.setVisible(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jCb13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb13ActionPerformed
+
+    private void jCb7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb7ActionPerformed
+
+    private void jBt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt10ActionPerformed
+        jPanel5.setVisible(true);
+    }//GEN-LAST:event_jBt10ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jPanel4.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+   
     
     
     
@@ -566,6 +704,9 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                 sf.jPanel1.setVisible(false);
                 sf.jPanel2.setVisible(false);
                 sf.jPanel3.setVisible(false);
+                sf.jPanel4.setVisible(false);
+                sf.jPanel5.setVisible(false);
+                sf.jPanel6.setVisible(false);
                 
                 
                 try {
@@ -584,11 +725,12 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private javax.swing.JPanel chargedService;
     private javax.swing.JPanel freeService;
     private javax.swing.JButton jBt;
+    private javax.swing.JButton jBt10;
     private javax.swing.JButton jBt19;
+    private javax.swing.JButton jBt20;
     private javax.swing.JButton jBt9;
     private javax.swing.JButton jBtCS;
     private javax.swing.JButton jBtFS;
-    private javax.swing.JButton jBtS1;
     private javax.swing.JButton jBtS6;
     private javax.swing.JButton jBtS7;
     private javax.swing.JButton jBtS8;
@@ -596,18 +738,27 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox jCb;
     private javax.swing.JComboBox jCb10;
     private javax.swing.JComboBox jCb11;
+    private javax.swing.JComboBox jCb12;
+    private javax.swing.JComboBox jCb13;
     private javax.swing.JComboBox jCb6;
+    private javax.swing.JComboBox jCb7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLbCS;
-    private javax.swing.JLabel jLbMC;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
