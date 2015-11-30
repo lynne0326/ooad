@@ -91,14 +91,15 @@ public class UserDAOImplement implements UserDAO {
         String[] ss = null;
          try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement();
-                ResultSet rs = state.executeQuery("select * from customer where username="+customerName)) {               
-                String id = null, floor = null, type = null, price = null;
-            while (rs.next()) {
-                id = rs.getString("ID");
-                floor = rs.getString("floor");
-                type = rs.getString("type");
-                price = rs.getString("price");
-                ss = new String[]{id, floor, type, price};
+                ResultSet rs = state.executeQuery("select * from customer where username="+"'"+customerName+"';")) {               
+                String name = null, room = null;
+                Date checkinTime = null, checkoutTime = null;
+            while (rs.next()) {System.out.println("3");
+                name = rs.getString("name");
+                room = rs.getString("roomstatus");
+                checkinTime = rs.getDate("checkintime");
+                checkoutTime = rs.getDate("checkouttime");
+                ss = new String[]{name, room, checkinTime.toString(), checkoutTime.toString()};
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAOImplement.class
@@ -115,8 +116,7 @@ public class UserDAOImplement implements UserDAO {
     }
 
     @Override
-    public
-            void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
+    public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
 
     }
             

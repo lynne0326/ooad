@@ -10,9 +10,10 @@ import java.util.logging.Logger;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private int from;
-    private int to;
+    private static int from;
+    private static int to;
     private Control control = new Control();
+    
     /**
      * Creates new form MainFrame
      */
@@ -435,13 +436,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Room number", "Check in date", "Check out date"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -496,8 +494,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jBtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSearchActionPerformed
-
-        control.activeSearch(jCBF, jCBT, jTableR, jCBF.getSelectedIndex(), jCBT.getSelectedIndex());
+        from=jCbFrom.getSelectedIndex(); 
+        to=jCbTo.getSelectedIndex(); 
+        control.activeSearch(jCBF, jCBT, jTableR, from, to);
     }//GEN-LAST:event_jBtSearchActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -538,7 +537,7 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout c = (CardLayout)mainFlowPanel.getLayout();
         c.show(mainFlowPanel, "card5");
         try {
-            control.renewRoom(jTableR, "admin");
+            control.renewRoom(jTable1, "jly");
         } catch (Exception ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -39,7 +39,6 @@ public class Control {
             tableModel.addRow(a);
             count++;
         }
-        
     }
     
     public void activeSearch(JComboBox jCBF,JComboBox jCBT,JTable jTableR,int from, int to) {
@@ -173,24 +172,9 @@ public class Control {
      public void renewRoom(JTable jTableR, String customerName) throws Exception {
        String[] s=new String[4];
        s=DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber(customerName);
-       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
-       tableModel.addRow(s);
+       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();System.out.println("1");
+       tableModel.addRow(s); System.out.println("2");
    }
-    
-    
-    public ArrayList iniService() {
-        ArrayList<Service> services = new ArrayList();
-        services.add(new Service("morning call", 0));
-        services.add(new Service("laundry", 3));
-        services.add(new Service("breakfast", 10));
-        services.add(new Service("lunch", 25));
-        services.add(new Service("supper", 25));
-        return services;
-        
-    }
-    
-    
-    
     
     public void displayModel(JTable jT, ArrayList<Service> customerService, Order order) {
             DefaultTableModel model = (DefaultTableModel) jT.getModel();

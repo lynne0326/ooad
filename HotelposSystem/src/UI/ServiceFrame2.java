@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import UI.LogIn;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,7 +47,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jBtS8 = new javax.swing.JButton();
         jBtS9 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jCb12 = new javax.swing.JComboBox();
         jBt20 = new javax.swing.JButton();
@@ -136,11 +136,9 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         });
 
         jBtS9.setText("Next");
-
-        jButton1.setText("Confirm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtS9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtS9ActionPerformed(evt);
             }
         });
 
@@ -279,10 +277,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)))
                 .addComponent(jBtS9)
                 .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(169, 169, 169))
         );
         freeServiceLayout.setVerticalGroup(
             freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,9 +289,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(jButton1)
-                .addGap(137, 137, 137)
+                .addGap(185, 185, 185)
                 .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtS8)
                     .addComponent(jBtS9))
@@ -619,10 +611,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
         jPanel3.setVisible(true);
     }//GEN-LAST:event_jBtActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        c.show(getContentPane(), "card2");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jCb12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCb12ActionPerformed
@@ -657,6 +645,17 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel4.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jBtS9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS9ActionPerformed
+        int res = JOptionPane.showConfirmDialog(null, "Go to the charged service?", "", JOptionPane.YES_NO_OPTION);
+        if (res == 0) 
+            c.show(getContentPane(), "card4");
+        else {
+            c.show(getContentPane(), "card5");
+            order.addService(customerService);
+            control.displayModel(jTable1, customerService, order); 
+        }
+    }//GEN-LAST:event_jBtS9ActionPerformed
    
     
     
@@ -735,7 +734,6 @@ public class ServiceFrame2 extends javax.swing.JFrame {
     private javax.swing.JButton jBtS7;
     private javax.swing.JButton jBtS8;
     private javax.swing.JButton jBtS9;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
