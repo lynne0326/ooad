@@ -12,15 +12,28 @@ public class Customer {
     private String gender;
     private ArrayList<Order> order;
     private Payment payment;
-    private boolean login;
-
-    Customer(String name, int id, String gender) {
+    private boolean logedin;
+    private static Customer customer;
+    
+    private Customer() {
+        
+    }
+    
+    private Customer(String name, int id, String gender) {
         this.name = name;
         this.id = id;
         this.gender = gender;
-
     }
 
+    public static Customer getCustomerInstance() {
+        if(customer==null){
+            customer = new Customer();
+            return customer;
+        }else{
+            return customer;
+        }
+    }
+    
     public String getName() {
         return this.name;
     }
@@ -64,15 +77,15 @@ public class Customer {
     /**
      * @return the login
      */
-    public boolean isLogin() {
-        return login;
+    public boolean isLogedin() {
+        return logedin;
     }
 
     /**
      * @param login the login to set
      */
-    public void setLogin(boolean login) {
-        this.login = login;
+    public void setLogedin(boolean login) {
+        this.logedin = login;
     }
 
 }
