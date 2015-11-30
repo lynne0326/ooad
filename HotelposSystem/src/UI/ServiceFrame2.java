@@ -479,12 +479,9 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         customerService = control.serviceAdd(jCb, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
-        for (Service s:customerService) {
-            System.out.println(s.toString());
-        }
-        order.addService(customerService);
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
         jPanel3.setVisible(false);
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
             
@@ -508,6 +505,7 @@ public class ServiceFrame2 extends javax.swing.JFrame {
 
     private void jBtS7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS7ActionPerformed
         c.show(getContentPane(), "card5");
+        order.addService(customerService);
         control.displayModel(jTable1, customerService, order); 
     }//GEN-LAST:event_jBtS7ActionPerformed
 

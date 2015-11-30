@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Order {
     private ArrayList <Room> rooms;
     private ArrayList <Service> services;
+    private Customer customer;
     private double serviceFee;
     private double roomFee;
     private double discount = 1;
@@ -46,7 +47,11 @@ public class Order {
     }
     
     public double getTotalFee() {
-        return (serviceFee + roomFee) * (1 - discount);
+        double totalFee = 0;
+        for (Service s : services) {
+            totalFee += s.getPrice();
+        }
+        return totalFee;
     }
     
     
@@ -58,8 +63,23 @@ public class Order {
         return rooms;
     }
     
+
     public double getPoints() {
         return getTotalFee() * 0.1;
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     
     

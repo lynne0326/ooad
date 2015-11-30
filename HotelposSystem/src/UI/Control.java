@@ -178,10 +178,8 @@ public class Control {
         services.add(new Service("breakfast", 10));
         services.add(new Service("lunch", 25));
         services.add(new Service("supper", 25));
-        return services;
-        
+        return services;    
     }
-    
     
     
     
@@ -194,11 +192,12 @@ public class Control {
                 object[0] = s.getName();
                 object[1] = s.getDate();
                 object[2] = s.getPrice();
+                model.addRow(object);
             }
-            model.addRow(object);
-            object[0] = null;
+            object[0] = "Total";
             object[1] = null;
             object[2] = order.getTotalFee();
+            model.addRow(object);
     }
     
 
@@ -273,7 +272,7 @@ public class Control {
         else if (jCb.getSelectedIndex() == 2)
             customerService = getService(4, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else
-            getService(1, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);  
+            customerService = getService(1, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);  
         
         return customerService;
     }
