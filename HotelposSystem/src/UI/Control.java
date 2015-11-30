@@ -169,6 +169,12 @@ public class Control {
         }
     }
     
+     public void renewRoom(JTable jTableR, String customerName) throws Exception {
+       String[] s=new String[4];
+       s=DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber(customerName);
+       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+       tableModel.addRow(s);
+   }
     
     
     public ArrayList iniService() {

@@ -66,6 +66,11 @@ public class MainFrame extends javax.swing.JFrame {
         jBtPayByCard = new javax.swing.JButton();
         jBtPayByCash = new javax.swing.JButton();
         payByCashPane = new javax.swing.JPanel();
+        renewRoom = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -118,6 +123,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(235, 236, 238));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rroom.png"))); // NOI18N
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         menuPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 146, 161, 143));
 
         jButton3.setBackground(new java.awt.Color(235, 236, 238));
@@ -423,6 +433,53 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(payPanel, "card5");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jButton5.setText("Back");
+
+        jButton6.setText("Confirm");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout renewRoomLayout = new javax.swing.GroupLayout(renewRoom);
+        renewRoom.setLayout(renewRoomLayout);
+        renewRoomLayout.setHorizontalGroup(
+            renewRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+            .addGroup(renewRoomLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(149, 149, 149))
+        );
+        renewRoomLayout.setVerticalGroup(
+            renewRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(renewRoomLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGroup(renewRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
+        );
+
+        mainFlowPanel.add(renewRoom, "card5");
+
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 860, 490));
@@ -476,6 +533,29 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mainPane.setVisible(false);
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        c.show(mainFlowPanel, "card5");
+        try {
+            control.renewRoom(jTableR, "admin");
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+//        mainPane.setVisible(false);
+//        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+//        c.show(mainFlowPanel, "card5");
+//        try {
+//            control.renewRoom(jTableR, "admin");
+//        } catch (Exception ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -525,6 +605,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jCBF;
     private javax.swing.JComboBox jCBT;
     private javax.swing.JComboBox jCbFrom;
@@ -539,6 +621,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLbWarning;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableR;
     private javax.swing.JPanel mainFlowPanel;
     private javax.swing.JPanel mainPane;
@@ -546,6 +630,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel payByCashPane;
     private javax.swing.JPanel payPanel;
     private javax.swing.JPanel paymentPanel;
+    private javax.swing.JPanel renewRoom;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JPanel selectTimePanel;
     private javax.swing.JPanel topPane;

@@ -32,7 +32,8 @@ public interface UserDAO {
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception;  
     public void queryRoomAvailableFloor(Date checkinDate, Date checkoutDate, String floor) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String floor, String roomtype) throws Exception;
-    public void queryRoomAvailableByRoomNumber(String roomnumber);
+
     public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
     public ResultSet queryGetOrder();
+    public String[] queryRoomAvailableByRoomNumber(String customerName)throws Exception;
 }
