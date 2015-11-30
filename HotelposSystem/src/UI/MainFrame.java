@@ -1,5 +1,6 @@
 package UI;
 
+import hotelpossystem.Customer;
 import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +67,26 @@ public class MainFrame extends javax.swing.JFrame {
         jBtCancel = new javax.swing.JButton();
         jBtPayByCard = new javax.swing.JButton();
         jBtPayByCash = new javax.swing.JButton();
-        payByCashPane = new javax.swing.JPanel();
+        cashPane = new javax.swing.JPanel();
+        jBtCancel1 = new javax.swing.JButton();
+        displayPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTfQuantity = new javax.swing.JTextField();
+        jLbDeal = new javax.swing.JLabel();
+        jLbChange = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        cardPane = new javax.swing.JPanel();
+        jBtCancel2 = new javax.swing.JButton();
+        displayPanel1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jTfFund = new javax.swing.JTextField();
+        jLbDeal1 = new javax.swing.JLabel();
+        jLbBalance = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
         renewRoom = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -417,22 +437,163 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        payPanel.add(paymentPanel, "card4");
+        payPanel.add(paymentPanel, "paymentcard");
 
-        javax.swing.GroupLayout payByCashPaneLayout = new javax.swing.GroupLayout(payByCashPane);
-        payByCashPane.setLayout(payByCashPaneLayout);
-        payByCashPaneLayout.setHorizontalGroup(
-            payByCashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+        cashPane.setBackground(new java.awt.Color(235, 236, 238));
+        cashPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBtCancel1.setText("Cancel");
+        jBtCancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCancel1ActionPerformed(evt);
+            }
+        });
+        cashPane.add(jBtCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 375, 115, 39));
+
+        displayPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PaymentInfo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jLabel11.setText("Deal");
+
+        jLabel12.setText("Money Quantity");
+
+        jLabel13.setText("Change");
+
+        jLbDeal.setText("  ");
+
+        jButton7.setText("CONFIRM");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
+        displayPanel.setLayout(displayPanelLayout);
+        displayPanelLayout.setHorizontalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11))
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLbDeal)
+                            .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(89, 89, 89))
         );
-        payByCashPaneLayout.setVerticalGroup(
-            payByCashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+        displayPanelLayout.setVerticalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLbDeal))
+                .addGap(35, 35, 35)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(26, 26, 26))
         );
 
-        payPanel.add(payByCashPane, "card3");
+        cashPane.add(displayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
 
-        mainFlowPanel.add(payPanel, "card5");
+        payPanel.add(cashPane, "cashPaneCard");
+
+        cardPane.setBackground(new java.awt.Color(235, 236, 238));
+        cardPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBtCancel2.setText("Cancel");
+        jBtCancel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCancel2ActionPerformed(evt);
+            }
+        });
+        cardPane.add(jBtCancel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 375, 115, 39));
+
+        displayPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PaymentInfo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jLabel15.setText("Deal");
+
+        jLabel16.setText("Available Fund");
+
+        jLabel17.setText("Balance");
+
+        jLbDeal1.setText("  ");
+
+        jButton9.setText("CONFIRM");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayPanel1Layout = new javax.swing.GroupLayout(displayPanel1);
+        displayPanel1.setLayout(displayPanel1Layout);
+        displayPanel1Layout.setHorizontalGroup(
+            displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15))
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(displayPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLbDeal1)
+                            .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(displayPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addGap(89, 89, 89))
+        );
+        displayPanel1Layout.setVerticalGroup(
+            displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLbDeal1))
+                .addGap(35, 35, 35)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addGap(26, 26, 26))
+        );
+
+        cardPane.add(displayPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
+
+        payPanel.add(cardPane, "cardPaneCard");
+
+        mainFlowPanel.add(payPanel, "payCard");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -490,7 +651,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        //service button
+        mainPane.setVisible(false);
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
+        c.show(mainFlowPanel, "payCard");
+        jLbDeal.setText(String.valueOf(Customer.getCustomerInstance().getCurrentOrder().getTotalFee()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jBtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSearchActionPerformed
@@ -525,11 +690,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtCancelActionPerformed
 
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
-        
+        CardLayout c = (CardLayout)payPanel.getLayout(); 
+        c.show(payPanel, "cashPaneCard");
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
-        
+        CardLayout c = (CardLayout)payPanel.getLayout(); 
+        c.show(payPanel, "cardPaneCard");
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -554,6 +721,22 @@ public class MainFrame extends javax.swing.JFrame {
 //            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtCancel1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        control.confirmPay(jLbDeal, jTfQuantity, jLbChange);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jBtCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtCancel2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        control.confirmPay(jLbDeal, jTfFund, jLbBalance);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -592,9 +775,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookRoomPane;
+    private javax.swing.JPanel cardPane;
+    private javax.swing.JPanel cashPane;
     private javax.swing.JPanel contentTopPane;
+    private javax.swing.JPanel displayPanel;
+    private javax.swing.JPanel displayPanel1;
     private javax.swing.JButton jBtBack;
     private javax.swing.JButton jBtCancel;
+    private javax.swing.JButton jBtCancel1;
+    private javax.swing.JButton jBtCancel2;
     private javax.swing.JButton jBtConfirm;
     private javax.swing.JButton jBtPayByCard;
     private javax.swing.JButton jBtPayByCash;
@@ -606,11 +795,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jCBF;
     private javax.swing.JComboBox jCBT;
     private javax.swing.JComboBox jCbFrom;
     private javax.swing.JComboBox jCbTo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -618,15 +815,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLbBalance;
+    private javax.swing.JLabel jLbChange;
+    private javax.swing.JLabel jLbDeal;
+    private javax.swing.JLabel jLbDeal1;
     private javax.swing.JLabel jLbWarning;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableR;
+    private javax.swing.JTextField jTfFund;
+    private javax.swing.JTextField jTfQuantity;
     private javax.swing.JPanel mainFlowPanel;
     private javax.swing.JPanel mainPane;
     private javax.swing.JPanel menuPane1;
-    private javax.swing.JPanel payByCashPane;
     private javax.swing.JPanel payPanel;
     private javax.swing.JPanel paymentPanel;
     private javax.swing.JPanel renewRoom;

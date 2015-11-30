@@ -1,5 +1,6 @@
 package UI;
 
+import hotelpossystem.Customer;
 import hotelpossystem.Order;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
@@ -18,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -193,7 +195,25 @@ public class Control {
             model.addRow(object);
     }
     
+    public void confirmPay(JLabel jLbDeal, JTextField jTfQuantity, JLabel jLbChange) {
+        double change = Double.parseDouble(jTfQuantity.getText()) - Double.parseDouble(jLbDeal.getText());
+        jLbChange.setText(String.valueOf(change));
+    }
 
+    public void payByCard(JLabel jLbDeal, String name) throws Exception {
+
+        double payment = Customer.getCustomerInstance().getCurrentOrder().getTotalFee();
+        jLbDeal.setText(String.valueOf(payment));
+    }
+
+    public void payByCash(JLabel jLbDeal, String name) throws Exception {
+        try {
+            double payment = Customer.getCustomerInstance().getCurrentOrder().getTotalFee();
+            jLbDeal.setText(String.valueOf(payment));
+        } catch (Exception e) {
+        }
+
+    }
     
     
     

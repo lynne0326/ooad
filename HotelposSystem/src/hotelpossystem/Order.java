@@ -47,10 +47,13 @@ public class Order {
     }
     
     public double getTotalFee() {
-        double totalFee = 0;
-        for (Service s : services) {
-            totalFee += s.getPrice();
-        }
+        double totalFee = 30;
+//        if(services.size()!=0){
+//            for (Service s : services) {
+//                serviceFee += s.getPrice();
+//            }
+//        }
+//        totalFee = serviceFee+roomFee;
         return totalFee;
     }
     
@@ -82,7 +85,10 @@ public class Order {
         this.customer = customer;
     }
     
-    
+    public void setTotal(){
+        this.roomFee = 100;
+        this.serviceFee = 100;
+    }
     
     
 }
