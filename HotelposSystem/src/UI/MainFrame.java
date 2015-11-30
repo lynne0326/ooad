@@ -60,10 +60,12 @@ public class MainFrame extends javax.swing.JFrame {
         jBtSelect = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jCBT = new javax.swing.JComboBox();
+        payPanel = new javax.swing.JPanel();
         paymentPanel = new javax.swing.JPanel();
         jBtCancel = new javax.swing.JButton();
         jBtPayByCard = new javax.swing.JButton();
         jBtPayByCash = new javax.swing.JButton();
+        payByCashPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -352,6 +354,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(bookRoomPane, "card2");
 
+        payPanel.setLayout(new java.awt.CardLayout());
+
         paymentPanel.setBackground(new java.awt.Color(235, 236, 238));
 
         jBtCancel.setText("Cancel");
@@ -402,7 +406,22 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mainFlowPanel.add(paymentPanel, "card4");
+        payPanel.add(paymentPanel, "card4");
+
+        javax.swing.GroupLayout payByCashPaneLayout = new javax.swing.GroupLayout(payByCashPane);
+        payByCashPane.setLayout(payByCashPaneLayout);
+        payByCashPaneLayout.setHorizontalGroup(
+            payByCashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 860, Short.MAX_VALUE)
+        );
+        payByCashPaneLayout.setVerticalGroup(
+            payByCashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+
+        payPanel.add(payByCashPane, "card3");
+
+        mainFlowPanel.add(payPanel, "card5");
 
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
@@ -524,6 +543,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainFlowPanel;
     private javax.swing.JPanel mainPane;
     private javax.swing.JPanel menuPane1;
+    private javax.swing.JPanel payByCashPane;
+    private javax.swing.JPanel payPanel;
     private javax.swing.JPanel paymentPanel;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JPanel selectTimePanel;
