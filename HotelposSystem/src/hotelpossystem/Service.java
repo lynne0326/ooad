@@ -5,6 +5,7 @@
  */
 package hotelpossystem;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,9 +17,24 @@ public class Service {
     private double price;
     private String name;
     
-    public Service(String name, double price) {
-        this.name = name;
-        this.price = price;
+    public Service(int i) {
+        switch (i) {
+            case (0) : this.name = "morning call";
+                       this.price = 0;
+                       break;
+            case (1) : this.name = "laundry";
+                       this.price = 3;
+                       break;
+            case (2) : this.name = "breakfast";
+                       this.price = 10;
+                       break;
+            case (3) : this.name = "lunch";
+                       this.price = 25;
+                       break;
+            case (4) : this.name = "supper";
+                       this.price = 25; 
+                       break;
+    }
     }
 
     /**

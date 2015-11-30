@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -169,19 +170,7 @@ public class Control {
         }
     }
     
-    
-    
-    public ArrayList iniService() {
-        ArrayList<Service> services = new ArrayList();
-        services.add(new Service("morning call", 0));
-        services.add(new Service("laundry", 3));
-        services.add(new Service("breakfast", 10));
-        services.add(new Service("lunch", 25));
-        services.add(new Service("supper", 25));
-        return services;    
-    }
-    
-    
+   
     
     public void displayModel(JTable jT, ArrayList<Service> customerService, Order order) {
             DefaultTableModel model = (DefaultTableModel) jT.getModel();
@@ -246,36 +235,44 @@ public class Control {
     
 
     //create each service
-    private Service setService(JComboBox jCb, int i, ArrayList<Service>services, ArrayList<Service> customerService) {
-        Service s = (Service)services.get(i);
+    private Service setService(JComboBox jCb, int i, ArrayList<Service> customerService) {
+        Service s = new Service(i);
         String date = jCb.getSelectedItem().toString();
         s.setDate(date);
         return s;
     }
     
     //get all services for a given type
-    public ArrayList<Service> getService(int i, ArrayList<Service>services, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
-        customerService.add(setService(jCb11, i, services, customerService));
+    public ArrayList<Service> getService(int i, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
+        customerService.add(setService(jCb11, i, customerService));
         if (jPanel1.isVisible()) {
-            customerService.add(setService(jCb6, i, services, customerService));
-            if (jPanel2.isVisible()) 
-                customerService.add(setService(jCb10, i, services, customerService));
-        } return customerService;          
+            if (jCb11.getSelectedIndex() == jCb6.getSelectedIndex()){
+                JOptionPane.showMessageDialog(jPanel1, "Please choose different date!");
+            }
+            customerService.add(setService(jCb6, i, customerService));
+            if (jPanel2.isVisible()){
+                if (jCb11.getSelectedIndex() == jCb10.getSelectedIndex() || jCb10.getSelectedIndex() == jCb6.getSelectedIndex()){
+                    JOptionPane.showMessageDialog(jPanel1, "Please choose different date!");
+                }
+                customerService.add(setService(jCb10, i, customerService));
+        }          
+    }       
+        return customerService; 
     }
     
     
-    public ArrayList serviceAdd(JComboBox jCb, ArrayList<Service>services, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
+    public ArrayList serviceAdd(JComboBox jCb, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
         if (jCb.getSelectedIndex() == 0) 
-            customerService = getService(2, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+            customerService = getService(2, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else if (jCb.getSelectedIndex() == 1)
-            customerService = getService(3, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+            customerService = getService(3, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else if (jCb.getSelectedIndex() == 2)
-            customerService = getService(4, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+            customerService = getService(4, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
         else
-            customerService = getService(1, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);  
-        
-        return customerService;
-    }
+            customerService = getService(1,  customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);  
 
-    
+        return customerService;
+    }  
 }
+
+   
