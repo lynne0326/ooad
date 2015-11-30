@@ -11,6 +11,7 @@ import hotelpossystem.Customer;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -32,7 +33,7 @@ public interface UserDAO {
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception;  
     public void queryRoomAvailableFloor(Date checkinDate, Date checkoutDate, String floor) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String floor, String roomtype) throws Exception;
-
+    public boolean queryRoomAvailableToRenew(String customerName) throws ClassNotFoundException, SQLException;
     public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
     public ResultSet queryGetOrder();
     public String[] queryRoomAvailableByRoomNumber(String customerName)throws Exception;

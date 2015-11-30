@@ -43,6 +43,21 @@ public class Control {
         }
     }
     
+    public double displayRoomOrder(JTable jTableR, JTable jTableC) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+        DefaultTableModel tableModel2 = (DefaultTableModel) jTableR.getModel();
+        String id=tableModel.getValueAt(jTableR.getSelectedRow(),0).toString();
+        String floor=tableModel.getValueAt(jTableR.getSelectedRow(),1).toString();
+        String type=tableModel.getValueAt(jTableR.getSelectedRow(),2).toString();
+        String price=tableModel.getValueAt(jTableR.getSelectedRow(),3).toString();;
+        tableModel2.setValueAt(id, 0, 0); 
+        tableModel2.setValueAt(floor, 0, 1);
+        tableModel2.setValueAt(type, 0, 2);
+        tableModel2.setValueAt(price, 0, 3);
+        double roomPrice=Integer.valueOf(price);
+        return roomPrice;
+    }
+    
     public void activeSearch(JComboBox jCBF,JComboBox jCBT,JTable jTableR,int from, int to) {
         DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
         tableModel.setRowCount(0);

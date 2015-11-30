@@ -1,9 +1,13 @@
 package UI;
 
 import hotelpossystem.Customer;
+import hotelpossystem.Order;
+import hotelpossystem.Service;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +18,14 @@ public class MainFrame extends javax.swing.JFrame {
     private static int from;
     private static int to;
     private Control control = new Control();
-    
+    private CardLayout b;
+    private ArrayList <Service> customerService = new ArrayList();
+    private Order order = Customer.getCustomerInstance().getCurrentOrder();
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        
         initComponents();
     }
 
@@ -92,6 +99,47 @@ public class MainFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        servicePanel = new javax.swing.JPanel();
+        ServicePanel = new javax.swing.JPanel();
+        jBtFS = new javax.swing.JButton();
+        jBtCS = new javax.swing.JButton();
+        freeService = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jBtS8 = new javax.swing.JButton();
+        jBtS9 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jCb12 = new javax.swing.JComboBox();
+        jBt20 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jCb13 = new javax.swing.JComboBox();
+        jPanel6 = new javax.swing.JPanel();
+        jCb7 = new javax.swing.JComboBox();
+        jBt10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        chargedService = new javax.swing.JPanel();
+        jLbCS = new javax.swing.JLabel();
+        jBtS6 = new javax.swing.JButton();
+        jBtS7 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jCb11 = new javax.swing.JComboBox();
+        jBt19 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jCb10 = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        jCb6 = new javax.swing.JComboBox();
+        jBt9 = new javax.swing.JButton();
+        jCb = new javax.swing.JComboBox();
+        jBt = new javax.swing.JButton();
+        Order = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -639,6 +687,420 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(renewRoom, "card5");
 
+        servicePanel.setLayout(new java.awt.CardLayout());
+
+        ServicePanel.setPreferredSize(new java.awt.Dimension(770, 420));
+
+        jBtFS.setText("Free Service");
+        jBtFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtFSActionPerformed(evt);
+            }
+        });
+
+        jBtCS.setText("Charged Service");
+        jBtCS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCSActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ServicePanelLayout = new javax.swing.GroupLayout(ServicePanel);
+        ServicePanel.setLayout(ServicePanelLayout);
+        ServicePanelLayout.setHorizontalGroup(
+            ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ServicePanelLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jBtFS, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addComponent(jBtCS, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139))
+        );
+        ServicePanelLayout.setVerticalGroup(
+            ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ServicePanelLayout.createSequentialGroup()
+                .addContainerGap(139, Short.MAX_VALUE)
+                .addGroup(ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtFS, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtCS, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(202, 202, 202))
+        );
+
+        servicePanel.add(ServicePanel, "serviceCard");
+
+        freeService.setPreferredSize(new java.awt.Dimension(770, 420));
+
+        jLabel9.setText("Free Service");
+
+        jBtS8.setText("Back");
+        jBtS8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtS8ActionPerformed(evt);
+            }
+        });
+
+        jBtS9.setText("Next");
+        jBtS9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtS9ActionPerformed(evt);
+            }
+        });
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(350, 300));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCb12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb12ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jCb12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jBt20.setText("+");
+        jBt20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt20ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jBt20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+
+        jButton8.setText("Confirm");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        jButton10.setText("Cancel");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jCb13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb7ActionPerformed(evt);
+            }
+        });
+
+        jBt10.setText("+");
+        jBt10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jBt10)
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCb7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBt10))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
+
+        jButton11.setText("Select");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Morning Call");
+
+        javax.swing.GroupLayout freeServiceLayout = new javax.swing.GroupLayout(freeService);
+        freeService.setLayout(freeServiceLayout);
+        freeServiceLayout.setHorizontalGroup(
+            freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(freeServiceLayout.createSequentialGroup()
+                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(freeServiceLayout.createSequentialGroup()
+                            .addGap(160, 160, 160)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(freeServiceLayout.createSequentialGroup()
+                            .addGap(92, 92, 92)
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton11)))
+                    .addGroup(freeServiceLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jBtS8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jBtS9)))
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        freeServiceLayout.setVerticalGroup(
+            freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(freeServiceLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtS8)
+                        .addGap(241, 241, 241))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
+                        .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(freeServiceLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtS9))
+                            .addGroup(freeServiceLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jButton11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(250, 250, 250))))
+        );
+
+        servicePanel.add(freeService, "freeServiceCard");
+
+        chargedService.setPreferredSize(new java.awt.Dimension(770, 420));
+        chargedService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLbCS.setText("Charged Service");
+        chargedService.add(jLbCS, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 11, 144, 42));
+
+        jBtS6.setText("Back");
+        jBtS6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtS6ActionPerformed(evt);
+            }
+        });
+        chargedService.add(jBtS6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+
+        jBtS7.setText("Next");
+        jBtS7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtS7ActionPerformed(evt);
+            }
+        });
+        chargedService.add(jBtS7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, -1));
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(350, 300));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCb11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb11ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jCb11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jBt19.setText("+");
+        jBt19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt19ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jBt19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+
+        jButton12.setText("Confirm");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        jButton15.setText("Cancel");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jCb10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(350, 300));
+
+        jCb6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCb6ActionPerformed(evt);
+            }
+        });
+
+        jBt9.setText("+");
+        jBt9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jBt9)
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBt9))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
+
+        chargedService.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 620, -1));
+
+        jCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Breakfast", "Lunch", "Super", "Laundry" }));
+        chargedService.add(jCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 320, -1));
+
+        jBt.setText("Choose");
+        jBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtActionPerformed(evt);
+            }
+        });
+        chargedService.add(jBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+
+        servicePanel.add(chargedService, "chargedCard");
+
+        mainFlowPanel.add(servicePanel, "card6");
+
+        Order.setPreferredSize(new java.awt.Dimension(860, 420));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Service", "Time", "Price"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jButton13.setText("Confirm");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Cancel");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OrderLayout = new javax.swing.GroupLayout(Order);
+        Order.setLayout(OrderLayout);
+        OrderLayout.setHorizontalGroup(
+            OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(OrderLayout.createSequentialGroup()
+                        .addGap(0, 615, Short.MAX_VALUE)
+                        .addComponent(jButton13)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton14)))
+                .addGap(21, 21, 21))
+        );
+        OrderLayout.setVerticalGroup(
+            OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrderLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        mainFlowPanel.add(Order, "orderCard");
+
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 860, 490));
@@ -654,8 +1116,21 @@ public class MainFrame extends javax.swing.JFrame {
         //service button
         mainPane.setVisible(false);
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
-        c.show(mainFlowPanel, "payCard");
-        jLbDeal.setText(String.valueOf(Customer.getCustomerInstance().getCurrentOrder().getTotalFee()));
+        c.show(mainFlowPanel, "card6");
+        
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+        jPanel5.setVisible(false);
+        jPanel6.setVisible(false);
+        
+        control.showDate(jCb6);
+        control.showDate(jCb10);
+        control.showDate(jCb11);
+        control.showDate(jCb12);
+        control.showDate(jCb7);
+        control.showDate(jCb13);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jBtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSearchActionPerformed
@@ -711,15 +1186,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-//        mainPane.setVisible(false);
-//        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
-//        c.show(mainFlowPanel, "card5");
-//        try {
-//            control.renewRoom(jTableR, "admin");
-//        } catch (Exception ex) {
-//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+//        renewRoom.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
@@ -738,6 +1205,131 @@ public class MainFrame extends javax.swing.JFrame {
         control.confirmPay(jLbDeal, jTfFund, jLbBalance);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        new LogIn().setVisible(true);
+
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        b.show(servicePanel, "serviceCard");
+        customerService.clear();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jBtFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFSActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        b.show(servicePanel, "freeServiceCard");
+    }//GEN-LAST:event_jBtFSActionPerformed
+
+    private void jBtCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCSActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        b.show(servicePanel, "chargedCard");
+    }//GEN-LAST:event_jBtCSActionPerformed
+
+    private void jBtS8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS8ActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        b.show(servicePanel, "serviceCard");
+    }//GEN-LAST:event_jBtS8ActionPerformed
+
+    private void jBtS9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS9ActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        int res = JOptionPane.showConfirmDialog(null, "Go to the charged service?", "", JOptionPane.YES_NO_OPTION);
+        if (res == 0)
+        b.show(servicePanel, "chargedCard");
+        else {
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        c.show(mainFlowPanel, "orderCard");
+            order.addService(customerService);
+            control.displayModel(jTable1, customerService, order);
+        }
+    }//GEN-LAST:event_jBtS9ActionPerformed
+
+    private void jCb12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb12ActionPerformed
+
+    private void jBt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt20ActionPerformed
+        jPanel6.setVisible(true);
+    }//GEN-LAST:event_jBt20ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        customerService = control.getService(0, customerService, jPanel6, jPanel5, jCb12, jCb7, jCb13);
+        jPanel4.setVisible(false);
+        jPanel6.setVisible(false);
+        jPanel5.setVisible(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        jPanel4.setVisible(false);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jCb13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb13ActionPerformed
+
+    private void jCb7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb7ActionPerformed
+
+    private void jBt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt10ActionPerformed
+        jPanel5.setVisible(true);
+    }//GEN-LAST:event_jBt10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        jPanel4.setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jBtS6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS6ActionPerformed
+        b =  (CardLayout)servicePanel.getLayout();
+        b.show(servicePanel, "serviceCard");
+    }//GEN-LAST:event_jBtS6ActionPerformed
+
+    private void jBtS7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS7ActionPerformed
+        mainPane.setVisible(false);
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        c.show(mainFlowPanel, "orderCard");
+        order.addService(customerService);
+        control.displayModel(jTable1, customerService, order);
+    }//GEN-LAST:event_jBtS7ActionPerformed
+
+    private void jCb11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb11ActionPerformed
+
+    private void jBt19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt19ActionPerformed
+        jPanel1.setVisible(true);
+
+    }//GEN-LAST:event_jBt19ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        customerService = control.serviceAdd(jCb, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        jPanel3.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel1.setVisible(false);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jCb10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb10ActionPerformed
+
+    private void jCb6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCb6ActionPerformed
+
+    private void jBt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt9ActionPerformed
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_jBt9ActionPerformed
+
+    private void jBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtActionPerformed
+        jPanel3.setVisible(true);
+    }//GEN-LAST:event_jBtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -754,15 +1346,11 @@ public class MainFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -774,34 +1362,64 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Order;
+    private javax.swing.JPanel ServicePanel;
     private javax.swing.JPanel bookRoomPane;
     private javax.swing.JPanel cardPane;
     private javax.swing.JPanel cashPane;
+    private javax.swing.JPanel chargedService;
     private javax.swing.JPanel contentTopPane;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JPanel displayPanel1;
+    private javax.swing.JPanel freeService;
+    private javax.swing.JButton jBt;
+    private javax.swing.JButton jBt10;
+    private javax.swing.JButton jBt19;
+    private javax.swing.JButton jBt20;
+    private javax.swing.JButton jBt9;
     private javax.swing.JButton jBtBack;
+    private javax.swing.JButton jBtCS;
     private javax.swing.JButton jBtCancel;
     private javax.swing.JButton jBtCancel1;
     private javax.swing.JButton jBtCancel2;
     private javax.swing.JButton jBtConfirm;
+    private javax.swing.JButton jBtFS;
     private javax.swing.JButton jBtPayByCard;
     private javax.swing.JButton jBtPayByCash;
+    private javax.swing.JButton jBtS6;
+    private javax.swing.JButton jBtS7;
+    private javax.swing.JButton jBtS8;
+    private javax.swing.JButton jBtS9;
     private javax.swing.JButton jBtSearch;
     private javax.swing.JButton jBtSelect;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jCBF;
     private javax.swing.JComboBox jCBT;
+    private javax.swing.JComboBox jCb;
+    private javax.swing.JComboBox jCb10;
+    private javax.swing.JComboBox jCb11;
+    private javax.swing.JComboBox jCb12;
+    private javax.swing.JComboBox jCb13;
+    private javax.swing.JComboBox jCb6;
+    private javax.swing.JComboBox jCb7;
     private javax.swing.JComboBox jCbFrom;
     private javax.swing.JComboBox jCbTo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -815,14 +1433,24 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLbBalance;
+    private javax.swing.JLabel jLbCS;
     private javax.swing.JLabel jLbChange;
     private javax.swing.JLabel jLbDeal;
     private javax.swing.JLabel jLbDeal1;
     private javax.swing.JLabel jLbWarning;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableR;
     private javax.swing.JTextField jTfFund;
     private javax.swing.JTextField jTfQuantity;
@@ -834,6 +1462,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel renewRoom;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JPanel selectTimePanel;
+    private javax.swing.JPanel servicePanel;
     private javax.swing.JPanel topPane;
     // End of variables declaration//GEN-END:variables
 }

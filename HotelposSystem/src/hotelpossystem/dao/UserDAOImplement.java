@@ -228,5 +228,27 @@ public class UserDAOImplement implements UserDAO {
             Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
         }return rs; 
     }
+    
+    @Override
+    public boolean queryRoomAvailableToRenew(String customerName) throws ClassNotFoundException, SQLException {
+        boolean flag=true;
+        try(Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();
+                ResultSet rs = state.executeQuery("select roomstatus from customer where username="+customerName)){
+                ResultSet rs2;
+            while(rs.next()) {
+                rs2=state.executeQuery("select day2 from room where id="+rs.getString("id"));
+                if(rs2.getBoolean("day2")) {
+                    flag=true;
+                }
+                else
+                    flag=false;
+            }
+        }
+        if(flag)
+            return true;
+        else
+            return false;
+    }
 
 }
