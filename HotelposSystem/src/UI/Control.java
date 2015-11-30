@@ -169,6 +169,22 @@ public class Control {
         }
     }
     
+    
+    
+    public ArrayList iniService() {
+        ArrayList<Service> services = new ArrayList();
+        services.add(new Service("morning call", 0));
+        services.add(new Service("laundry", 3));
+        services.add(new Service("breakfast", 10));
+        services.add(new Service("lunch", 25));
+        services.add(new Service("supper", 25));
+        return services;
+        
+    }
+    
+    
+    
+    
     public void displayModel(JTable jT, ArrayList<Service> customerService, Order order) {
             DefaultTableModel model = (DefaultTableModel) jT.getModel();
             model.setRowCount(0);
@@ -184,6 +200,9 @@ public class Control {
             object[1] = null;
             object[2] = order.getTotalFee();
     }
+    
+
+    
     
     
         public void displayRoomModel(JTable jT, ArrayList<Room> rooms, Order order) {
@@ -228,23 +247,36 @@ public class Control {
     
 
     //create each service
-    private void setService(JComboBox jCb, int i, ArrayList<Service>services, ArrayList<Service> customerService) {
+    private Service setService(JComboBox jCb, int i, ArrayList<Service>services, ArrayList<Service> customerService) {
         Service s = (Service)services.get(i);
-        Date date = (Date)jCb.getSelectedItem();
+        String date = jCb.getSelectedItem().toString();
         s.setDate(date);
-        customerService.add(s);
+        return s;
     }
     
     //get all services for a given type
-    public void getService(int i, ArrayList<Service>services, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
-        setService(jCb11, i, services, customerService);
+    public ArrayList<Service> getService(int i, ArrayList<Service>services, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
+        customerService.add(setService(jCb11, i, services, customerService));
         if (jPanel1.isVisible()) {
-            setService(jCb6, i, services, customerService);
+            customerService.add(setService(jCb6, i, services, customerService));
             if (jPanel2.isVisible()) 
-                setService(jCb10, i, services, customerService);
-        }           
+                customerService.add(setService(jCb10, i, services, customerService));
+        } return customerService;          
     }
     
+    
+    public ArrayList serviceAdd(JComboBox jCb, ArrayList<Service>services, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
+        if (jCb.getSelectedIndex() == 0) 
+            customerService = getService(2, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        else if (jCb.getSelectedIndex() == 1)
+            customerService = getService(3, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        else if (jCb.getSelectedIndex() == 2)
+            customerService = getService(4, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        else
+            getService(1, services, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);  
+        
+        return customerService;
+    }
 
     
 }

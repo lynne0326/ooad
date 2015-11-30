@@ -23,21 +23,7 @@ public class UserDAOImplement implements UserDAO {
 
     
     
-    @Override
-    public ArrayList queryGetService() throws Exception {
-        ArrayList<Service> services = null;
-        try(Connection conn = new DatabaseConnection().getConnection();
-            Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("select * from service")
-            ){
-            while(rs.next()) {
-                String name = rs.getString("name");
-                double price = rs.getDouble("price");
-                Service service = new Service(name, price);
-                services.add(service);
-            }
-        }return services;
-    }
+   
         
     @Override
     /**
