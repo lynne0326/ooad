@@ -1,29 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
 import hotelpossystem.Order;
 import hotelpossystem.Service;
-import hotelpossystem.dao.DAOFactory;
 import java.awt.CardLayout;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import UI.LogIn;
-import UI.LogIn;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 
 /**
  *
