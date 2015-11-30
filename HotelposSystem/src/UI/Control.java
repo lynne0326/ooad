@@ -24,28 +24,28 @@ import javax.swing.table.DefaultTableModel;
  * @author lingyanjiang
  */
 public class Control {
-    public int count = 0;
+    public int count ;
     
     public void runn(JTable jTableR, int from, int to) throws Exception {
         count=0;
         DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
-        int in =from+1;
-        int out =to+1;
-       
+        int in =from+1; 
+        int out =to+1;     
         HashSet<String[]> as = new HashSet<>();
         as=DAOFactory.getUserDAOInstance().queryRoomAvailable(in, out);          
+        System.out.println(as.size());
         for(String[] a: as) {
             tableModel.addRow(a);
             count++;
-        }
-        
+        }       
     }
     
     public void activeSearch(JComboBox jCBF,JComboBox jCBT,JTable jTableR,int from, int to) {
+        count=4;
         DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
         tableModel.setRowCount(0);
         try {
-            runn(jTableR, from, to);
+            runn(jTableR, from, to); 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class Control {
                 for(int index=0; index < count;index++ ) {
                     if(!tableModel.getValueAt(index,1).equals("level1")) {
                         tableModel.removeRow(index);
-                        index--; count--;
+                        index--; count--;  
                     }
                 }
             }
@@ -169,7 +169,13 @@ public class Control {
         }
     }
     
-    
+    public void renewRoom(JTable jTableR, String customerName) throws Exception {
+       String[] s=new String[4];
+        System.out.println("this is befire");
+       s=DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber(customerName);
+       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+       tableModel.addRow(s);
+   }
     
     public ArrayList iniService() {
         ArrayList<Service> services = new ArrayList();

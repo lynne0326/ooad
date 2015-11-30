@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -87,6 +89,50 @@ public class UserDAOImplement implements UserDAO {
     }
 
     @Override
+     public String renewLogin(String username, String password) throws Exception {
+        String sql = "select * from customer where name='" + username + "'and password='" + password + "'";
+        String roomID="";
+        //String roomId
+        try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();) {
+            ResultSet rs = state.executeQuery(sql);
+            if (rs.next()) {
+                ResultSet rs1=state.executeQuery("select * from order where customer=' "+username);
+                 roomID=rs1.getString("roomID");
+               
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return roomID;
+    }
+    
+    @Override
+     public String[] queryRoomAvailableByRoomNumber(String customer) {
+        String[] ss = null;
+         try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();
+                ResultSet rs = state.executeQuery("select * from customer ")) {               
+                String id = null, floor = null, type = null, price = null;
+            while (rs.next()) {
+                id = rs.getString("ID");
+                floor = rs.getString("floor");
+                type = rs.getString("type");
+                price = rs.getString("price");
+                ss = new String[]{id, floor, type, price};
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOImplement.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ss;
+    }
+
+     
+     
+    @Override
     public void queryOrder(Order order) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -119,6 +165,7 @@ public class UserDAOImplement implements UserDAO {
         String id = null, floor = null, type = null, price = null;
         //String[] s=new String[]{id,floor,type,price};
         HashSet<String[]> as = new HashSet<>();
+        as.clear();
         HashSet<String> idHash = new HashSet<>();
         String[] s;
         try {
@@ -166,22 +213,7 @@ public class UserDAOImplement implements UserDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void queryRoomAvailableByRoomNumber(String roomnumber) {
-        try (Connection conn = new DatabaseConnection().getConnection();
-                Statement state = conn.createStatement();
-                ResultSet rs = state.executeQuery("select * from room")) {
-            while (rs.next()) {
-                System.out.println(rs.getString("ID"));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAOImplement.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+  
 
     public void queryTest() throws SQLException, ClassNotFoundException {
         try (Connection conn = new DatabaseConnection().getConnection();

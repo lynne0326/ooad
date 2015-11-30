@@ -27,12 +27,14 @@ public interface UserDAO {
     public void update(Room room) throws Exception;
     public void delete(Order order) throws Exception;
     public boolean queryLogin(String username, String password) throws Exception;
+    public String renewLogin(String username, String password)throws Exception;
+    public String[] queryRoomAvailableByRoomNumber(String customerName) throws Exception;
     public void queryOrder(Order order) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception;  
     public void queryRoomAvailableFloor(Date checkinDate, Date checkoutDate, String floor) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String floor, String roomtype) throws Exception;
-    public void queryRoomAvailableByRoomNumber(String roomnumber);
+   // public void queryRoomAvailableByRoomNumber(String roomnumber);
     public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
     public ResultSet queryGetOrder();
 }

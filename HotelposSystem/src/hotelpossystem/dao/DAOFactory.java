@@ -5,8 +5,7 @@ package hotelpossystem.dao;
  */
 public class DAOFactory {
 
-    private static UserDAO us;
-    
+    private static UserDAO us;   
     /**
      * @return 
      */
