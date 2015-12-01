@@ -1,5 +1,7 @@
 package UI;
 
+import hotelpossystem.Customer;
+import hotelpossystem.Payment;
 import hotelpossystem.dao.UserDAOImplement;
 
 /**
@@ -11,7 +13,7 @@ public class LogIn extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    Payment payment = new Payment();
+    
 
     public LogIn() {
         initComponents();
@@ -116,7 +118,7 @@ public class LogIn extends javax.swing.JFrame {
 
         try {
             if (new UserDAOImplement().queryLogin(jTextField1.getText(), jPasswordField1.getPassword().toString())) {
-                payment.setVisible(true);
+                Customer.getCustomerInstance().setLogedin(true);
 
             }
         } catch (Exception e) {

@@ -266,7 +266,7 @@ public class Control {
                 next[i] = sf.format(cal.getTime());
                 jCb.addItem(next[i]);
             } catch (ParseException ex) {
-                Logger.getLogger(ServiceFrame2.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
     }
