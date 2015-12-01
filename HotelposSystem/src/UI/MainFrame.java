@@ -1,19 +1,22 @@
 package UI;
 
 import hotelpossystem.Customer;
+import hotelpossystem.Observer;
 import hotelpossystem.Order;
 import hotelpossystem.Service;
+import hotelpossystem.Time;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
 /**
  *
  * @author lingyanjiang
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private static int from;
     private static int to;
@@ -1143,6 +1146,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainPane.setVisible(false);
+        Time t = new Time(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1201,11 +1205,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         c.show(payPanel, "cashPaneCard");
+        Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         c.show(payPanel, "cardPaneCard");
+        Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1509,4 +1515,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel servicePanel;
     private javax.swing.JPanel topPane;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        //system times out return to main page
+        JOptionPane.showMessageDialog(null,"System times out!"," ",
+                PLAIN_MESSAGE);
+        mainPane.setVisible(true);
+    }
 }
