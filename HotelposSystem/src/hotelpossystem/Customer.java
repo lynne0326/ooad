@@ -15,6 +15,8 @@ public class Customer {
     private Payment payment;
     private boolean logedin;
     private static Customer customer;
+    private int score;
+    private String roomNum;
     
     private Customer() {
         Order order = new Order();
@@ -103,6 +105,55 @@ public class Customer {
      */
     public void setCurrentOrder(Order currentOrder) {
         this.currentOrder = currentOrder;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param order the order to set
+     */
+    public void setOrder(ArrayList<Order> order) {
+        this.order = order;
+    }
+
+    /**
+     * @return the score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * @param score the score to set
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
+     * @return the roomNum
+     */
+    public String getRoomNum() {
+        return roomNum;
+    }
+
+    /**
+     * @param roomNum the roomNum to set
+     */
+    public void setRoomNum(String roomNum) {
+        this.roomNum = roomNum;
     }
 
 }

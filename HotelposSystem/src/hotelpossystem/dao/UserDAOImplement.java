@@ -73,7 +73,7 @@ public class UserDAOImplement implements UserDAO {
 
     @Override
     public boolean queryLogin(String username, String password) throws Exception {
-        String sql = "select * from customer where name='" + username + "'and password='" + password + "'";
+        String sql = "select * from customer where username= '" + username + "' and password ='" + password + "'";
         try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement();) {
             ResultSet rs = state.executeQuery(sql);
@@ -85,6 +85,27 @@ public class UserDAOImplement implements UserDAO {
         }
         return false;
     }
+    
+    @Override
+    public void queryCustomer(String username) {
+        String sql = "select * from customer where username='" + username+"'";
+        ResultSet rs = null;
+        Customer customer = Customer.getCustomerInstance();
+        try(Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement()){
+            rs = state.executeQuery(sql);
+            while(rs.next()){
+                    customer.setName(rs.getString("name"));
+                    customer.setGender(rs.getString("gender"));
+                    customer.setScore(rs.getInt("score"));
+                    customer.setRoomNum(rs.getString("roomstatus"));
+                }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public String[] queryRoomAvailableByRoomNumber(String customerName) {
@@ -94,7 +115,7 @@ public class UserDAOImplement implements UserDAO {
                 ResultSet rs = state.executeQuery("select * from customer where username="+"'"+customerName+"';")) {               
                 String name = null, room = null;
                 Date checkinTime = null, checkoutTime = null;
-            while (rs.next()) {System.out.println("3");
+            while (rs.next()) {
                 name = rs.getString("name");
                 room = rs.getString("roomstatus");
                 checkinTime = rs.getDate("checkintime");

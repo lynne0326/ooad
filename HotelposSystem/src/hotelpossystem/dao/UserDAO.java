@@ -36,5 +36,6 @@ public interface UserDAO {
     public boolean queryRoomAvailableToRenew(String customerName) throws ClassNotFoundException, SQLException;
     public HashSet<String[]> queryRoomAvailable(int checkin, int checkout) throws Exception;
     public ResultSet queryGetOrder();
+    public void queryCustomer(String username);
     public String[] queryRoomAvailableByRoomNumber(String customerName)throws Exception;
 }

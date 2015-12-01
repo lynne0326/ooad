@@ -462,6 +462,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(bookRoomPane, "card2");
 
+        payPanel.setBackground(new java.awt.Color(235, 236, 238));
         payPanel.setLayout(new java.awt.CardLayout());
 
         paymentPanel.setBackground(new java.awt.Color(235, 236, 238));
@@ -672,6 +673,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(payPanel, "payCard");
 
+        renewRoom.setBackground(new java.awt.Color(235, 236, 238));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -716,8 +719,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(renewRoom, "card5");
 
+        servicePanel.setBackground(new java.awt.Color(235, 236, 238));
         servicePanel.setLayout(new java.awt.CardLayout());
 
+        ServicePanel.setBackground(new java.awt.Color(235, 236, 238));
         ServicePanel.setPreferredSize(new java.awt.Dimension(770, 420));
 
         jBtFS.setText("Free Service");
@@ -757,6 +762,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         servicePanel.add(ServicePanel, "serviceCard");
 
+        freeService.setBackground(new java.awt.Color(235, 236, 238));
         freeService.setPreferredSize(new java.awt.Dimension(770, 420));
 
         jLabel9.setText("Free Service Lists:");
@@ -933,6 +939,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         servicePanel.add(freeService, "freeServiceCard");
 
+        chargedService.setBackground(new java.awt.Color(235, 236, 238));
         chargedService.setPreferredSize(new java.awt.Dimension(770, 420));
         chargedService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1071,6 +1078,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainFlowPanel.add(servicePanel, "card6");
 
+        Order.setBackground(new java.awt.Color(235, 236, 238));
         Order.setPreferredSize(new java.awt.Dimension(860, 420));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(

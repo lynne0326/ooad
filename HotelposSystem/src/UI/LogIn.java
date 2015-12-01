@@ -2,7 +2,11 @@ package UI;
 
 import hotelpossystem.Customer;
 import hotelpossystem.Payment;
+import hotelpossystem.dao.DAOFactory;
 import hotelpossystem.dao.UserDAOImplement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
 /**
  *
@@ -67,7 +71,7 @@ public class LogIn extends javax.swing.JFrame {
             .addGap(0, 46, Short.MAX_VALUE)
         );
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,9 +121,23 @@ public class LogIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            if (new UserDAOImplement().queryLogin(jTextField1.getText(), jPasswordField1.getPassword().toString())) {
-                Customer.getCustomerInstance().setLogedin(true);
-
+            if (DAOFactory.getUserDAOInstance().queryLogin(jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
+                
+                Customer customer = Customer.getCustomerInstance();
+                customer.setLogedin(true);
+                
+                //get customer info
+                DAOFactory.getUserDAOInstance().queryCustomer(jTextField1.getText());
+                
+                this.dispose();
+                
+                    
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Incorrect password!"," ",
+                PLAIN_MESSAGE);
+                jTextField1.setText("");
+                jPasswordField1.setText("");
             }
         } catch (Exception e) {
             e.printStackTrace();
