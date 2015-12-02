@@ -748,9 +748,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServicePanelLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jBtFS, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addComponent(jBtFS, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addGap(270, 270, 270)
-                .addComponent(jBtCS, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jBtCS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(117, 117, 117))
         );
         ServicePanelLayout.setVerticalGroup(
@@ -767,8 +767,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         freeService.setBackground(new java.awt.Color(235, 236, 238));
         freeService.setPreferredSize(new java.awt.Dimension(770, 420));
+        freeService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setText("Free Service Lists:");
+        jLabel9.setText("Free Service: ");
+        freeService.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 117, 33));
 
         jBtS8.setText("Back");
         jBtS8.addActionListener(new java.awt.event.ActionListener() {
@@ -776,6 +778,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jBtS8ActionPerformed(evt);
             }
         });
+        freeService.add(jBtS8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, -1, -1));
 
         jBtS9.setText("Next");
         jBtS9.addActionListener(new java.awt.event.ActionListener() {
@@ -783,7 +786,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jBtS9ActionPerformed(evt);
             }
         });
+        freeService.add(jBtS9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 390, -1, -1));
 
+        jPanel4.setBackground(new java.awt.Color(235, 236, 238));
         jPanel4.setPreferredSize(new java.awt.Dimension(350, 300));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -818,6 +823,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
 
+        jPanel5.setBackground(new java.awt.Color(235, 236, 238));
         jPanel5.setPreferredSize(new java.awt.Dimension(350, 300));
 
         jCb13.addActionListener(new java.awt.event.ActionListener() {
@@ -845,6 +851,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
 
+        jPanel6.setBackground(new java.awt.Color(235, 236, 238));
         jPanel6.setPreferredSize(new java.awt.Dimension(350, 300));
 
         jCb7.addActionListener(new java.awt.event.ActionListener() {
@@ -883,62 +890,19 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
 
+        freeService.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 450, 280));
+
         jButton11.setText("Select");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
+        freeService.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 90, 30));
 
+        jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel10.setText("Morning Call");
-
-        javax.swing.GroupLayout freeServiceLayout = new javax.swing.GroupLayout(freeService);
-        freeService.setLayout(freeServiceLayout);
-        freeServiceLayout.setHorizontalGroup(
-            freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(freeServiceLayout.createSequentialGroup()
-                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(freeServiceLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(freeServiceLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel10)
-                        .addGap(53, 53, 53)
-                        .addComponent(jButton11))
-                    .addGroup(freeServiceLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jBtS8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jBtS9)))
-                .addContainerGap(216, Short.MAX_VALUE))
-        );
-        freeServiceLayout.setVerticalGroup(
-            freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(freeServiceLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtS8)
-                        .addGap(241, 241, 241))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, freeServiceLayout.createSequentialGroup()
-                        .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(freeServiceLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtS9))
-                            .addGroup(freeServiceLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(freeServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jButton11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(250, 250, 250))))
-        );
+        freeService.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
         servicePanel.add(freeService, "freeServiceCard");
 
@@ -955,7 +919,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jBtS6ActionPerformed(evt);
             }
         });
-        chargedService.add(jBtS6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        chargedService.add(jBtS6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
         jBtS7.setText("Next");
         jBtS7.addActionListener(new java.awt.event.ActionListener() {
@@ -963,8 +927,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jBtS7ActionPerformed(evt);
             }
         });
-        chargedService.add(jBtS7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, -1, -1));
+        chargedService.add(jBtS7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 390, -1, -1));
 
+        jPanel3.setBackground(new java.awt.Color(235, 236, 238));
         jPanel3.setPreferredSize(new java.awt.Dimension(350, 300));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -975,7 +940,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         jPanel3.add(jCb11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jBt19.setText("+");
+        jBt19.setText("Add");
         jBt19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt19ActionPerformed(evt);
@@ -999,6 +964,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         jPanel3.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
 
+        jPanel2.setBackground(new java.awt.Color(235, 236, 238));
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 300));
 
         jCb10.addActionListener(new java.awt.event.ActionListener() {
@@ -1026,6 +992,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 166, 260, 60));
 
+        jPanel1.setBackground(new java.awt.Color(235, 236, 238));
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 300));
 
         jCb6.addActionListener(new java.awt.event.ActionListener() {
@@ -1034,7 +1001,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jBt9.setText("+");
+        jBt9.setText("Add");
         jBt9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt9ActionPerformed(evt);
