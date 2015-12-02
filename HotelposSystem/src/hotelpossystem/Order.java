@@ -6,13 +6,14 @@ import java.util.ArrayList;
  * @author Shuang
  */
 public class Order {
-    private ArrayList <Room> rooms;
+    private ArrayList <Room> rooms = new ArrayList<>();
     private ArrayList <Service> services;
     private Customer customer;
     private double serviceFee;
     private double roomFee;
     private double discount = 1;
 
+    
     
     public void addService(Service service) {
         services.add(service);
@@ -31,7 +32,7 @@ public class Order {
         serviceFee -= service.getPrice();
     }
     
-    public void addRoom(Room room) {
+    public void addRoom(Room room) {System.out.println("ji");
         rooms.add(room);
         roomFee += room.getPrice();       
     }
@@ -47,13 +48,13 @@ public class Order {
     }
     
     public double getTotalFee() {
-        double totalFee = 30;
-//        if(services.size()!=0){
-//            for (Service s : services) {
-//                serviceFee += s.getPrice();
-//            }
-//        }
-//        totalFee = serviceFee+roomFee;
+        double totalFee = 0;
+        if(services.size()!=0){
+            for (Service s : services) {
+                serviceFee += s.getPrice();
+            }
+        }
+        totalFee = serviceFee+roomFee;
         return totalFee;
     }
     

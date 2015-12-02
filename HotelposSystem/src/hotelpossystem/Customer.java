@@ -9,6 +9,7 @@ public class Customer {
 
     private String name;
     private int id;
+    private String userName;
     private String gender;
     private Order currentOrder;
     private ArrayList<Order> order;
@@ -97,7 +98,12 @@ public class Customer {
      * @return the currentOrder
      */
     public Order getCurrentOrder() {
-        return currentOrder;
+        if(currentOrder==null){
+            System.out.println("~~~~");
+            return new Order();
+        }
+        else
+            return currentOrder;
     }
 
     /**
@@ -154,6 +160,20 @@ public class Customer {
      */
     public void setRoomNum(String roomNum) {
         this.roomNum = roomNum;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }

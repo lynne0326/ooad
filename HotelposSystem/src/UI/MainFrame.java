@@ -3,6 +3,7 @@ package UI;
 import hotelpossystem.Customer;
 import hotelpossystem.Observer;
 import hotelpossystem.Order;
+import hotelpossystem.Room;
 import hotelpossystem.Service;
 import hotelpossystem.Time;
 import java.awt.CardLayout;
@@ -11,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.PLAIN_MESSAGE;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private CardLayout b;
     private ArrayList <Service> customerService = new ArrayList();
     private Order order = Customer.getCustomerInstance().getCurrentOrder();
+    Room room=new Room();
     /**
      * Creates new form MainFrame
      */
@@ -100,9 +104,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jButton9 = new javax.swing.JButton();
         renewRoom = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jTableRenew = new javax.swing.JTable();
+        jButtonRenewBack = new javax.swing.JButton();
+        jButtonRenewConfirm = new javax.swing.JButton();
         servicePanel = new javax.swing.JPanel();
         ServicePanel = new javax.swing.JPanel();
         jBtFS = new javax.swing.JButton();
@@ -141,9 +145,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jBt = new javax.swing.JButton();
         Order = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        jTableOrder = new javax.swing.JTable();
+        jButtonOrderConfirm = new javax.swing.JButton();
+        jButtonOrderCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -678,22 +682,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         renewRoom.setBackground(new java.awt.Color(235, 236, 238));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableRenew.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Room number", "Check in date", "Check out date"
+                "Name", "Room number", "Price", "Check in date", "Check out date"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTableRenew);
 
-        jButton5.setText("Back");
-
-        jButton6.setText("Confirm");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRenewBack.setText("Back");
+        jButtonRenewBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonRenewBackActionPerformed(evt);
+            }
+        });
+
+        jButtonRenewConfirm.setText("Confirm");
+        jButtonRenewConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRenewConfirmActionPerformed(evt);
             }
         });
 
@@ -704,9 +713,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
             .addGroup(renewRoomLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonRenewBack, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(jButtonRenewConfirm)
                 .addGap(65, 65, 65))
         );
         renewRoomLayout.setVerticalGroup(
@@ -715,8 +724,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(renewRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonRenewConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRenewBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -1051,30 +1060,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         Order.setBackground(new java.awt.Color(235, 236, 238));
         Order.setPreferredSize(new java.awt.Dimension(860, 420));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Items", "Time", "Price"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jTableOrder);
 
-        jButton13.setText("Confirm");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOrderConfirm.setText("Confirm");
+        jButtonOrderConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                jButtonOrderConfirmActionPerformed(evt);
             }
         });
 
-        jButton14.setText("Cancel");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOrderCancel.setText("Cancel");
+        jButtonOrderCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                jButtonOrderCancelActionPerformed(evt);
             }
         });
 
@@ -1082,24 +1088,24 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         Order.setLayout(OrderLayout);
         OrderLayout.setHorizontalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton13)
-                .addGap(54, 54, 54)
-                .addComponent(jButton14)
-                .addGap(25, 25, 25))
+                .addGap(83, 83, 83)
+                .addComponent(jButtonOrderCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonOrderConfirm)
+                .addGap(82, 82, 82))
         );
         OrderLayout.setVerticalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(68, 68, 68)
                 .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13)
-                    .addComponent(jButton14))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jButtonOrderCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonOrderConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         mainFlowPanel.add(Order, "orderCard");
@@ -1171,12 +1177,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
+        jLbDeal.setText(String.valueOf(order.getTotalFee()));
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
+        jLbDeal1.setText(String.valueOf(order.getTotalFee()));
         c.show(payPanel, "cardPaneCard");
         Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCashActionPerformed
@@ -1186,9 +1194,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        renewRoom.setVisible(false);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void jButtonRenewConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewConfirmActionPerformed
+
+        String from1=String.valueOf(from);        
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();  
+        control.getRenewRoom(jTableRenew, room);
+        c.show(mainFlowPanel, "orderCard");
+        control.displayRenewRoom(jTableOrder, room);
+    }//GEN-LAST:event_jButtonRenewConfirmActionPerformed
 
     private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
         // TODO add your handling code here:
@@ -1206,16 +1219,18 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         control.confirmPay(jLbDeal, jTfFund, jLbBalance);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void jButtonOrderConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderConfirmActionPerformed
         LogIn.start(1, this);
 
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_jButtonOrderConfirmActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        b =  (CardLayout)servicePanel.getLayout();
-        b.show(servicePanel, "serviceCard");
+    private void jButtonOrderCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderCancelActionPerformed
+        Order.setVisible(false);
+        mainPane.setVisible(true);
         customerService.clear();
-    }//GEN-LAST:event_jButton14ActionPerformed
+        order.subtractRoom(room);
+        jTableOrder.removeAll();
+    }//GEN-LAST:event_jButtonOrderCancelActionPerformed
 
     private void jBtFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFSActionPerformed
         b =  (CardLayout)servicePanel.getLayout();
@@ -1235,13 +1250,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jBtS9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS9ActionPerformed
         b =  (CardLayout)servicePanel.getLayout();
         int res = JOptionPane.showConfirmDialog(null, "Go to the charged service?", "", JOptionPane.YES_NO_OPTION);
-        if (res == 0)
-        b.show(servicePanel, "chargedCard");
+        if (res == 0){
+            b.show(servicePanel, "chargedCard");
+            }
         else {
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "orderCard");
-            order.addService(customerService);
-            control.displayModel(jTable1, customerService, order);
+            order.addService(customerService); 
+            control.displayModel(jTableOrder, customerService, order);
         }
     }//GEN-LAST:event_jBtS9ActionPerformed
 
@@ -1288,9 +1304,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jBtS7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtS7ActionPerformed
         mainPane.setVisible(false);
         CardLayout c = (CardLayout)mainFlowPanel.getLayout();
-        c.show(mainFlowPanel, "orderCard");
+        
         order.addService(customerService);
-        control.displayModel(jTable1, customerService, order);
+        control.displayModel(jTableOrder, customerService, order);
+        c.show(mainFlowPanel, "orderCard");
     }//GEN-LAST:event_jBtS7ActionPerformed
 
     private void jCb11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCb11ActionPerformed
@@ -1332,13 +1349,48 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtActionPerformed
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        //jTableOrder.removeAll();
         CardLayout c = (CardLayout)mainFlowPanel.getLayout();
         c.show(mainFlowPanel, "orderCard");
+//        String from1=String.valueOf(from);
+//        control.displayRoomOrder(jTableOrder,room,from1);
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jBtSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSelectActionPerformed
-        // TODO add your handling code here:
+        control.getSelectedRoom(jTableR, room);
+        order.addRoom(room);
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        int n= JOptionPane.showConfirmDialog(null, "Do you want to book service?","Message",JOptionPane.YES_NO_OPTION);
+        if(n==0){
+             mainPane.setVisible(false);
+ 
+            c.show(mainFlowPanel, "card6");
+
+            jPanel1.setVisible(false);
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(false);
+            jPanel4.setVisible(false);
+            jPanel5.setVisible(false);
+            jPanel6.setVisible(false);
+
+            control.showDate(jCb6);
+            control.showDate(jCb10);
+            control.showDate(jCb11);
+            control.showDate(jCb12);
+            control.showDate(jCb7);
+            control.showDate(jCb13);
+        }
+        if(n==1){
+            c.show(mainFlowPanel, "orderCard");
+        }
+                
+        String from1=String.valueOf(jCbFrom.getSelectedItem()); 
+        control.displayRoomOrder(jTableOrder,room,from1);
     }//GEN-LAST:event_jBtSelectActionPerformed
+
+    private void jButtonRenewBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRenewBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1406,17 +1458,17 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonOrderCancel;
+    private javax.swing.JButton jButtonOrderConfirm;
+    private javax.swing.JButton jButtonRenewBack;
+    private javax.swing.JButton jButtonRenewConfirm;
     private javax.swing.JComboBox jCBF;
     private javax.swing.JComboBox jCBT;
     private javax.swing.JComboBox jCb;
@@ -1460,9 +1512,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableOrder;
     private javax.swing.JTable jTableR;
+    private javax.swing.JTable jTableRenew;
     private javax.swing.JTextField jTfFund;
     private javax.swing.JTextField jTfQuantity;
     private javax.swing.JPanel mainFlowPanel;
@@ -1499,7 +1551,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "card5");
             try {
-                control.renewRoom(jTable1, "jly");
+                control.renewRoom(jTableRenew, Customer.getCustomerInstance().getUserName());
             } catch (Exception ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }

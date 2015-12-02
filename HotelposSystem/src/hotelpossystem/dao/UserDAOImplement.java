@@ -97,6 +97,7 @@ public class UserDAOImplement implements UserDAO {
             while(rs.next()){
                     customer.setName(rs.getString("name"));
                     customer.setGender(rs.getString("gender"));
+                    customer.setUserName(rs.getString("username"));
                     customer.setScore(rs.getInt("score"));
                     customer.setRoomNum(rs.getString("roomstatus"));
                 }
@@ -113,15 +114,21 @@ public class UserDAOImplement implements UserDAO {
          try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement();
                 ResultSet rs = state.executeQuery("select * from customer where username="+"'"+customerName+"';")) {               
-                String name = null, room = null;
+                
+                String name = null, room = null,price=null;
+                
                 Date checkinTime = null, checkoutTime = null;
             while (rs.next()) {
                 name = rs.getString("name");
                 room = rs.getString("roomstatus");
                 checkinTime = rs.getDate("checkintime");
-                checkoutTime = rs.getDate("checkouttime");
-                ss = new String[]{name, room, checkinTime.toString(), checkoutTime.toString()};
+                checkoutTime = rs.getDate("checkouttime");         
             }
+            ResultSet rs1= state.executeQuery("select  price from room where ID="+"'"+room+"'");
+            while(rs1.next()) {
+                price=(rs1.getString("price"));
+            }
+            ss = new String[]{name, room, price,checkinTime.toString(), checkoutTime.toString()};
         } catch (SQLException ex) {
             Logger.getLogger(UserDAOImplement.class
                     .getName()).log(Level.SEVERE, null, ex);

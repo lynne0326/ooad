@@ -5,6 +5,7 @@ import hotelpossystem.Order;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
 import hotelpossystem.dao.DAOFactory;
+import java.awt.print.Book;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -189,16 +190,17 @@ public class Control {
      public void renewRoom(JTable jTableR, String customerName) throws Exception {
        String[] s=new String[4];
        s=DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber(customerName);
-       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();System.out.println("1");
-       tableModel.addRow(s); System.out.println("2");
-   }
+       DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+       tableModel.addRow(s);
+    }
     
     public void displayModel(JTable jT, ArrayList<Service> customerService, Order order) {
             DefaultTableModel model = (DefaultTableModel) jT.getModel();
-            model.setRowCount(0);
+//            model.setRowCount(0);
             Object[] object = new Object[3];
             //service name; service time; service price; total;
-            for (Service s : customerService) {
+            System.out.println(customerService.size());
+            for (Service s : customerService) {System.out.println(s.getName());
                 object[0] = s.getName();
                 object[1] = s.getDate();
                 object[2] = s.getPrice();
@@ -207,7 +209,8 @@ public class Control {
             object[0] = "Total";
             object[1] = null;
             object[2] = order.getTotalFee();
-            model.addRow(object);
+            
+            model.addRow(object);System.out.println("thsiiswork");
     }
     
     public void confirmPay(JLabel jLbDeal, JTextField jTfQuantity, JLabel jLbChange) {
@@ -230,7 +233,44 @@ public class Control {
 
     }
     
+    public void displayRoomOrder(JTable jTableOrder, Room room, String from){
+        DefaultTableModel model = (DefaultTableModel) jTableOrder.getModel();
+        String s1="room: "+room.getId();
+        String s2=from;
+        String s3=String.valueOf(room.getPrice());
+        String[] s=new String[]{s1,s2,s3};              
+        model.addRow(s);
+    }
     
+    public void getSelectedRoom(JTable jTableR, Room room){
+        DefaultTableModel tableModel = (DefaultTableModel) jTableR.getModel();
+        int row=jTableR.getSelectedRow();         
+        room.setId(tableModel.getValueAt(row, 0).toString()); 
+        room.setFloor(tableModel.getValueAt(row, 1).toString()); 
+        room.setType(tableModel.getValueAt(row, 2).toString());
+        room.setPrice(Double.valueOf(tableModel.getValueAt(row, 3).toString()));  
+    }
+    
+    public void getRenewRoom(JTable jTableRenew, Room room){
+        DefaultTableModel tableModel = (DefaultTableModel) jTableRenew.getModel();
+        int row=jTableRenew.getSelectedRow();
+        room.setId(tableModel.getValueAt(row, 1).toString());  
+        room.setPrice(Double.valueOf(tableModel.getValueAt(row, 2).toString()));
+    }
+    
+    public void displayRenewRoom(JTable jTableOrder, Room room){
+        Date dt = new Date();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        String today = "";
+        today = sf.format(dt);
+        DefaultTableModel model = (DefaultTableModel) jTableOrder.getModel();
+        String s1="room: "+room.getId();
+        String s3=String.valueOf(room.getPrice());
+        String s2=today.toString();
+
+        String[] s=new String[]{s1,s2,s3};              
+        model.addRow(s);
+    }
     
         public void displayRoomModel(JTable jT, ArrayList<Room> rooms, Order order) {
             DefaultTableModel model = (DefaultTableModel) jT.getModel();
@@ -248,6 +288,7 @@ public class Control {
             object[2] = order.getTotalFee();
     }
     
+        
     
     
     public void showDate(JComboBox jCb) {
