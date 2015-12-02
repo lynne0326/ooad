@@ -1215,14 +1215,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mainPane.setVisible(false);
-        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
-        c.show(mainFlowPanel, "card5");
-        try {
-            control.renewRoom(jTable1, "jly");
-        } catch (Exception ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        LogIn.start(2, this);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1246,7 +1240,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        new LogIn().setVisible(true);
+        LogIn.start(1, this);
 
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -1278,7 +1272,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         b.show(servicePanel, "chargedCard");
         else {
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
-        c.show(mainFlowPanel, "orderCard");
+            c.show(mainFlowPanel, "orderCard");
             order.addService(customerService);
             control.displayModel(jTable1, customerService, order);
         }
@@ -1522,5 +1516,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         JOptionPane.showMessageDialog(null,"System times out!"," ",
                 PLAIN_MESSAGE);
         mainPane.setVisible(true);
+    }
+
+    @Override
+    public void update(int i) {
+        if(i==1){
+            //turn to payment page
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "payCard");
+            
+        }
+        if(i==2){
+            //turn to renew room page
+            mainPane.setVisible(false);
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "card5");
+            try {
+                control.renewRoom(jTable1, "jly");
+            } catch (Exception ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
     }
 }

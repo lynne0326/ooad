@@ -1,10 +1,13 @@
 package UI;
 
 import hotelpossystem.Customer;
+import hotelpossystem.Observer;
 import hotelpossystem.Payment;
+import hotelpossystem.Subject;
 import hotelpossystem.dao.DAOFactory;
 import hotelpossystem.dao.UserDAOImplement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
@@ -12,15 +15,19 @@ import static javax.swing.JOptionPane.PLAIN_MESSAGE;
  *
  * @author XiaoSong
  */
-public class LogIn extends javax.swing.JFrame {
+public class LogIn extends javax.swing.JFrame implements Subject{
 
     /**
      * Creates new form NewJFrame
      */
-    
+    private static int type = 1;
+    private static ArrayList<Observer> list = new ArrayList<>();
 
-    public LogIn() {
+    public LogIn(int i,Observer o) {
+        type = i;
+        attach(o);
         initComponents();
+//        start();
     }
 
     /**
@@ -119,7 +126,6 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         try {
             if (DAOFactory.getUserDAOInstance().queryLogin(jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
                 
@@ -130,9 +136,10 @@ public class LogIn extends javax.swing.JFrame {
                 DAOFactory.getUserDAOInstance().queryCustomer(jTextField1.getText());
                 
                 this.dispose();
-                
+                notifyObservers();
                     
             }
+            
             else{
                 JOptionPane.showMessageDialog(null,"Incorrect password!"," ",
                 PLAIN_MESSAGE);
@@ -147,7 +154,7 @@ public class LogIn extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void start(int type,Observer o) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -173,8 +180,9 @@ public class LogIn extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new LogIn().setVisible(true);
+                new LogIn(type, o).setVisible(true);
             }
         });
     }
@@ -187,4 +195,20 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void attach(Observer observer) {
+        list.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        list.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer o:list)
+            o.update(type);
+    }
 }
