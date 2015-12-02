@@ -32,14 +32,12 @@ public class Order {
         serviceFee -= service.getPrice();
     }
     
-    public void addRoom(Room room) {System.out.println("ji");
+    public void addRoom(Room room) {
         rooms.add(room);
-        roomFee += room.getPrice();       
     }
     
     public void subtractRoom(Room room) {
         rooms.remove(room);
-        roomFee -= room.getPrice();       
     }
     
     
@@ -49,9 +47,18 @@ public class Order {
     
     public double getTotalFee() {
         double totalFee = 0;
-        if(services.size()!=0){
+        serviceFee = 0;
+        roomFee = 0;
+        if(services==null)
+            serviceFee = 0;
+        if(services!=null){
             for (Service s : services) {
                 serviceFee += s.getPrice();
+            }
+        }
+        if(rooms.size()!=0){
+            for(Room room:rooms){
+                roomFee += room.getPrice();
             }
         }
         totalFee = serviceFee+roomFee;

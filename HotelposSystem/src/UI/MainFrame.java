@@ -3,6 +3,10 @@ package UI;
 import hotelpossystem.Customer;
 import hotelpossystem.Observer;
 import hotelpossystem.Order;
+import hotelpossystem.PayByCard;
+import hotelpossystem.PayByCash;
+import hotelpossystem.Payment;
+import hotelpossystem.PaymentFactory;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
 import hotelpossystem.Time;
@@ -28,6 +32,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private ArrayList <Service> customerService = new ArrayList();
     private Order order = Customer.getCustomerInstance().getCurrentOrder();
     private Room room=new Room();
+    private Payment payment;
+    
     /**
      * Creates new form MainFrame
      */
@@ -1172,21 +1178,22 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtConfirmActionPerformed
 
     private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed
-        System.exit(0);   // TODO add your handling code here:
+        mainPane.setVisible(true);
+        mainFlowPanel.setVisible(false);
+        this.payment = null;
+        
     }//GEN-LAST:event_jBtCancelActionPerformed
 
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
-        if(order==null)
-            System.out.println("i'm null");
-        jLbDeal.setText(String.valueOf(order.getTotalFee()));
+        ((PayByCard)(new PaymentFactory().getPayMethod("PAYBYCARD"))).pay(jLbDeal);
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
-        jLbDeal1.setText(String.valueOf(order.getTotalFee()));
+        ((PayByCash)(new PaymentFactory().getPayMethod("PAYBYCARD"))).pay(jLbDeal);
         c.show(payPanel, "cardPaneCard");
         Time t = new Time(this);
     }//GEN-LAST:event_jBtPayByCashActionPerformed
@@ -1211,7 +1218,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButtonRenewConfirmActionPerformed
 
     private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
-        // TODO add your handling code here:
+        payPanel.setVisible(false);
+        mainPane.setVisible(true);
+        this.payment = null;
     }//GEN-LAST:event_jBtCancel1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1219,7 +1228,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jBtCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel2ActionPerformed
-        // TODO add your handling code here:
+        payPanel.setVisible(false);
+        mainPane.setVisible(true);
+        this.payment = null;
     }//GEN-LAST:event_jBtCancel2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

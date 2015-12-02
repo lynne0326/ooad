@@ -14,6 +14,7 @@ import javax.swing.JLabel;
  */
 public class PayByCash extends Payment {
 
+    
     public void pay(JLabel jLbDeal) {
 
         double payment = Customer.getCustomerInstance().getCurrentOrder().getTotalFee();
