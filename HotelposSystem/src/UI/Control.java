@@ -233,7 +233,7 @@ public class Control {
 
     }
     
-    public void displayRoomOrder(JTable jTableOrder, Room room, String from){
+    public void displayRoomOrder(JTable jTableOrder, Room room, String from){//
         DefaultTableModel model = (DefaultTableModel) jTableOrder.getModel();
         String s1="room: "+room.getId();
         String s2=from;
