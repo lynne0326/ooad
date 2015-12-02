@@ -1,16 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hotelpossystem;
 
+import hotelpossystem.Customer;
+import hotelpossystem.Order;
 import java.util.Date;
+import javax.swing.JLabel;
 
 /**
  *
- * @author lingyanjiang
+ * @author XiaoSong
  */
 public abstract class Payment {
 
-    /**
-     * @return the TAX_RATE
-     */
     public static double getTAX_RATE() {
         return TAX_RATE;
     }
@@ -31,13 +36,20 @@ public abstract class Payment {
     private static double TAX_RATE = 0.10;
     private double tax;
     private double balance;
-    
+
     protected abstract boolean isPaymentValide();
+
     protected abstract void confirmPayment();
+
     protected abstract void cancelPayment();
+
     protected abstract void displayPayment();
-    protected abstract void printReceipt();   
+
+    protected abstract void printReceipt();
+
     protected abstract void storePayment();
+
+    protected abstract void pay(JLabel label);
 
     /**
      * @return the date
@@ -164,5 +176,5 @@ public abstract class Payment {
     public void setOrder(Order order) {
         this.order = order;
     }
-    
+
 }

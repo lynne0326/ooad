@@ -27,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private CardLayout b;
     private ArrayList <Service> customerService = new ArrayList();
     private Order order = Customer.getCustomerInstance().getCurrentOrder();
-    Room room=new Room();
+    private Room room=new Room();
     /**
      * Creates new form MainFrame
      */
@@ -1177,6 +1177,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
+        if(order==null)
+            System.out.println("i'm null");
         jLbDeal.setText(String.valueOf(order.getTotalFee()));
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(this);
@@ -1190,8 +1192,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        LogIn.start(2, this);
-        
+        if(!Customer.getCustomerInstance().isLogedin())
+            LogIn.start(2, this);
+        else{
+            mainPane.setVisible(false);
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "card5");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonRenewConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewConfirmActionPerformed
@@ -1220,8 +1227,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButtonOrderConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderConfirmActionPerformed
-        LogIn.start(1, this);
-
+        if(Customer.getCustomerInstance().isLogedin()==false)
+            LogIn.start(1, this);
+        else{
+            //turn to payment page
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "payCard");
+        }
     }//GEN-LAST:event_jButtonOrderConfirmActionPerformed
 
     private void jButtonOrderCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderCancelActionPerformed

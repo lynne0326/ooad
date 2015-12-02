@@ -1,10 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hotelpossystem;
+
+import hotelpossystem.Customer;
+import javax.swing.JLabel;
 
 /**
  *
- * @author lingyanjiang
+ * @author XiaoSong
  */
-public class PaymentByCash extends Payment {
+public class PayByCash extends Payment {
+
+    public void pay(JLabel jLbDeal) {
+
+        double payment = Customer.getCustomerInstance().getCurrentOrder().getTotalFee();
+        jLbDeal.setText(String.valueOf(payment));
+    }
 
     @Override
     protected boolean isPaymentValide() {
@@ -35,5 +49,5 @@ public class PaymentByCash extends Payment {
     protected void storePayment() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

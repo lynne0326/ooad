@@ -126,6 +126,7 @@ public class LogIn extends javax.swing.JFrame implements Subject{
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         try {
             if (DAOFactory.getUserDAOInstance().queryLogin(jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
                 

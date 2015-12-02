@@ -11,7 +11,7 @@ public class Order {
     private Customer customer;
     private double serviceFee;
     private double roomFee;
-    private double discount = 1;
+    private double discount = 0.9;
 
     
     
