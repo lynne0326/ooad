@@ -39,6 +39,18 @@ public class Customer {
         }
     }
     
+    public void logout(){
+        this.id = 0;
+        this.name = null;
+        this.gender = null;
+        this.currentOrder = new Order();
+        this.payment = null;
+        this.score = 0;
+        this.roomNum = null;
+        this.logedin = false;
+        
+    }
+    
     public String getName() {
         return this.name;
     }
