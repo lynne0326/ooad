@@ -165,7 +165,7 @@ public class Control {
         jCbFrom.addItem(today);
         
         //jCbTo.addItem(today);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             try {
                 cal.setTime(sf.parse(today));
             } catch (ParseException ex) {

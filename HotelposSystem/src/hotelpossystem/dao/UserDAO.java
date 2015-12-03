@@ -39,4 +39,5 @@ public interface UserDAO {
     public void queryCustomer(String username);
     public String[] queryRoomAvailableByRoomNumber(String customerName)throws Exception;
     public void updateAfterPayment(Payment payment,Order order,Customer customer);
+    public int queryTransMaxId() throws Exception;
 }

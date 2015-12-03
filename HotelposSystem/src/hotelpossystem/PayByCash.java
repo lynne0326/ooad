@@ -1,6 +1,10 @@
 package hotelpossystem;
 
 import hotelpossystem.Customer;
+import hotelpossystem.dao.DAOFactory;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -9,6 +13,15 @@ import javax.swing.JLabel;
  */
 public class PayByCash extends Payment {
 
+    public PayByCash(){
+        this.setDate(new Date());
+        this.setTime(new Date());
+        try {
+            this.setTransactionNumber(DAOFactory.getUserDAOInstance().queryTransMaxId()+1);
+        } catch (Exception ex) {
+            Logger.getLogger(PayByCard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void pay(JLabel jLbDeal) {
 

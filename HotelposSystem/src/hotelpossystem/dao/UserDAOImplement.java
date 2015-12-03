@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -66,8 +67,10 @@ public class UserDAOImplement implements UserDAO {
             type = "cash";
         
         Double total = payment.getTotal();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat tf = new SimpleDateFormat("H:m:s");
         String sql = String.format("INSERT INTO `hotel`.`payment` (`paymentnumber`, `time`, `date`, `type`, `total`) "
-                + "VALUES ('%d', '%s', '%s', '%s', '%.2f');",paymentNumber,time,date,type,total);
+                + "VALUES ('%d', '%s', '%s', '%s', '%.2f');",paymentNumber,tf.format(time),df.format(date),type,total);
         
         try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement();) {
@@ -201,6 +204,19 @@ public class UserDAOImplement implements UserDAO {
          }
          return id;
     }
+    
+    @Override
+    public int queryTransMaxId() throws Exception {
+        String sql = "select * from hotel.`payment` order by paymentnumber desc limit 1;";
+        int id=0;
+         try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();
+                ResultSet rs = state.executeQuery(sql)) {   
+             while(rs.next())
+                 id = rs.getInt("paymentnumber");
+         }
+         return id;
+    }
 
     @Override
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
@@ -211,7 +227,10 @@ public class UserDAOImplement implements UserDAO {
     public void updateAfterPayment(Payment payment, Order order, Customer customer) {
         try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement()){
-            String roomNum = ((Room)(order.getRoom().get(0))).getId();
+            String roomNum = null;
+            if(!order.getRoom().isEmpty()){
+                 roomNum = ((Room)(order.getRoom().get(0))).getId();
+            }
             int orderId = order.getId();
             String userName = order.getCustomer().getUserName();
             //update payment
