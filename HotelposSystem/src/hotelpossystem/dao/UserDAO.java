@@ -25,7 +25,7 @@ public interface UserDAO {
     public void insert(Service service) throws Exception;
     public void update(Order order) throws Exception;
     public void update(Customer customer) throws Exception;
-    public void update(Room room) throws Exception;
+    public void update(Room room,int checkinDate, int checkoutDate,String revertOrAdd) throws Exception;
     public void delete(Order order) throws Exception;
     public boolean queryLogin(String username, String password) throws Exception;
     public int queryOrderMaxId() throws Exception;
@@ -38,4 +38,5 @@ public interface UserDAO {
     public ResultSet queryGetOrder();
     public void queryCustomer(String username);
     public String[] queryRoomAvailableByRoomNumber(String customerName)throws Exception;
+    public void updateAfterPayment(Payment payment,Order order,Customer customer);
 }

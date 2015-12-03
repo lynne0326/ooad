@@ -1344,6 +1344,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
         int res = JOptionPane.showConfirmDialog(null, "Do you want to cancel this payment?", "", JOptionPane.YES_NO_OPTION);
         if (res == 0){
+            removeFromDatabase();
             payPanel.setVisible(false);
             mainPane.setVisible(true);
             this.payment = null;
@@ -1357,7 +1358,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         control.confirmPay(jLbDeal, jTfQuantity, jLbChange);
+        
         if(Double.parseDouble(jLbChange.getText())>=0){
+            DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
         }
@@ -1366,6 +1369,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jBtCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel2ActionPerformed
         int res = JOptionPane.showConfirmDialog(null, "Do you want to cancel this payment?", "", JOptionPane.YES_NO_OPTION);
         if (res == 0){
+            removeFromDatabase();
             payPanel.setVisible(false);
             mainPane.setVisible(true);
             this.payment = null;
@@ -1382,7 +1386,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         control.confirmPay(jLbDeal, jTfFund, jLbBalance);  
+        
         if(jLbBalance.equals("0")){
+            DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
         }
@@ -1410,6 +1416,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     //if available
                     //insert order into database
                     DAOFactory.getUserDAOInstance().insert(order);
+                    //update room status
+                    DAOFactory.getUserDAOInstance().update(room, from, to,"add");
                 }
                 else{
                     //system shows error message and return to select time page
@@ -1421,6 +1429,18 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             
         }
+    }
+    
+    private void removeFromDatabase(){
+        try {
+            //revert room status
+            DAOFactory.getUserDAOInstance().update(room, from, to,"revert");
+             //remove order
+            DAOFactory.getUserDAOInstance().delete(order);
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     private void jButtonOrderCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderCancelActionPerformed

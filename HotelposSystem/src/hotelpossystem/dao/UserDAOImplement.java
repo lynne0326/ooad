@@ -2,6 +2,7 @@ package hotelpossystem.dao;
 
 import hotelpossystem.Customer;
 import hotelpossystem.Order;
+import hotelpossystem.PayByCard;
 import hotelpossystem.Payment;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
@@ -55,7 +56,23 @@ public class UserDAOImplement implements UserDAO {
 
     @Override
     public void insert(Payment payment) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int paymentNumber = payment.getTransactionNumber();
+        Date time = payment.getTime();
+        Date date = payment.getDate();
+        String type = null;
+        if(payment instanceof PayByCard)
+            type = "card";
+        else
+            type = "cash";
+        
+        Double total = payment.getTotal();
+        String sql = String.format("INSERT INTO `hotel`.`payment` (`paymentnumber`, `time`, `date`, `type`, `total`) "
+                + "VALUES ('%d', '%s', '%s', '%s', '%.2f');",paymentNumber,time,date,type,total);
+        
+        try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();) {
+            state.execute(sql);
+        }
     }
 
     @Override
@@ -79,13 +96,30 @@ public class UserDAOImplement implements UserDAO {
     }
 
     @Override
-    public void update(Room room) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Room room,int checkinDate,int checkoutDate,String revertOrAdd) throws Exception {
+        
+        try (Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();) {
+            if(revertOrAdd.equals("add")){
+            for(int i=checkinDate;i<checkoutDate;i++){
+            state.execute(String.format("UPDATE `hotel`.`room` SET `day"+(i+1)+"`"+"='0' WHERE `id`='%s'",room.getId()));
+            }
+            }else{
+            for(int i=checkinDate;i<checkoutDate;i++){
+            state.execute(String.format("UPDATE `hotel`.`room` SET `day"+(i+1)+"`"+"='1' WHERE `id`='%s'",room.getId()));
+            }
+            }
+        }
     }
 
     @Override
     public void delete(Order order) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "delete from hotel.`order` where id = "+order.getId();
+        try (Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();) {
+            state.execute(sql);
+        }
+        
     }
 
     @Override
@@ -171,6 +205,30 @@ public class UserDAOImplement implements UserDAO {
     @Override
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception {
 
+    }
+
+    @Override
+    public void updateAfterPayment(Payment payment, Order order, Customer customer) {
+        try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement()){
+            String roomNum = ((Room)(order.getRoom().get(0))).getId();
+            int orderId = order.getId();
+            String userName = order.getCustomer().getUserName();
+            //update payment
+            insert(payment);
+            //update order status
+            order.setPaid(true);
+            state.execute(String.format("UPDATE `hotel`.`order` SET `paymentnumber`='%d', `ispaid`='%s' WHERE `id`='%d';",payment.getTransactionNumber(),"true",order.getId()));
+            //update customer status
+            String s;
+            s = String.format("UPDATE `hotel`.`customer` SET `roomstatus`='%s', `orderid`='%d' WHERE `username`='%s';",roomNum,orderId,userName);
+            state.execute(s);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAOImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
             
             
