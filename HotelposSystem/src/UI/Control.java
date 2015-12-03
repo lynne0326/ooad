@@ -257,6 +257,7 @@ public class Control {
     
     public void getRenewRoom(JTable jTableRenew, Room room){
         DefaultTableModel tableModel = (DefaultTableModel) jTableRenew.getModel();
+        tableModel.setRowCount(0);
         int row=jTableRenew.getSelectedRow();
         room.setId(tableModel.getValueAt(row, 1).toString());  
         room.setPrice(Double.valueOf(tableModel.getValueAt(row, 2).toString()));

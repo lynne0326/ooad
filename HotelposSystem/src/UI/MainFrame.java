@@ -620,9 +620,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLbDeal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTaxCash, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCashTotal)
                     .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCashTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
                 .addContainerGap(108, Short.MAX_VALUE)
@@ -635,7 +635,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                         .addGap(100, 100, 100))))
         );
 
-        displayPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCashTotal, jLabelTaxCash, jLbChange, jLbDeal, jTfQuantity});
+        displayPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelTaxCash, jLbChange, jLbDeal, jTfQuantity});
 
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -728,8 +728,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLbDeal1)
                     .addComponent(jLabelTaxCard)
-                    .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanel1Layout.createSequentialGroup()
                 .addContainerGap(81, Short.MAX_VALUE)
@@ -741,7 +741,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGap(95, 95, 95))
         );
 
-        displayPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1});
+        displayPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelTaxCard, jLbBalance, jLbDeal1});
 
         displayPanel1Layout.setVerticalGroup(
             displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1955,6 +1955,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         //system times out return to main page
         JOptionPane.showMessageDialog(null,"System times out!"," ",
                 PLAIN_MESSAGE);
+        secondPanel.setVisible(true);
         mainPane.setVisible(true);
             Customer.getCustomerInstance().logout();
             DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
@@ -1969,6 +1970,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     public void update(int i) {
         if(i==1){
             //turn to payment page
+            secondPanel.setVisible(true);
+            mainFlowPanel.setVisible(true);
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "payCard");
             insertToDatabse();
@@ -1976,7 +1979,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
         if(i==2){
             //turn to renew room page
+            
             mainPane.setVisible(false);
+            secondPanel.setVisible(true);
+            mainFlowPanel.setVisible(true);
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "card5");
             try {

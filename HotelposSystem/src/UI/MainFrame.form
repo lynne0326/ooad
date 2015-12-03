@@ -767,9 +767,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLbDeal" linkSize="5" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="jLabelTaxCash" linkSize="5" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
-                                      <Component id="jLabelCashTotal" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTfQuantity" linkSize="5" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                                       <Component id="jLbChange" linkSize="5" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
+                                      <Component id="jLabelCashTotal" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -959,8 +959,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLbDeal1" linkSize="7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabelTaxCard" linkSize="7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelCard" linkSize="7" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                                       <Component id="jLbBalance" linkSize="7" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
+                                      <Component id="jLabelCard" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
