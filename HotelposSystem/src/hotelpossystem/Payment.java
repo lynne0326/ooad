@@ -104,7 +104,7 @@ public abstract class Payment {
      * @return the total
      */
     public double getTotal() {
-        return total;
+        return order.getTotalFee()*(1+TAX_RATE);
     }
 
     /**

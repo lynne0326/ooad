@@ -102,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jLbChange = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        jLabelTaxCash = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabelCashTotal = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
@@ -117,7 +117,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jLbBalance = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        jLabelTaxCard = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabelCard = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
@@ -616,7 +616,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                                     .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(displayPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel27))
+                                .addComponent(jLabelTaxCash))
                             .addGroup(displayPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelCashTotal))))
@@ -637,7 +637,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGap(7, 7, 7)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(jLabel27))
+                    .addComponent(jLabelTaxCash))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
@@ -698,7 +698,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jLabel28.setText("Tax:");
 
-        jLabel29.setText("");
+        jLabelTaxCard.setText("");
 
         jLabel32.setText("Total:");
 
@@ -726,7 +726,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                                     .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(displayPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel29))))
+                                .addComponent(jLabelTaxCard))))
                     .addGroup(displayPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -751,7 +751,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jLabel29))
+                    .addComponent(jLabelTaxCard))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
@@ -1390,18 +1390,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtCancelActionPerformed
 
     private void jBtPayByCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCardActionPerformed
+        
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         payment = new PaymentFactory().getPayMethod("PAYBYCARD");
         Customer.getCustomerInstance().setPayment(payment);
+        payment.setOrder(order);
+        jLabelTaxCard.setText(""+payment.getTax());
+        jLabelCard.setText(String.valueOf(payment.getTotal()));
+        
         ((PayByCard)payment).pay(jLbDeal1);
         c.show(payPanel, "cardPaneCard");
         Time t = new Time(500000,this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
+        
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         payment = new PaymentFactory().getPayMethod("PAYBYCASH");
         Customer.getCustomerInstance().setPayment(payment);
+        payment.setOrder(order);
+        jLabelTaxCash.setText(""+payment.getTax());
+        jLabelCashTotal.setText(String.valueOf(payment.getTotal()));
         ((PayByCash)payment).pay(jLbDeal);
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(500000,this);
@@ -1841,9 +1850,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
@@ -1855,6 +1862,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCard;
     private javax.swing.JLabel jLabelCashTotal;
+    private javax.swing.JLabel jLabelTaxCard;
+    private javax.swing.JLabel jLabelTaxCash;
     private javax.swing.JLabel jLbBalance;
     private javax.swing.JLabel jLbCS;
     private javax.swing.JLabel jLbChange;
