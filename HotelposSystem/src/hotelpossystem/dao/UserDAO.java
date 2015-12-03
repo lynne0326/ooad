@@ -28,9 +28,9 @@ public interface UserDAO {
     public void update(Room room) throws Exception;
     public void delete(Order order) throws Exception;
     public boolean queryLogin(String username, String password) throws Exception;
-    public void queryOrder(Order order) throws Exception;
+    public int queryOrderMaxId() throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate) throws Exception;
-    public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception;  
+    public boolean queryRoomAvailable(int checkinDate, int checkoutDate, String roomNumber) throws Exception;  
     public void queryRoomAvailableFloor(Date checkinDate, Date checkoutDate, String floor) throws Exception;
     public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String floor, String roomtype) throws Exception;
     public boolean queryRoomAvailableToRenew(String customerName) throws ClassNotFoundException, SQLException;

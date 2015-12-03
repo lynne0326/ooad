@@ -10,8 +10,11 @@ import hotelpossystem.PaymentFactory;
 import hotelpossystem.Room;
 import hotelpossystem.Service;
 import hotelpossystem.Time;
+import hotelpossystem.dao.DAOFactory;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -131,6 +134,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jPanel6 = new javax.swing.JPanel();
         jCb7 = new javax.swing.JComboBox();
         jBt10 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         chargedService = new javax.swing.JPanel();
@@ -147,6 +151,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         jCb6 = new javax.swing.JComboBox();
         jBt9 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jCb = new javax.swing.JComboBox();
         jBt = new javax.swing.JButton();
         Order = new javax.swing.JPanel();
@@ -154,6 +159,17 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jTableOrder = new javax.swing.JTable();
         jButtonOrderConfirm = new javax.swing.JButton();
         jButtonOrderCancel = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        receiptPane = new javax.swing.JPanel();
+        requestPanel = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        printPanel = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(235, 236, 238));
@@ -814,7 +830,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         jPanel4.add(jCb12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jBt20.setText("Add");
+        jBt20.setText("Add more");
         jBt20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt20ActionPerformed(evt);
@@ -875,7 +891,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jBt10.setText("Add");
+        jBt10.setText("Add more");
         jBt10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt10ActionPerformed(evt);
@@ -891,7 +907,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addComponent(jCb7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jBt10)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -905,7 +921,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
 
-        freeService.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 450, 280));
+        jLabel20.setText("Please select date for your service:");
+        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        freeService.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 450, 280));
 
         jButton11.setText("Select");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -913,11 +932,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jButton11ActionPerformed(evt);
             }
         });
-        freeService.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 90, 30));
+        freeService.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 90, 30));
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel10.setText("Morning Call");
-        freeService.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
+        freeService.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, -1));
 
         servicePanel.add(freeService, "freeServiceCard");
 
@@ -955,7 +974,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         jPanel3.add(jCb11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jBt19.setText("Add");
+        jBt19.setText("Add more");
         jBt19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt19ActionPerformed(evt);
@@ -1016,7 +1035,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jBt9.setText("Add");
+        jBt9.setText("Add more");
         jBt9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBt9ActionPerformed(evt);
@@ -1032,7 +1051,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addComponent(jCb6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jBt9)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1046,10 +1065,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, 64));
 
-        chargedService.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 620, 280));
+        jLabel19.setText("Please select date for your service:");
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+
+        chargedService.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 450, 280));
 
         jCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Breakfast", "Lunch", "Super", "Laundry" }));
-        chargedService.add(jCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 320, -1));
+        chargedService.add(jCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 320, -1));
 
         jBt.setText("Choose");
         jBt.addActionListener(new java.awt.event.ActionListener() {
@@ -1057,7 +1079,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 jBtActionPerformed(evt);
             }
         });
-        chargedService.add(jBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        chargedService.add(jBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
         servicePanel.add(chargedService, "chargedCard");
 
@@ -1090,6 +1112,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jLabel18.setText("Your Order:");
+
         javax.swing.GroupLayout OrderLayout = new javax.swing.GroupLayout(Order);
         Order.setLayout(OrderLayout);
         OrderLayout.setHorizontalGroup(
@@ -1101,13 +1125,19 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonOrderConfirm)
                 .addGap(82, 82, 82))
+            .addGroup(OrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OrderLayout.setVerticalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(33, 33, 33)
                 .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonOrderCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonOrderConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1115,6 +1145,101 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         );
 
         mainFlowPanel.add(Order, "orderCard");
+
+        receiptPane.setLayout(new java.awt.CardLayout());
+
+        requestPanel.setBackground(new java.awt.Color(235, 236, 238));
+
+        jLabel21.setFont(new java.awt.Font("Avenir", 0, 18)); // NOI18N
+        jLabel21.setText("Your order is complete!");
+
+        jLabel22.setText("Would you like your receipt?");
+
+        jButton5.setText("Yes");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("No");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Please collect your room card.");
+
+        javax.swing.GroupLayout requestPanelLayout = new javax.swing.GroupLayout(requestPanel);
+        requestPanel.setLayout(requestPanelLayout);
+        requestPanelLayout.setHorizontalGroup(
+            requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(requestPanelLayout.createSequentialGroup()
+                .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(requestPanelLayout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(jButton5)
+                        .addGap(101, 101, 101)
+                        .addComponent(jButton6))
+                    .addGroup(requestPanelLayout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel23)
+                            .addGroup(requestPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel22)))))
+                .addGap(0, 331, Short.MAX_VALUE))
+        );
+        requestPanelLayout.setVerticalGroup(
+            requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(requestPanelLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jLabel21)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel22)
+                .addGap(68, 68, 68)
+                .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(125, 125, 125))
+        );
+
+        receiptPane.add(requestPanel, "card2");
+
+        printPanel.setBackground(new java.awt.Color(235, 236, 238));
+
+        jLabel24.setText("Printing receipt...");
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ecommerce-Receipt-icon.png"))); // NOI18N
+
+        javax.swing.GroupLayout printPanelLayout = new javax.swing.GroupLayout(printPanel);
+        printPanel.setLayout(printPanelLayout);
+        printPanelLayout.setHorizontalGroup(
+            printPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printPanelLayout.createSequentialGroup()
+                .addContainerGap(382, Short.MAX_VALUE)
+                .addGroup(printPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel24))
+                .addGap(350, 350, 350))
+        );
+        printPanelLayout.setVerticalGroup(
+            printPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(printPanelLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel24)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel25)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+
+        receiptPane.add(printPanel, "card3");
+
+        mainFlowPanel.add(receiptPane, "receiptCard");
 
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
@@ -1125,7 +1250,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainPane.setVisible(false);
-        Time t = new Time(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1188,14 +1312,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         ((PayByCard)(new PaymentFactory().getPayMethod("PAYBYCARD"))).pay(jLbDeal);
         c.show(payPanel, "cashPaneCard");
-        Time t = new Time(this);
+        Time t = new Time(500000,this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
 
     private void jBtPayByCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPayByCashActionPerformed
         CardLayout c = (CardLayout)payPanel.getLayout(); 
-        ((PayByCash)(new PaymentFactory().getPayMethod("PAYBYCARD"))).pay(jLbDeal);
+        ((PayByCash)(new PaymentFactory().getPayMethod("PAYBYCASH"))).pay(jLbDeal);
         c.show(payPanel, "cardPaneCard");
-        Time t = new Time(this);
+        Time t = new Time(500000,this);
     }//GEN-LAST:event_jBtPayByCashActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1209,7 +1333,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonRenewConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewConfirmActionPerformed
-
+        order.addRoom(room);
         String from1=String.valueOf(from);        
         CardLayout c = (CardLayout)mainFlowPanel.getLayout();  
         control.getRenewRoom(jTableRenew, room);
@@ -1218,35 +1342,87 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButtonRenewConfirmActionPerformed
 
     private void jBtCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel1ActionPerformed
-        payPanel.setVisible(false);
-        mainPane.setVisible(true);
-        this.payment = null;
+        int res = JOptionPane.showConfirmDialog(null, "Do you want to cancel this payment?", "", JOptionPane.YES_NO_OPTION);
+        if (res == 0){
+            payPanel.setVisible(false);
+            mainPane.setVisible(true);
+            this.payment = null;
+            Customer.getCustomerInstance().logout();
+            DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
+            model.setRowCount(0);
+        }
+        
+        
     }//GEN-LAST:event_jBtCancel1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        control.confirmPay(jLbDeal, jTfQuantity, jLbChange);        // TODO add your handling code here:
+        control.confirmPay(jLbDeal, jTfQuantity, jLbChange);
+        if(Double.parseDouble(jLbChange.getText())>=0){
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "receiptCard");
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jBtCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancel2ActionPerformed
-        payPanel.setVisible(false);
-        mainPane.setVisible(true);
-        this.payment = null;
+        int res = JOptionPane.showConfirmDialog(null, "Do you want to cancel this payment?", "", JOptionPane.YES_NO_OPTION);
+        if (res == 0){
+            payPanel.setVisible(false);
+            mainPane.setVisible(true);
+            this.payment = null;
+            Customer.getCustomerInstance().logout();
+            //clear table
+            DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
+            model.setRowCount(0);
+            DefaultTableModel model2 = (DefaultTableModel)(jTableRenew.getModel());
+            model2.setRowCount(0);
+            DefaultTableModel model3 = (DefaultTableModel)(jTableR.getModel());
+            model3.setRowCount(0);
+        }
     }//GEN-LAST:event_jBtCancel2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        control.confirmPay(jLbDeal, jTfFund, jLbBalance);        // TODO add your handling code here:
+        control.confirmPay(jLbDeal, jTfFund, jLbBalance);  
+        if(jLbBalance.equals("0")){
+            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            c.show(mainFlowPanel, "receiptCard");
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButtonOrderConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderConfirmActionPerformed
-        if(Customer.getCustomerInstance().isLogedin()==false)
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        if(Customer.getCustomerInstance().isLogedin()==false){
             LogIn.start(1, this);
+        }
         else{
             //turn to payment page
-            CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+            
             c.show(mainFlowPanel, "payCard");
+            insertToDatabse();
         }
+            
     }//GEN-LAST:event_jButtonOrderConfirmActionPerformed
 
+    private void insertToDatabse(){
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        try {
+                //check room availability again
+                if(DAOFactory.getUserDAOInstance().queryRoomAvailable(from, to, room.getId())){
+                    //if available
+                    //insert order into database
+                    DAOFactory.getUserDAOInstance().insert(order);
+                }
+                else{
+                    //system shows error message and return to select time page
+                    JOptionPane.showMessageDialog(null,"Room has been booked, try different time!"," ",
+                            PLAIN_MESSAGE);
+                    c.show(mainFlowPanel, "card3");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+    
     private void jButtonOrderCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderCancelActionPerformed
         Order.setVisible(false);
         mainPane.setVisible(true);
@@ -1294,6 +1470,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         customerService = control.getService(0, customerService, jPanel6, jPanel5, jCb12, jCb7, jCb13);
+        JOptionPane.showMessageDialog(null,"Services added successfully!"," ",
+                PLAIN_MESSAGE);
         jPanel4.setVisible(false);
         jPanel6.setVisible(false);
         jPanel5.setVisible(false);
@@ -1414,8 +1592,28 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtSelectActionPerformed
 
     private void jButtonRenewBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewBackActionPerformed
-        // TODO add your handling code here:
+        mainPane.setVisible(true);
+        mainFlowPanel.setVisible(false);
     }//GEN-LAST:event_jButtonRenewBackActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        CardLayout c = (CardLayout)receiptPane.getLayout();
+        c.show(receiptPane, "card3");
+        
+        Timer timer = new Timer();  
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mainPane.setVisible(true);
+                mainFlowPanel.setVisible(false);
+            }
+        }, 3000);  
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        mainPane.setVisible(true);
+        mainFlowPanel.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1487,6 +1685,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -1514,7 +1714,15 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1547,7 +1755,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel menuPane1;
     private javax.swing.JPanel payPanel;
     private javax.swing.JPanel paymentPanel;
+    private javax.swing.JPanel printPanel;
+    private javax.swing.JPanel receiptPane;
     private javax.swing.JPanel renewRoom;
+    private javax.swing.JPanel requestPanel;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JPanel selectTimePanel;
     private javax.swing.JPanel servicePanel;
@@ -1560,6 +1771,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         JOptionPane.showMessageDialog(null,"System times out!"," ",
                 PLAIN_MESSAGE);
         mainPane.setVisible(true);
+        Customer.getCustomerInstance().logout();
     }
 
     @Override
@@ -1568,6 +1780,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             //turn to payment page
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "payCard");
+            insertToDatabse();
             
         }
         if(i==2){

@@ -1,6 +1,9 @@
 package hotelpossystem;
 
+import hotelpossystem.dao.DAOFactory;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author lingyanjiang
@@ -20,9 +23,15 @@ public class Customer {
     private String roomNum;
     
     private Customer() {
-        Order order = new Order();
+        Order order = new Order(this);
         order.setTotal();
         this.currentOrder = order;
+        try {
+            //Set order id
+            currentOrder.setId((DAOFactory.getUserDAOInstance().queryOrderMaxId()+1));
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private Customer(String name, int id, String gender) {
@@ -44,7 +53,7 @@ public class Customer {
         this.id = 0;
         this.name = null;
         this.gender = null;
-        this.currentOrder = new Order();
+        this.currentOrder = new Order(this);
         this.payment = null;
         this.score = 0;
         this.roomNum = null;
@@ -111,8 +120,7 @@ public class Customer {
      */
     public Order getCurrentOrder() {
         if(currentOrder==null){
-            System.out.println("~~~~");
-            return new Order();
+            return new Order(this);
         }
         else
             return currentOrder;

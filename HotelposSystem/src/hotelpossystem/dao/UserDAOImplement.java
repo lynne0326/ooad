@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
 /**
  *
@@ -30,9 +32,24 @@ public class UserDAOImplement implements UserDAO {
      * This method is to insert new order to database
      */
     public void insert(Order order) throws Exception {
+        int id = order.getId();
+        String service = "";
+        String room = "";
+        String customerUsername = order.getCustomer().getUserName();
+        System.out.println(customerUsername);
+        if(order.getRoom().size()>0){
+            room = ((Room)(order.getRoom().get(0))).getId().toString();
+        }
+        if(order.getService()!=null){
+            service = order.getService().toString();
+        }
+        double total = order.getTotalFee();
+        boolean isPaid = order.isPaid();
+        String sql = String.format("INSERT INTO `hotel`.`order` (`id`, `customer`, `room`, `service`, `total`, `ispaid`)"
+                + " VALUES ('%d', '%s', '%s', '%s', '%.2f', '%s')",id,customerUsername,room,service,total,String.valueOf(isPaid));
         try (Connection conn = new DatabaseConnection().getConnection();
                 Statement state = conn.createStatement();) {
-            state.execute("insert into orders values(1,2,102,2,'Supper')");
+            state.execute(sql);
         }
     }
 
@@ -53,7 +70,7 @@ public class UserDAOImplement implements UserDAO {
 
     @Override
     public void update(Order order) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
@@ -139,8 +156,16 @@ public class UserDAOImplement implements UserDAO {
     }
     
     @Override
-    public void queryOrder(Order order) throws Exception {
-        
+    public int queryOrderMaxId() throws Exception {
+        String sql = "select * from hotel.`order` order by id desc limit 1;";
+        int id=0;
+         try (Connection conn = new DatabaseConnection().getConnection();
+                Statement state = conn.createStatement();
+                ResultSet rs = state.executeQuery(sql)) {   
+             while(rs.next())
+                 id = rs.getInt("id");
+         }
+         return id;
     }
 
     @Override
@@ -203,8 +228,18 @@ public class UserDAOImplement implements UserDAO {
     }
 
     @Override
-    public void queryRoomAvailable(Date checkinDate, Date checkoutDate, String roomtype) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean queryRoomAvailable(int checkinDate, int checkoutDate, String roomNumber) throws Exception {
+        String sql = "SELECT * FROM hotel.room where id = "+roomNumber;
+        Connection conn = new DatabaseConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet rs = state.executeQuery(sql);
+        while(rs.next()){
+            for(int i=checkinDate;i<checkoutDate;i++){
+                if(rs.getInt("day"+(i+1))==0)
+                    return false;
+                }
+        }
+        return true;
     }
 
     @Override

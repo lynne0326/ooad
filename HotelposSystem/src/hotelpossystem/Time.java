@@ -12,8 +12,10 @@ public class Time implements Subject{
 
     private boolean timeOut = false;
     private ArrayList<Observer> list = new ArrayList<>();
+    private int time;
     
-    public Time(Observer o){
+    public Time(int time,Observer o){
+        this.time = time ;
         list.add(o);
         ThreadTask t1 = new ThreadTask();
         t1.start();
@@ -23,7 +25,7 @@ public class Time implements Subject{
         @Override
         public void run(){ 
             try {
-                sleep(10*60000);
+                sleep(time);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Time.class.getName()).log(Level.SEVERE, null, ex);
             }

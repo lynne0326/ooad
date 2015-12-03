@@ -12,8 +12,12 @@ public class Order {
     private double serviceFee;
     private double roomFee;
     private double discount = 0.9;
-
+    private int id;
+    private boolean paid = false;
     
+    public Order(Customer customer){
+        this.customer = customer;
+    }
     
     public void addService(Service service) {
         services.add(service);
@@ -42,7 +46,7 @@ public class Order {
     
     
     public void getDiscount(double discount) {
-        this.discount = discount;
+        this.setDiscount(discount);
     }
     
     public double getTotalFee() {
@@ -96,6 +100,48 @@ public class Order {
     public void setTotal(){
         this.roomFee = 100;
         this.serviceFee = 100;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the discount
+     */
+    public double getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    /**
+     * @return the paid
+     */
+    public boolean isPaid() {
+        return paid;
+    }
+
+    /**
+     * @param paid the paid to set
+     */
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
     
     
