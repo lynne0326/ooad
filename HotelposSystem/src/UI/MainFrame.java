@@ -67,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         secondPanel = new javax.swing.JPanel();
         contentTopPane = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         mainFlowPanel = new javax.swing.JPanel();
         selectTimePanel = new javax.swing.JPanel();
         jBtBack = new javax.swing.JButton();
@@ -105,14 +106,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jLabelTaxCash = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabelCashTotal = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
         cardPane = new javax.swing.JPanel();
         jBtCancel2 = new javax.swing.JButton();
         displayPanel1 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jTfFund = new javax.swing.JTextField();
         jLbDeal1 = new javax.swing.JLabel();
         jLbBalance = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
@@ -120,6 +119,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jLabelTaxCard = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabelCard = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
         renewRoom = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -294,12 +294,21 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jLabel23.setText("Main Menu");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout contentTopPaneLayout = new javax.swing.GroupLayout(contentTopPane);
         contentTopPane.setLayout(contentTopPaneLayout);
         contentTopPaneLayout.setHorizontalGroup(
             contentTopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentTopPaneLayout.createSequentialGroup()
-                .addContainerGap(731, Short.MAX_VALUE)
+                .addContainerGap(645, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addGap(37, 37, 37))
         );
@@ -307,7 +316,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             contentTopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentTopPaneLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel14)
+                .addGroup(contentTopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel23))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -592,14 +603,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jLabelCashTotal.setText("");
 
+        jLabel17.setText("Please insert bills");
+
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
-                .addGap(89, 89, 89))
             .addGroup(displayPanelLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,7 +624,16 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabelCashTotal)
                     .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(100, 100, 100))))
         );
 
         displayPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCashTotal, jLabelTaxCash, jLbChange, jLbDeal, jTfQuantity});
@@ -623,7 +641,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLbDeal))
@@ -678,13 +698,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jLabel15.setText("Deal:");
 
-        jLabel16.setText("Paid:");
-
-        jLabel17.setText("Balance:");
-
         jLbDeal1.setText("  ");
 
-        jButton9.setText("CONFIRM");
+        jButton9.setText("Swipe Card");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -697,33 +713,36 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         jLabel32.setText("Total:");
 
+        jLabel16.setText("Please swipe your card");
+
         javax.swing.GroupLayout displayPanel1Layout = new javax.swing.GroupLayout(displayPanel1);
         displayPanel1.setLayout(displayPanel1Layout);
         displayPanel1Layout.setHorizontalGroup(
             displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton9)
-                .addGap(89, 89, 89))
             .addGroup(displayPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(85, 85, 85)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLbDeal1)
                     .addComponent(jLabelTaxCard)
                     .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanel1Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addGroup(displayPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton9)))
+                .addGap(95, 95, 95))
         );
 
-        displayPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1, jTfFund});
+        displayPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1});
 
         displayPanel1Layout.setVerticalGroup(
             displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,20 +759,16 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9)
-                .addGap(26, 26, 26))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
-        displayPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1, jTfFund});
+        displayPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1});
 
         cardPane.add(displayPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
 
@@ -1329,6 +1344,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainPane.setVisible(false);
+        secondPanel.setVisible(true);
+        CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
+        c.show(mainFlowPanel, "card3");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1336,6 +1354,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         mainPane.setVisible(false);
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card6");
+        secondPanel.setVisible(true);
         
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
@@ -1383,7 +1402,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed
         mainPane.setVisible(true);
-        mainFlowPanel.setVisible(false);
+        secondPanel.setVisible(false);
         this.payment = null;
         
     }//GEN-LAST:event_jBtCancelActionPerformed
@@ -1420,6 +1439,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             LogIn.start(2, this);
         else{
             mainPane.setVisible(false);
+            secondPanel.setVisible(true);
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "card5");
         }
@@ -1444,6 +1464,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             Customer.getCustomerInstance().logout();
             DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
             model.setRowCount(0);
+            DefaultTableModel model2 = (DefaultTableModel)(jTableRenew.getModel());
+            model2.setRowCount(0);
+            DefaultTableModel model3 = (DefaultTableModel)(jTableR.getModel());
+            model3.setRowCount(0);
         }
         
         
@@ -1456,6 +1480,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
+            Customer.getCustomerInstance().logout();
+            DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
+            model.setRowCount(0);
+            DefaultTableModel model2 = (DefaultTableModel)(jTableRenew.getModel());
+            model2.setRowCount(0);
+            DefaultTableModel model3 = (DefaultTableModel)(jTableR.getModel());
+            model3.setRowCount(0);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1478,13 +1509,19 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtCancel2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        control.confirmPay(jLabelCard, jTfFund, jLbBalance);  
         
-        if(Double.parseDouble(jLbBalance.getText())==0){
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
+            
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
-        }
+            Customer.getCustomerInstance().logout();
+            DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
+            model.setRowCount(0);
+            DefaultTableModel model2 = (DefaultTableModel)(jTableRenew.getModel());
+            model2.setRowCount(0);
+            DefaultTableModel model3 = (DefaultTableModel)(jTableR.getModel());
+            model3.setRowCount(0);
+            
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButtonOrderConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderConfirmActionPerformed
@@ -1706,7 +1743,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButtonRenewBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewBackActionPerformed
         mainPane.setVisible(true);
-        mainFlowPanel.setVisible(false);
+        secondPanel.setVisible(false);
     }//GEN-LAST:event_jButtonRenewBackActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1718,14 +1755,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             @Override
             public void run() {
                 mainPane.setVisible(true);
-                mainFlowPanel.setVisible(false);
+                secondPanel.setVisible(false);
             }
         }, 3000);  
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         mainPane.setVisible(true);
-        mainFlowPanel.setVisible(false);
+        secondPanel.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1737,6 +1774,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         CardLayout c = (CardLayout)payPanel.getLayout();
         c.show(payPanel, "paymentcard");
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        mainPane.setVisible(true);
+        secondPanel.setVisible(false);
+    }//GEN-LAST:event_jLabel23MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1845,6 +1887,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -1882,7 +1925,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JTable jTableOrder;
     private javax.swing.JTable jTableR;
     private javax.swing.JTable jTableRenew;
-    private javax.swing.JTextField jTfFund;
     private javax.swing.JTextField jTfQuantity;
     private javax.swing.JPanel mainFlowPanel;
     private javax.swing.JPanel mainPane;
@@ -1905,7 +1947,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         JOptionPane.showMessageDialog(null,"System times out!"," ",
                 PLAIN_MESSAGE);
         mainPane.setVisible(true);
-        Customer.getCustomerInstance().logout();
+            Customer.getCustomerInstance().logout();
+            DefaultTableModel model = (DefaultTableModel)(jTableOrder.getModel());
+            model.setRowCount(0);
+            DefaultTableModel model2 = (DefaultTableModel)(jTableRenew.getModel());
+            model2.setRowCount(0);
+            DefaultTableModel model3 = (DefaultTableModel)(jTableR.getModel());
+            model3.setRowCount(0);
     }
 
     @Override
