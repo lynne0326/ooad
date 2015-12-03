@@ -177,16 +177,21 @@ public class Control {
             jCbTo.addItem(next[i]);
         }
         
-        if (jCbTo.getSelectedIndex() < jCbFrom.getSelectedIndex()) {
-            jLbWarning.setText("The check out time should after the check in time");
-        } 
-        else {
-            from = jCbFrom.getSelectedIndex();           
-            to = jCbTo.getSelectedIndex();            
-                     
-        }
+       
     }
     
+    
+    public boolean ifTimeRight(JComboBox jCbFrom,JComboBox jCbTo,JLabel jLbWarning,int from, int to) {                                  
+     if (jCbTo.getSelectedIndex() < jCbFrom.getSelectedIndex()) {
+                jLbWarning.setText("The check out time should after the check in time");
+                return false;
+            } 
+            else {
+                from = jCbFrom.getSelectedIndex();           
+                to = jCbTo.getSelectedIndex();            
+                return true;
+            }
+    }
      public void renewRoom(JTable jTableR, String customerName) throws Exception {
        String[] s=new String[4];
        s=DAOFactory.getUserDAOInstance().queryRoomAvailableByRoomNumber(customerName);

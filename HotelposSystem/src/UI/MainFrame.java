@@ -176,7 +176,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         jLabel22 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         printPanel = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -600,33 +601,25 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addComponent(jButton7)
                 .addGap(89, 89, 89))
             .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(65, 65, 65)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(displayPanelLayout.createSequentialGroup()
-                        .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel30))
-                        .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(displayPanelLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLbDeal)
-                                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(displayPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelTaxCash))
-                            .addGroup(displayPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelCashTotal))))
-                    .addGroup(displayPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbDeal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTaxCash, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCashTotal)
+                    .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
+
+        displayPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCashTotal, jLabelTaxCash, jLbChange, jLbDeal, jTfQuantity});
+
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanelLayout.createSequentialGroup()
@@ -635,10 +628,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabel11)
                     .addComponent(jLbDeal))
                 .addGap(7, 7, 7)
-                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel26)
-                    .addComponent(jLabelTaxCash))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabelTaxCash, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(jLabelCashTotal))
@@ -650,10 +643,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(jButton7)
                 .addGap(26, 26, 26))
         );
+
+        displayPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelCashTotal, jLabelTaxCash, jLbChange, jLbDeal, jTfQuantity});
 
         cashPane.add(displayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
 
@@ -713,31 +708,23 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             .addGroup(displayPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(displayPanel1Layout.createSequentialGroup()
-                        .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel15))
-                        .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(displayPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLbDeal1)
-                                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(displayPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelTaxCard))))
-                    .addGroup(displayPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(112, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbDeal1)
+                    .addComponent(jLabelTaxCard)
+                    .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
+
+        displayPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1, jTfFund});
+
         displayPanel1Layout.setVerticalGroup(
             displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanel1Layout.createSequentialGroup()
@@ -761,10 +748,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addGap(26, 26, 26))
         );
+
+        displayPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1, jTfFund});
 
         cardPane.add(displayPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
 
@@ -1247,7 +1236,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jLabel23.setText("Please collect your room card.");
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/keycard-512.png"))); // NOI18N
+
+        jLabel29.setText("Room card printing...");
 
         javax.swing.GroupLayout requestPanelLayout = new javax.swing.GroupLayout(requestPanel);
         requestPanel.setLayout(requestPanelLayout);
@@ -1260,26 +1251,36 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                         .addComponent(jButton5)
                         .addGap(101, 101, 101)
                         .addComponent(jButton6))
-                    .addGroup(requestPanelLayout.createSequentialGroup()
-                        .addGap(301, 301, 301)
-                        .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel23)
-                            .addGroup(requestPanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel22)))))
+                    .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestPanelLayout.createSequentialGroup()
+                            .addGap(307, 307, 307)
+                            .addComponent(jLabel22)
+                            .addGap(6, 6, 6))
+                        .addGroup(requestPanelLayout.createSequentialGroup()
+                            .addGap(301, 301, 301)
+                            .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(requestPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel21)
+                                    .addGap(11, 11, 11))
+                                .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addGap(0, 331, Short.MAX_VALUE))
+            .addGroup(requestPanelLayout.createSequentialGroup()
+                .addGap(335, 335, 335)
+                .addComponent(jLabel29)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         requestPanelLayout.setVerticalGroup(
             requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(requestPanelLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel21)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel29)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel27)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel22)
-                .addGap(68, 68, 68)
+                .addGap(30, 30, 30)
                 .addGroup(requestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1367,6 +1368,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtBackActionPerformed
 
     private void jBtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmActionPerformed
+        if(control.ifTimeRight(jCbFrom, jCbTo, jLbWarning, from, to)){
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card2");
         from = jCbFrom.getSelectedIndex();           
@@ -1376,7 +1378,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         } catch (Exception ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }//GEN-LAST:event_jBtConfirmActionPerformed
 
     private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed
@@ -1478,7 +1480,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         control.confirmPay(jLabelCard, jTfFund, jLbBalance);  
         
-        if(jLbBalance.equals("0")){
+        if(Double.parseDouble(jLbBalance.getText())==0){
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
@@ -1843,11 +1845,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
