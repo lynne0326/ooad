@@ -199,8 +199,7 @@ public class Control {
 //            model.setRowCount(0);
             Object[] object = new Object[3];
             //service name; service time; service price; total;
-            System.out.println(customerService.size());
-            for (Service s : customerService) {System.out.println(s.getName());
+            for (Service s : customerService) {
                 object[0] = s.getName();
                 object[1] = s.getDate();
                 object[2] = s.getPrice();
@@ -210,7 +209,7 @@ public class Control {
             object[1] = null;
             object[2] = order.getTotalFee();
             
-            model.addRow(object);System.out.println("thsiiswork");
+            model.addRow(object);
     }
     
     public void confirmPay(JLabel jLbDeal, JTextField jTfQuantity, JLabel jLbChange) {
@@ -326,14 +325,8 @@ public class Control {
     public ArrayList<Service> getService(int i, ArrayList<Service> customerService, JPanel jPanel1, JPanel jPanel2, JComboBox jCb11, JComboBox jCb6, JComboBox jCb10) {
         customerService.add(setService(jCb11, i, customerService));
         if (jPanel1.isVisible()) {
-            if (jCb11.getSelectedIndex() == jCb6.getSelectedIndex()){
-                JOptionPane.showMessageDialog(jPanel1, "Please choose different date!");
-            }
             customerService.add(setService(jCb6, i, customerService));
             if (jPanel2.isVisible()){
-                if (jCb11.getSelectedIndex() == jCb10.getSelectedIndex() || jCb10.getSelectedIndex() == jCb6.getSelectedIndex()){
-                    JOptionPane.showMessageDialog(jPanel1, "Please choose different date!");
-                }
                 customerService.add(setService(jCb10, i, customerService));
         }          
     }       

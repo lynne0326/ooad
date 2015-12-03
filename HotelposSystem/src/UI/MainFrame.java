@@ -1344,6 +1344,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         customerService = control.serviceAdd(jCb, customerService, jPanel1, jPanel2, jCb11, jCb6, jCb10);
+        JOptionPane.showMessageDialog(null,"Services added successfully!"," ",
+                PLAIN_MESSAGE);
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
