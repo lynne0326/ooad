@@ -769,7 +769,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         displayPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelCard, jLabelTaxCard, jLbBalance, jLbDeal1});
 
-        cardPane.add(displayPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 380));
+        cardPane.add(displayPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 330, 380));
 
         jButton14.setText("Back");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -1327,7 +1327,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addComponent(jLabel24)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel25)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         receiptPane.add(printPanel, "card3");
