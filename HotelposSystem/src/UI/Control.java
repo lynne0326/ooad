@@ -241,7 +241,7 @@ public class Control {
         DefaultTableModel model = (DefaultTableModel) jTableOrder.getModel();
         String s1="room: "+room.getId();
         String s2=from;
-        String s3=String.valueOf(room.getPrice());
+        String s3=String.valueOf(room.getPrice())+"*"+(MainFrame.to-MainFrame.from);
         String[] s=new String[]{s1,s2,s3};              
         model.addRow(s);
     }
@@ -257,7 +257,6 @@ public class Control {
     
     public void getRenewRoom(JTable jTableRenew, Room room){
         DefaultTableModel tableModel = (DefaultTableModel) jTableRenew.getModel();
-        tableModel.setRowCount(0);
         int row=jTableRenew.getSelectedRow();
         room.setId(tableModel.getValueAt(row, 1).toString());  
         room.setPrice(Double.valueOf(tableModel.getValueAt(row, 2).toString()));

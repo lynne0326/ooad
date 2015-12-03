@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 public class PayByCard extends Payment {
     
     public PayByCard(){
+        System.out.println("new payment");
         this.setDate(new Date());
         this.setTime(new Date());
         try {

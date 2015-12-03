@@ -1,12 +1,13 @@
 package hotelpossystem;
 
+import UI.MainFrame;
 import java.util.ArrayList;
 
 /**
  * @author Shuang
  */
 public class Order {
-    private ArrayList <Room> rooms = new ArrayList<>();
+    private ArrayList <Room> rooms ;
     private ArrayList <Service> services;
     private Customer customer;
     private double serviceFee;
@@ -17,23 +18,22 @@ public class Order {
     
     public Order(Customer customer){
         this.customer = customer;
+        this.rooms = new ArrayList<>();
     }
     
     public void addService(Service service) {
         services.add(service);
-        serviceFee += service.getPrice();
     }
     
     public void addService(ArrayList services) {
         this.services = services;
         for (int i=0; i < services.size(); i++) {
-            serviceFee += this.services.get(i).getPrice();
+            setServiceFee(getServiceFee() + this.services.get(i).getPrice());
         }
     }
     
     public void subtractService(Service service) {
         services.remove(service);
-        serviceFee -= service.getPrice();
     }
     
     public void addRoom(Room room) {
@@ -51,22 +51,25 @@ public class Order {
     
     public double getTotalFee() {
         double totalFee = 0;
-        serviceFee = 0;
-        roomFee = 0;
+        setServiceFee(0);
+        setRoomFee(0);
         if(services==null)
-            serviceFee = 0;
+            setServiceFee(0);
         if(services!=null){
             for (Service s : services) {
-                serviceFee += s.getPrice();
+                setServiceFee(getServiceFee() + s.getPrice());
             }
         }
-        if(rooms.size()!=0){
+        if(rooms.size()<2){
             for(Room room:rooms){
-                roomFee += room.getPrice();
+                setRoomFee((getRoomFee() + room.getPrice())*(MainFrame.to-MainFrame.from));
             }
         }
-        totalFee = serviceFee+roomFee;
-        return totalFee;
+        if(rooms.size()==2){
+            setRoomFee((getRoomFee() + rooms.get(1).getPrice())*(MainFrame.to-MainFrame.from));
+        }
+        totalFee = getServiceFee()+getRoomFee();
+        return Math.abs(totalFee);
     }
     
     
@@ -78,10 +81,6 @@ public class Order {
         return rooms;
     }
     
-
-    public double getPoints() {
-        return getTotalFee() * 0.1;
-    }
 
     /**
      * @return the customer
@@ -98,8 +97,7 @@ public class Order {
     }
     
     public void setTotal(){
-        this.roomFee = 100;
-        this.serviceFee = 100;
+        
     }
 
     /**
@@ -142,6 +140,34 @@ public class Order {
      */
     public void setPaid(boolean paid) {
         this.paid = paid;
+    }
+
+    /**
+     * @return the serviceFee
+     */
+    public double getServiceFee() {
+        return serviceFee;
+    }
+
+    /**
+     * @param serviceFee the serviceFee to set
+     */
+    public void setServiceFee(double serviceFee) {
+        this.serviceFee = serviceFee;
+    }
+
+    /**
+     * @return the roomFee
+     */
+    public double getRoomFee() {
+        return roomFee;
+    }
+
+    /**
+     * @param roomFee the roomFee to set
+     */
+    public void setRoomFee(double roomFee) {
+        this.roomFee = roomFee;
     }
     
     

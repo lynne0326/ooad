@@ -28,8 +28,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrame extends javax.swing.JFrame implements Observer {
 
-    private static int from;
-    private static int to;
+    public static int from;
+    public static int to;
     private Control control = new Control();
     private CardLayout b;
     private ArrayList <Service> customerService = new ArrayList();
@@ -617,12 +617,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbDeal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTaxCash, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLbChange, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCashTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLbDeal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jLabelTaxCash, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                    .addComponent(jTfQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                    .addComponent(jLbChange, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(jLabelCashTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
                 .addContainerGap(108, Short.MAX_VALUE)
@@ -725,11 +725,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbDeal1)
-                    .addComponent(jLabelTaxCard)
-                    .addComponent(jLbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLbDeal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelTaxCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLbBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(jLabelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanel1Layout.createSequentialGroup()
                 .addContainerGap(81, Short.MAX_VALUE)
@@ -1337,6 +1337,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         secondPanel.add(mainFlowPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 860, 420));
 
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 860, 490));
+        secondPanel.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1344,6 +1345,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainPane.setVisible(false);
         secondPanel.setVisible(true);
+        Customer.getCustomerInstance().logout();
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card3");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1353,6 +1355,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         mainPane.setVisible(false);
         CardLayout c = (CardLayout)mainFlowPanel.getLayout(); 
         c.show(mainFlowPanel, "card6");
+        Customer.getCustomerInstance().logout();
         secondPanel.setVisible(true);
         
         jPanel1.setVisible(false);
@@ -1410,12 +1413,15 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         
         CardLayout c = (CardLayout)payPanel.getLayout(); 
         payment = new PaymentFactory().getPayMethod("PAYBYCARD");
+        
         Customer.getCustomerInstance().setPayment(payment);
         payment.setOrder(order);
+
         jLabelTaxCard.setText(""+payment.getTax());
-        jLabelCard.setText(String.valueOf(payment.getTotal()));
-        
+        jLabelCard.setText(String.format("%.2f",payment.getTotal()));
         ((PayByCard)payment).pay(jLbDeal1);
+        jLbDeal1.setText(String.valueOf(order.getTotalFee()));
+
         c.show(payPanel, "cardPaneCard");
         Time t = new Time(500000,this);
     }//GEN-LAST:event_jBtPayByCardActionPerformed
@@ -1426,9 +1432,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         payment = new PaymentFactory().getPayMethod("PAYBYCASH");
         Customer.getCustomerInstance().setPayment(payment);
         payment.setOrder(order);
-        jLabelCashTotal.setText(String.valueOf(payment.getTotal()));
+        jLabelCashTotal.setText(String.format("%.2f",payment.getTotal()));
         jLabelTaxCash.setText(""+payment.getTax());
+        
         ((PayByCash)payment).pay(jLbDeal);
+        jLbDeal.setText(String.valueOf(order.getTotalFee()));
+        
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(500000,this);
     }//GEN-LAST:event_jBtPayByCashActionPerformed
@@ -1476,6 +1485,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         control.confirmPay(jLabelCashTotal, jTfQuantity, jLbChange);
         
         if(Double.parseDouble(jLbChange.getText())>=0){
+            JOptionPane.showMessageDialog(null,"Please collect your change :"+jLbChange.getText()+"$"," ",
+                            PLAIN_MESSAGE);
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "receiptCard");
@@ -1524,18 +1535,21 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButtonOrderConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderConfirmActionPerformed
-        CardLayout c = (CardLayout)mainFlowPanel.getLayout();
+        CardLayout b = (CardLayout)mainFlowPanel.getLayout();
+        CardLayout c = (CardLayout)payPanel.getLayout();
         if(Customer.getCustomerInstance().isLogedin()==false){
             LogIn.start(1, this);
         }
         else{
             //turn to payment page
             if(jTableOrder==null){
-                c.show(mainFlowPanel, "payCard");
+                b.show(mainFlowPanel,"payCard");
+                c.show(payPanel, "paymentcard");
                 insertToDatabse();
             }
             else {
-                c.show(mainFlowPanel, "payCard");
+                b.show(mainFlowPanel,"payCard");
+                c.show(payPanel, "paymentcard");
                 try {
                     from=1;
                     DAOFactory.getUserDAOInstance().updataRenewRoom(room, from, to);
@@ -1551,19 +1565,20 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         CardLayout c = (CardLayout)mainFlowPanel.getLayout();
         try {
                 //check room availability again
-                if(DAOFactory.getUserDAOInstance().queryRoomAvailable(from, to, room.getId())){
+                System.out.println(room.getId());
+//                if(DAOFactory.getUserDAOInstance().queryRoomAvailable(from, to, room.getId())){
                     //if available
                     //insert order into database
                     DAOFactory.getUserDAOInstance().insert(order);
                     //update room status
                     DAOFactory.getUserDAOInstance().update(room, from, to,"add");
-                }
-                else{
-                    //system shows error message and return to select time page
-                    JOptionPane.showMessageDialog(null,"Room has been booked, try different time!"," ",
-                            PLAIN_MESSAGE);
-                    c.show(mainFlowPanel, "card3");
-                }
+//                }
+//                else{
+//                    //system shows error message and return to select time page
+//                    JOptionPane.showMessageDialog(null,"Room has been booked, try different time!"," ",
+//                            PLAIN_MESSAGE);
+//                    c.show(mainFlowPanel, "card3");
+//                }
             } catch (Exception ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -1615,7 +1630,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "orderCard");
             order.addService(customerService); 
-            control.displayModel(jTableOrder, customerService, order);
+            control.displayModel(jTableOrder, customerService, Customer.getCustomerInstance().getCurrentOrder());
         }
     }//GEN-LAST:event_jBtS9ActionPerformed
 
@@ -1763,15 +1778,18 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                mainPane.setVisible(true);
-                secondPanel.setVisible(false);
+                restart();
             }
         }, 3000);  
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void restart(){
+        new MainFrame().setVisible(true);
+        this.dispose();
+    }
+    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        mainPane.setVisible(true);
-        secondPanel.setVisible(false);
+        restart();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1975,7 +1993,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             CardLayout c = (CardLayout)mainFlowPanel.getLayout();
             c.show(mainFlowPanel, "payCard");
             insertToDatabse();
-            
         }
         if(i==2){
             //turn to renew room page

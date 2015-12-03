@@ -15,7 +15,6 @@ public class Customer {
     private String userName;
     private String gender;
     private Order currentOrder;
-    private ArrayList<Order> order;
     private Payment payment;
     private boolean logedin;
     private static Customer customer;
@@ -53,12 +52,11 @@ public class Customer {
         this.id = 0;
         this.name = null;
         this.gender = null;
-        this.currentOrder = new Order(this);
         this.payment = null;
         this.score = 0;
         this.roomNum = null;
         this.logedin = false;
-        
+        this.currentOrder = new Order(this);
     }
     
     public String getName() {
@@ -69,9 +67,7 @@ public class Customer {
         return this.id;
     }
 
-    public ArrayList<Order> getOrder() {
-        return this.order;
-    }
+
 
     /**
      * @return the gender
@@ -147,12 +143,6 @@ public class Customer {
         this.id = id;
     }
 
-    /**
-     * @param order the order to set
-     */
-    public void setOrder(ArrayList<Order> order) {
-        this.order = order;
-    }
 
     /**
      * @return the score

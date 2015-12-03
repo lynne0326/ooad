@@ -1,5 +1,6 @@
 package hotelpossystem;
 
+import UI.MainFrame;
 import java.util.Date;
 import javax.swing.JLabel;
 
