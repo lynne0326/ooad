@@ -116,13 +116,21 @@ public class UserDAOImplement implements UserDAO {
     }
 
     @Override
+    public void updataRenewRoom(Room room, int checkinDate, int checkoutDate) throws Exception{
+        try (Connection conn = new DatabaseConnection().getConnection();
+            Statement state = conn.createStatement();) {
+            int i=checkinDate;
+            state.execute(String.format("UPDATE `hotel`.`room` SET `day"+(i+1)+"`"+"='0' WHERE `id`='%s'",room.getId()));
+        }
+    }
+    
+    @Override
     public void delete(Order order) throws Exception {
         String sql = "delete from hotel.`order` where id = "+order.getId();
         try (Connection conn = new DatabaseConnection().getConnection();
             Statement state = conn.createStatement();) {
             state.execute(sql);
-        }
-        
+        }       
     }
 
     @Override
@@ -250,7 +258,7 @@ public class UserDAOImplement implements UserDAO {
         
     }
             
-            
+    
 
     /**
      *

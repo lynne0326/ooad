@@ -40,8 +40,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
-        
+    public MainFrame() {        
         initComponents();
     }
 
@@ -1494,9 +1493,19 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
         else{
             //turn to payment page
-            
-            c.show(mainFlowPanel, "payCard");
-            insertToDatabse();
+            if(jTableOrder==null){
+                c.show(mainFlowPanel, "payCard");
+                insertToDatabse();
+            }
+            else {
+                c.show(mainFlowPanel, "payCard");
+                try {
+                    from=1;
+                    DAOFactory.getUserDAOInstance().updataRenewRoom(room, from, to);
+                } catch (Exception ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
             
     }//GEN-LAST:event_jButtonOrderConfirmActionPerformed

@@ -26,6 +26,7 @@ public interface UserDAO {
     public void update(Order order) throws Exception;
     public void update(Customer customer) throws Exception;
     public void update(Room room,int checkinDate, int checkoutDate,String revertOrAdd) throws Exception;
+    public void updataRenewRoom(Room room, int checkinDate, int checkoutDate) throws Exception;
     public void delete(Order order) throws Exception;
     public boolean queryLogin(String username, String password) throws Exception;
     public int queryOrderMaxId() throws Exception;
