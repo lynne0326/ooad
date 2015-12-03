@@ -732,13 +732,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                         .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel32)
                             .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(displayPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(displayPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabelCard)))))
+                            .addComponent(jLabelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfFund, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         displayPanel1Layout.setVerticalGroup(
@@ -753,9 +750,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                     .addComponent(jLabel28)
                     .addComponent(jLabelTaxCard))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabelCard))
+                .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(displayPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -1409,8 +1406,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         payment = new PaymentFactory().getPayMethod("PAYBYCASH");
         Customer.getCustomerInstance().setPayment(payment);
         payment.setOrder(order);
-        jLabelTaxCash.setText(""+payment.getTax());
         jLabelCashTotal.setText(String.valueOf(payment.getTotal()));
+        jLabelTaxCash.setText(""+payment.getTax());
         ((PayByCash)payment).pay(jLbDeal);
         c.show(payPanel, "cashPaneCard");
         Time t = new Time(500000,this);
@@ -1451,7 +1448,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtCancel1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        control.confirmPay(jLbDeal, jTfQuantity, jLbChange);
+        control.confirmPay(jLabelCashTotal, jTfQuantity, jLbChange);
         
         if(Double.parseDouble(jLbChange.getText())>=0){
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());
@@ -1479,7 +1476,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jBtCancel2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        control.confirmPay(jLbDeal1, jTfFund, jLbBalance);  
+        control.confirmPay(jLabelCard, jTfFund, jLbBalance);  
         
         if(jLbBalance.equals("0")){
             DAOFactory.getUserDAOInstance().updateAfterPayment(payment, order, Customer.getCustomerInstance());

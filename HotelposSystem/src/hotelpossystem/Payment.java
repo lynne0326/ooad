@@ -62,7 +62,8 @@ public abstract class Payment {
      * @return the tax
      */
     public double getTax() {
-        return tax;
+        return order.getTotalFee()*TAX_RATE;
+       
     }
 
     /**
